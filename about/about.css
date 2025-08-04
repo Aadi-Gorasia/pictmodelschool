@@ -1,0 +1,133 @@
+body {
+    background-color: #F5F5F5;
+}
+
+.about-header {
+    background-image: url(../media/images/background.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: rgba(0, 0, 0, 0.5);
+    background-blend-mode: darken;
+    padding: 60px 20px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 30vh;
+    margin-bottom: 40px;
+}
+
+#typed-title-placeholder {
+    color: var(--text-light);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    font-size: 3.5em;
+    font-family: var(--font-primary);
+    font-weight: bold;
+    margin: 0;
+}
+
+#typed-title {
+}
+
+.about-content {
+    padding: 0 15px;
+    margin-bottom: 40px;
+}
+.about-box {
+    padding: 30px 40px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.about-para {
+    font-family: 'Merriweather Sans', sans-serif;
+    margin-bottom: 1.5em;
+    text-align: justify;
+    color: #444;
+    font-size: 1.05rem;
+    line-height: 1.8;
+}
+.about-para:last-child {
+    margin-bottom: 0;
+}
+
+.vision-mission-section {
+    padding: 20px 15px 40px 15px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.vision-box,
+.mission-box {
+    background-color: #eaf4ff;
+    border-left: 5px solid var(--primary-color);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.07);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    flex: 1;
+    min-width: 300px;
+    max-width: 550px;
+}
+
+.vision-box:hover,
+.mission-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
+}
+
+.vision-content h2,
+.mission-content h2 {
+    font-size: 1.8em;
+    color: var(--primary-color);
+    font-family: 'Merriweather Sans', sans-serif;
+    margin-bottom: 15px;
+}
+
+.vision-content p,
+.mission-content p {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.7;
+    font-family: 'Merriweather Sans', sans-serif;
+}
+
+@media (max-width: 767px) {
+    .about-header {
+        min-height: 25vh;
+        padding: 40px 15px;
+    }
+    #typed-title-placeholder {
+        font-size: 2.5em;
+    }
+    .about-box {
+        padding: 25px;
+    }
+    .about-para {
+        font-size: 1rem;
+        text-align: left;
+    }
+    .vision-mission-section {
+        gap: 20px;
+        padding: 15px 10px 30px 10px;
+    }
+    .vision-box, .mission-box {
+        padding: 25px;
+        max-width: 100%;
+    }
+    .vision-content h2, .mission-content h2 {
+        font-size: 1.5em;
+    }
+    .vision-content p, .mission-content p {
+        font-size: 0.95rem;
+    }
+}

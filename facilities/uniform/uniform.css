@@ -1,0 +1,364 @@
+body {
+    font-family: Arial, sans-serif; /* Default body font */
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: #f4f4f4; /* Or #f9f9f9, choose one for the page body */
+}
+
+/* === PAGE BANNER === */
+.page-banner {
+    background-size: cover;
+    background-position: center;
+    background-color: var(--page-banner-bg);
+    background-image: url('../../media/images/background.jpg'); /* Ensure this path is correct */
+    color: var(--white-color);
+    height: 30vh; /* Or min-height if content might exceed it */
+    padding: 20px 0; /* Added padding from your second definition; adjust if height is strict */
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center; /* For inline/text children within the banner's direct scope */
+}
+
+/* Inner container for page banner content */
+.page-banner .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 15px;
+    width: 100%;
+    max-width: 1170px; /* Specific max-width for banner content */
+    color: #fff;
+}
+
+.page-banner h1 {
+    font-family: var(--font-primary);
+    font-size: 2.2rem; /* Consistent with your more detailed H1 */
+    font-weight: 700;
+    /* margin: 0; is handled by the reset */
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+}
+
+/* === GENERAL CONTAINER (used elsewhere on the page) === */
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+    /* overflow: hidden; /* Removed unless specifically needed, can clip shadows */
+}
+
+/* === GENERAL HEADING STYLES === */
+/* Style for H5 if used as a section subtitle */
+h5 {
+    font-family: var(--font-primary);
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--primary-color);
+    font-size: 1.6em;
+    width: fit-content; /* Allows margin auto to center it */
+    margin: 2.5em auto 1.2em auto; /* Top, L/R auto for centering, Bottom */
+    padding-bottom: 8px;
+    padding-left: 15px; /* Symmetrical padding if centered */
+    padding-right: 15px;/* Symmetrical padding if centered */
+    border-bottom: 2px solid var(--secondary-color);
+    transition: color var(--transition-speed) ease-in-out;
+    /* text-align: center; /* Not needed if margin:auto is used for block centering */
+}
+
+h5:hover {
+    color: var(--secondary-color);
+}
+
+/* === UNIFORM CONTAINER STYLES === */
+.uniform-container {
+    max-width: 80vw;
+    margin: 40px auto;
+    padding: 40px 50px;
+    background-color: var(--white-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
+    animation: fadeInUp 0.7s ease-out forwards;
+    opacity: 0; /* Initial state for animation */
+    font-family: 'Inria Sans', sans-serif;
+    color: var(--text-color);
+    line-height: 1.7;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.uniform-container h1 { /* Specific H1 style for inside .uniform-container */
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    text-align: center; /* Center the H1 text if it's block */
+    margin-bottom: 0.5em; /* Added some default spacing */
+}
+
+.uniform-container .title-lines-wrapper {
+    text-align: center;
+    margin-bottom: 2.5em;
+    line-height: 0; /* For aligning inline-block elements with text */
+}
+
+.uniform-container .title-line,
+.uniform-container .title-line2 {
+    display: inline-block;
+    vertical-align: middle;
+    height: 3px;
+    border: none;
+    background: linear-gradient(to right, var(--secondary-color), var(--primary-color));
+    border-radius: 1.5px;
+}
+
+.uniform-container .title-line { width: 80px; }
+.uniform-container .title-line2 { width: 50px; margin-left: 10px; }
+
+.uniform-container h2 {
+    font-family: var(--font-primary);
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--primary-color);
+    font-size: 1.6em;
+    width: fit-content; /* To allow margin auto centering if desired, or keep as is for left align */
+    /* margin: 2.5em auto 1.2em auto; /* Uncomment to center h2 block */
+    margin-top: 2.5em;
+    margin-bottom: 1.2em;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--secondary-color);
+    transition: color var(--transition-speed) ease-in-out;
+}
+
+.uniform-container h2:hover {
+    color: var(--secondary-color);
+}
+
+.uniform-container h3 {
+    font-family: var(--font-secondary); /* Make sure this var is defined */
+    font-weight: 700;
+    color: var(--primary-color);
+    font-size: 1.3em;
+    margin-top: 2em;
+    margin-bottom: 1em;
+}
+
+.uniform-container p {
+    margin-bottom: 1rem;
+    text-align: justify;
+    line-height: 1.7;
+}
+
+.uniform-container p.definition {
+    margin-left: 15px; /* Consider removing if you want full width */
+    text-align: left;
+    padding: 10px 18px;
+    border-left: 4px solid var(--secondary-color);
+    margin-bottom: 1em;
+    background-color: var(--background-light);
+    border-radius: 4px;
+    transition: border-left-color var(--transition-speed) ease-in-out, background-color var(--transition-speed) ease-in-out;
+}
+
+.uniform-container p.definition:hover {
+    border-left-color: var(--primary-color);
+    background-color: var(--background-lighter);
+}
+
+.uniform-container p strong,
+.uniform-container li strong {
+    font-weight: 700; /* Bold is default for strong, but explicit is fine */
+    color: var(--primary-color);
+    transition: color var(--transition-speed) ease-in-out;
+}
+
+.uniform-container p strong:hover,
+.uniform-container li strong:hover {
+    color: var(--secondary-color);
+}
+
+.uniform-container ol,
+.uniform-container ul {
+    margin-left: 25px; /* Initial indent for the list block */
+    margin-bottom: 1rem;
+    /* padding-left: 0; /* Reset by universal reset */
+}
+
+.uniform-container ol li,
+.uniform-container ul li {
+    margin-bottom: 0.8em;
+    padding-left: 20px; /* Space for the custom marker */
+    position: relative;
+    border-radius: 4px;
+    transition: transform var(--transition-speed) ease-in-out;
+    text-align: left;
+    line-height: 1.7;
+}
+
+.uniform-container ol {
+    list-style: none;
+    counter-reset: ordered-list-counter;
+}
+
+.uniform-container ol > li::before {
+    counter-increment: ordered-list-counter;
+    content: counter(ordered-list-counter) ".";
+    position: absolute;
+    left: -10px; /* Adjust to align with padding-left of li */
+    top: 0px; /* Adjust for vertical alignment if needed */
+    font-weight: bold;
+    color: var(--primary-color);
+    width: 25px; /* Ensure it's enough for numbers */
+    text-align: right;
+    padding-right: 5px; /* Space between number and content start */
+}
+
+.uniform-container ul {
+    list-style: none;
+}
+
+.uniform-container ul > li::before {
+    content: '';
+    position: absolute;
+    left: 0px; /* Adjust to align within padding-left of li */
+    top: 0.55em; /* Vertically center bullet */
+    transform: translateY(-50%); /* More precise vertical centering */
+    width: 7px;
+    height: 7px;
+    background-color: var(--secondary-color);
+    border-radius: 50%;
+}
+
+.uniform-container ol ol,
+.uniform-container ol ul,
+.uniform-container ul ol,
+.uniform-container ul ul {
+    margin-left: 30px; /* Further indent nested lists */
+    margin-top: 0.7em;
+    margin-bottom: 0.7em;
+}
+
+.uniform-container ol ol > li,
+.uniform-container ul ul > li,
+.uniform-container ul ol > li,
+.uniform-container ol ul > li {
+    font-size: 0.95em;
+    margin-bottom: 0.6em;
+}
+
+/* Custom markers for nested lists */
+.uniform-container ul ul > li::before {
+    background-color: var(--primary-color);
+    /* Potentially different style, e.g., open circle:
+    background-color: transparent;
+    border: 1px solid var(--primary-color);
+    */
+}
+.uniform-container ol ol > li::before {
+    left: -15px; /* Adjust as needed for nested ol */
+    /* content: counter(ordered-list-counter, lower-alpha) "."; /* Example for a. b. c. */
+}
+.uniform-container ol ul > li::before { /* UL nested in OL */
+    background-color: var(--primary-color);
+}
+.uniform-container ul ol > li::before { /* OL nested in UL */
+    left: -15px; /* Adjust */
+}
+
+.uniform-container ol > li:hover,
+.uniform-container ul > li:hover {
+    transform: translateX(5px);
+}
+
+.uniform-container ol ol > li:hover,
+.uniform-container ul ul > li:hover,
+.uniform-container ul ol > li:hover,
+.uniform-container ol ul > li:hover {
+    transform: translateX(3px);
+}
+
+/* === MEDIA QUERIES === */
+@media (max-width: 768px) {
+    .uniform-container {
+        max-width: 95vw; /* Use vw for consistency or % */
+        padding: 25px 20px;
+        margin: 20px auto;
+    }
+
+    .uniform-container h1 { font-size: 2rem; } /* Adjusted from 2em */
+    .uniform-container h2 { font-size: 1.4rem; } /* Adjusted from 1.4em */
+    .uniform-container h3 { font-size: 1.15rem; } /* Adjusted from 1.15em */
+
+    .uniform-container p,
+    .uniform-container li {
+        text-align: left; /* Overrides justify for smaller screens if desired */
+    }
+
+    .uniform-container ol > li:hover,
+    .uniform-container ul > li:hover,
+    .uniform-container ol ol > li:hover,
+    .uniform-container ul ul > li:hover,
+    .uniform-container ul ol > li:hover,
+    .uniform-container ol ul > li:hover {
+        transform: none;
+        /* background-color: transparent; /* Only if a hover bg was added */
+    }
+
+    .uniform-container ol,
+    .uniform-container ul {
+        margin-left: 15px;
+    }
+    .uniform-container ol li,
+    .uniform-container ul li {
+        padding-left: 25px; /* Increased padding for touch */
+    }
+
+    .uniform-container ol > li::before {
+        left: 0px; /* Adjust for new padding */
+        width: auto; /* Allow natural width */
+        text-align: left;
+        /* top: 0; /* Reset or adjust if needed */
+    }
+    .uniform-container ul > li::before {
+        left: 5px; /* Adjust for new padding */
+        top: 0.6em; /* May need transform: translateY(-50%) again */
+    }
+
+    .uniform-container ol ol,
+    .uniform-container ol ul,
+    .uniform-container ul ol,
+    .uniform-container ul ul {
+        margin-left: 20px;
+    }
+    .uniform-container ol ol > li::before {
+        left: 0px; /* Adjust for new padding */
+        width: auto;
+        text-align: left;
+    }
+    .uniform-container ul ul > li::before {
+        left: 5px; /* Adjust for new padding */
+        top: 0.6em;
+    }
+}
+.pdf-link{
+    background-color: rgb(230, 43, 23);
+    font-family: var(--font-primary);
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-radius: 10px;
+    color: #fff;
+    
+}

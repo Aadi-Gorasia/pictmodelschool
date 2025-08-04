@@ -1,0 +1,319 @@
+
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+.bye-laws-container {
+    max-width: 80vw; 
+    margin: 40px auto; 
+    padding: 40px 50px; 
+    background-color: #ffffff; 
+    border-radius: 8px; 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07); 
+    animation: fadeInUp 0.7s ease-out forwards; 
+    opacity: 0; 
+
+
+    font-family: 'Inria Sans', sans-serif; 
+    color: #333333; 
+    line-height: 1.7; 
+}
+
+
+.bye-laws-container h1 {
+    font-family: 'Montserrat', sans-serif; 
+    font-size: 2.5rem; 
+    font-weight: 700;
+    color: var(--primary-color); 
+}
+
+
+.bye-laws-container .title-lines-wrapper {
+    text-align: center; 
+    margin-bottom: 2.5em; 
+    line-height: 0; 
+}
+
+
+.bye-laws-container .title-line,
+.bye-laws-container .title-line2 {
+    display: inline-block; 
+    vertical-align: middle;
+    height: 3px; 
+    border: none;
+    background: linear-gradient(to right, var(--secondary-color), var(--primary-color)); 
+    
+    border-radius: 1.5px; 
+}
+
+.bye-laws-container .title-line {
+    width: 80px; 
+}
+
+.bye-laws-container .title-line2 {
+    width: 50px; 
+    margin-left: 10px; 
+}
+
+
+.bye-laws-container h2 {
+    font-family: var(--font-primary); 
+    font-weight: 700;
+    text-transform: uppercase; 
+    color: var(--primary-color); 
+    margin-top: 2.5em; 
+    margin-bottom: 1.2em; 
+    padding-bottom: 8px; 
+    border-bottom: 2px solid var(--secondary-color); 
+    font-size: 1.6em; 
+    transition: color var(--transition-speed) ease-in-out; 
+    width: fit-content; 
+}
+
+.bye-laws-container h2:hover {
+    color: var(--secondary-color); 
+}
+
+
+.bye-laws-container h3 {
+    font-family: var(--font-secondary); 
+    font-weight: 700;
+    color: var(--primary-color); 
+    font-size: 1.3em; 
+    margin-top: 2em; 
+    margin-bottom: 1em; 
+}
+
+
+.bye-laws-container p {
+     margin-bottom: 1rem; 
+     text-align: justify; 
+     line-height: 1.7; 
+}
+
+
+.bye-laws-container p.definition {
+    margin-left: 15px; 
+    text-align: left; 
+    padding: 10px 18px; 
+    border-left: 4px solid var(--secondary-color); 
+    margin-bottom: 1em; 
+    background-color: #f8f9fa; 
+    border-radius: 4px; 
+    transition: border-left-color var(--transition-speed) ease-in-out, background-color var(--transition-speed) ease-in-out; 
+}
+
+.bye-laws-container p.definition:hover {
+    border-left-color: var(--primary-color); 
+    background-color: #f1f3f5; 
+}
+
+
+.bye-laws-container p strong,
+.bye-laws-container li strong {
+    font-weight: 700; 
+    color: var(--primary-color); 
+    transition: color var(--transition-speed) ease-in-out; 
+}
+
+
+.bye-laws-container p strong:hover,
+.bye-laws-container li strong:hover {
+    color: var(--secondary-color); 
+}
+
+
+.bye-laws-container ol,
+.bye-laws-container ul {
+    margin-left: 25px; 
+    margin-bottom: 1rem; 
+    padding-left: 0; 
+}
+
+
+.bye-laws-container ol li,
+.bye-laws-container ul li {
+    margin-bottom: 0.8em; 
+    padding-left: 20px; 
+    position: relative; 
+    border-radius: 4px; 
+    transition: transform var(--transition-speed) ease-in-out; 
+    
+    text-align: left; 
+    line-height: 1.7; 
+}
+
+
+.bye-laws-container ol {
+    list-style: none; 
+    counter-reset: ordered-list-counter; 
+}
+
+
+.bye-laws-container ol > li::before {
+    counter-increment: ordered-list-counter; 
+    content: counter(ordered-list-counter) "."; 
+    position: absolute;
+    left: -10px; 
+    top: 0px; 
+    font-weight: bold; 
+    color: var(--primary-color); 
+    width: 25px; 
+    text-align: right; 
+    padding-right: 5px; 
+    
+}
+
+
+.bye-laws-container ul {
+     list-style: none; 
+}
+
+
+.bye-laws-container ul > li::before {
+    content: ''; 
+    position: absolute;
+    left: 0px; 
+    top: 0.55em; 
+    width: 7px; 
+    height: 7px; 
+    background-color: var(--secondary-color); 
+    border-radius: 50%; 
+    
+}
+
+
+.bye-laws-container ol ol,
+.bye-laws-container ol ul,
+.bye-laws-container ul ol,
+.bye-laws-container ul ul {
+    margin-left: 30px; 
+    margin-top: 0.7em; 
+    margin-bottom: 0.7em; 
+}
+
+
+.bye-laws-container ol ol > li,
+.bye-laws-container ul ul > li,
+.bye-laws-container ul ol > li,
+.bye-laws-container ol ul > li {
+     font-size: 0.95em; 
+     margin-bottom: 0.6em; 
+}
+
+
+.bye-laws-container ul ul > li::before {
+     background-color: var(--primary-color); 
+     
+     
+}
+.bye-laws-container ol ol > li::before {
+     left: -15px; 
+     
+     
+}
+.bye-laws-container ol ul > li::before {
+     background-color: var(--primary-color); 
+}
+.bye-laws-container ul ol > li::before {
+     left: -15px; 
+     
+}
+
+
+.bye-laws-container ol > li:hover,
+.bye-laws-container ul > li:hover {
+    transform: translateX(5px); 
+    
+    
+}
+
+
+
+.bye-laws-container ol ol > li:hover,
+.bye-laws-container ul ul > li:hover,
+.bye-laws-container ul ol > li:hover,
+.bye-laws-container ol ul > li:hover {
+    transform: translateX(3px); 
+    
+    
+}
+
+
+@media (max-width: 768px) {
+    .bye-laws-container {
+        max-width: 95%; 
+        padding: 25px 20px; 
+        margin: 20px auto; 
+    }
+
+    .bye-laws-container h1 { font-size: 2em; } 
+    .bye-laws-container h2 { font-size: 1.4em; }
+    .bye-laws-container h3 { font-size: 1.15em; }
+
+    
+    .bye-laws-container p,
+    .bye-laws-container li {
+        text-align: left;
+    }
+
+    
+    .bye-laws-container ol > li:hover,
+    .bye-laws-container ul > li:hover,
+    .bye-laws-container ol ol > li:hover,
+    .bye-laws-container ul ul > li:hover,
+    .bye-laws-container ul ol > li:hover,
+    .bye-laws-container ol ul > li:hover {
+        transform: none;
+        background-color: transparent; 
+    }
+
+     
+    .bye-laws-container ol,
+    .bye-laws-container ul {
+        margin-left: 15px; 
+    }
+    .bye-laws-container ol li,
+    .bye-laws-container ul li {
+        padding-left: 25px; 
+    }
+
+     
+     .bye-laws-container ol > li::before {
+         left: -5px; 
+         width: auto; 
+         text-align: left; 
+     }
+    .bye-laws-container ul > li::before {
+        left: 5px; 
+         top: 0.6em;
+    }
+
+    
+    .bye-laws-container ol ol,
+    .bye-laws-container ol ul,
+    .bye-laws-container ul ol,
+    .bye-laws-container ul ul {
+        margin-left: 20px; 
+    }
+     .bye-laws-container ol ol > li::before {
+         left: -5px;
+         width: auto;
+         text-align: left;
+     }
+    .bye-laws-container ul ul > li::before {
+         left: 5px;
+          top: 0.6em;
+     }
+     
+
+}

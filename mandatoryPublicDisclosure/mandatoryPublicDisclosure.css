@@ -1,0 +1,504 @@
+:root {
+    /* Colors */
+    --primary-color: #dc3545;       /* Button Red */
+    --primary-hover-color: #c82333;
+    --primary-active-color: #bd2130;
+    --table-header-bg: #e69900;     /* Table Orange */
+    --text-color-light: #ffffff;
+    --text-color-dark: #343a40;      /* Darker grey for text */
+    --text-color-medium: #495057;    /* Medium grey */
+    --border-color: #dee2e6;         /* Light grey border */
+    --background-light: #f8f9fa;    /* Very light grey bg */
+    --background-body: #f0f0f8;    /* Light lavender bg */
+    --focus-ring-color: rgba(220, 53, 69, 0.5); /* Button focus ring */
+
+    /* Typography */
+    --font-family-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --base-font-size: 1rem; /* Typically 16px */
+    --line-height-base: 1.6;
+
+    /* Spacing */
+    --space-xs: 0.25rem; /* 4px */
+    --space-sm: 0.5rem;  /* 8px */
+    --space-md: 1rem;    /* 16px */
+    --space-lg: 1.5rem;  /* 24px */
+    --space-xl: 2.5rem;  /* 40px */
+
+    /* Borders & Shadows */
+    --border-radius-sm: 0.2rem;
+    --border-radius-lg: 30px; /* Pill shape for buttons */
+    --box-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+    --box-shadow-md: 0 4px 8px rgba(0, 0, 0, 0.1);
+    --box-shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.mPD-hero h1 {
+    /* Ensure it behaves correctly for inline cursor */
+    display: inline-block;
+    vertical-align: middle; /* Align with potential baseline shifts */
+    position: relative; /* Needed if you want more complex cursor positioning */
+    /* Clear initial text if needed (JS will handle this too) */
+    /* text-indent: -9999px; */ /* Hide text until JS types it */
+}
+
+.mPD-hero h1 .cursor {
+    display: inline-block;
+    background-color: var(--text-light); /* Cursor color */
+    width: 3px; /* Cursor width */
+    margin-left: 5px;
+    animation: blink 1s step-end infinite;
+    vertical-align: baseline; /* Align cursor with text */
+}
+
+@keyframes blink {
+    from, to { background-color: transparent }
+    50% { background-color: var(--text-light); }
+}
+
+/* --- Hero Section (Existing - minor tweaks might be needed) --- */
+.mPD-hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../media/images/background.jpg'); /* CHANGE TO A REAL BACKGROUND IMAGE PATH */
+    background-size: cover;
+    background-position: center;
+    padding: 60px 0;
+    text-align: center;
+    color: var(--text-light);
+    margin-bottom: 40px; /* Space before the form section */
+    min-height: 200px; /* Ensure enough height for text */
+    display: flex; /* Use flexbox for alignment */
+    align-items: center; /* Vertically center */
+    justify-content: center; /* Horizontally center */
+}
+
+/* Make container take up space if needed */
+
+
+.mPD-hero h1 {
+    font-family: var(--font-primary);
+    font-size: 2.8em;
+    margin-bottom: 10px;
+    color: var(--text-light); /* Ensure it overrides general styles if needed */
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    /* REMOVED: display: inline-block; */ /* Let the container center it */
+    /* ADDED: Clear previous styles */
+    padding: 0;
+    line-height: 1.2; /* Adjust line height */
+
+}
+
+.mPD-hero p {
+    font-size: 1.2em;
+    color: rgba(255, 255, 255, 0.9);
+    margin-top: 10px; /* Add some space below h1 */
+}
+
+/* --- mPD Section Layout --- */
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    width: 90%;
+}
+
+.nav-button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 30px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    left: 6%;
+    /* Updated transition to include transform and box-shadow */
+    transition: background-color 0.3s ease,
+                transform 0.2s ease,
+                box-shadow 0.3s ease; /* Added box-shadow */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Initial shadow */
+    white-space: nowrap;
+    flex-grow: 0;
+    flex-shrink: 0;
+    /* Add position relative to allow z-index if needed, although usually not required for translateY */
+    position: relative;
+}
+
+.nav-button:hover {
+    background-color: #c82333; /* Darker red on hover */
+    /* Add the rise effect */
+    transform: translateY(-4px); /* Move button up slightly */
+    /* Enhance the shadow for the 'rise' effect */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Larger shadow */
+}
+
+.nav-button:active {
+    background-color: #bd2130;
+    /* Keep the raised effect slightly reduced on active, or remove it */
+    transform: translateY(-2px) scale(0.97); /* Combine translateY and scale */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Reduce shadow on click */
+}
+
+.nav-button:focus {
+    outline: none;
+    /* Consider adding a custom focus style for accessibility if needed */
+    box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.5);
+}
+
+/* Optional: Style for content sections if using JS to show/hide */
+.content-section {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    width: 80%;
+    max-width: 800px;
+    text-align: center;
+}
+
+/* =========================================
+   Enhanced Table Styles
+   ========================================= */
+
+/* Container wrapping the table for scrolling, border, and shadow */
+.table-container {
+    width: 100%;
+    max-width: 1000px;
+    margin: var(--space-xl) auto;
+    border: none; /* Remove border from container itself */
+    border-radius: var(--border-radius-md, 6px); /* Slightly larger radius */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Softer, more diffused shadow */
+    overflow: hidden; /* Clip the table to the container's rounded corners */
+}
+
+/* Inner wrapper specifically for horizontal scrolling */
+.table-scroll-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+}
+
+.info-table {
+    width: 100%;
+    border-collapse: collapse; /* Crucial for clean lines */
+    border-style: hidden; /* Hide borders that might conflict with container radius */
+    font-size: 0.95em;
+    font-family: var(--font-primary);
+    background-color: var(--text-color-light); /* Ensure table has white background */
+}
+
+/* General Cell Styling (TH and TD) */
+.info-table th,
+.info-table td {
+    padding: var(--space-md) var(--space-lg); /* More horizontal padding */
+    text-align: left;
+    vertical-align: middle; /* Better vertical centering */
+    border: none; /* Remove default borders, we'll add specific ones */
+}
+
+/* Header Specific Styling */
+.info-table thead {
+    /* Add a subtle bottom border to the entire header area */
+    border-bottom: 2px solid var(--table-header-bg);
+}
+
+.info-table thead th {
+    background-color: var(--table-header-bg);
+    color: var(--text-color-light);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.75px; /* Slightly increased spacing */
+    position: sticky; /* Keep header visible on scroll within wrapper */
+    top: 0;
+    z-index: 1;
+    /* Prevent background color bleeding */
+    background-clip: padding-box;
+    /* Remove bottom border from TH if thead has one */
+    border-bottom: none;
+}
+
+/* Add subtle vertical lines ONLY between header cells for definition */
+.info-table thead th:not(:last-child) {
+    border-right: 1px solid rgba(255, 255, 255, 0.2); /* Faint line */
+}
+
+
+/* Table Body Styling */
+.info-table tbody td {
+    color: var(--text-color-medium);
+    /* Define the primary horizontal separators */
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* Remove bottom border from the very last row */
+.info-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Zebra Striping - Applied to TDs for better border rendering */
+.info-table tbody tr:nth-child(even) td {
+    background-color: var(--background-light);
+}
+
+/* Hover State - Applied to TDs */
+.info-table tbody tr:hover td {
+    background-color: #eef1f3; /* Slightly different, cooler hover color */
+    color: var(--text-color-dark); /* Ensure text is dark enough on hover */
+}
+
+/* Column-Specific Adjustments */
+.info-table th:first-child,
+.info-table td:first-child {
+    width: 8%;
+    min-width: 70px;
+    text-align: center;
+    font-weight: 600; /* Keep SL NO bold */
+    color: var(--text-color-dark); /* Make SL NO slightly darker */
+}
+
+.info-table th:nth-child(2),
+.info-table td:nth-child(2) {
+    width: 35%;
+    min-width: 220px;
+    font-weight: 600; /* Keep Information label bold */
+    color: var(--text-color-dark); /* Darker label text */
+}
+
+/* Details Column */
+.info-table td:nth-child(3) {
+    word-break: break-word;
+    line-height: 1.5; /* Slightly more line height for long text */
+}
+
+/* =========================================
+   End Enhanced Table Styles
+   ========================================= */
+
+   /* =========================================
+   Documents Table Specific Styles
+   ========================================= */
+
+/* Use existing .table-container or add specific margin if needed */
+.documents-container {
+    margin-bottom: var(--space-xl); /* Example margin */
+ }
+ 
+ /* Target the specific table */
+
+ 
+ /* Header Styling for Documents Table */
+ .documents-table thead th {
+     background-color: var(--table-header-bg, #e69900); /* Orange background */
+     color: var(--text-color-light, #ffffff);          /* White text */
+     border-bottom: none; /* Remove border if inheriting from general table */
+     border-right: 1px solid rgba(255, 255, 255, 0.15); /* Faint lines between TH */
+ }
+ .documents-table thead th:last-child {
+     border-right: none; /* No line after last header cell */
+ }
+ 
+ 
+ /* Body Cell Styling */
+ .documents-table tbody td {
+     padding: var(--space-sm) var(--space-md); /* Adjust padding */
+     vertical-align: middle; /* Align content vertically */
+     border-bottom: 1px solid var(--border-color, #dee2e6);
+}
+ 
+ /* Last row no border */
+ .documents-table tbody tr:last-child td {
+     border-bottom: none;
+ }
+ 
+ /* Zebra Striping */
+ .documents-table tbody tr:nth-child(even) td {
+     background-color: var(--background-light, #f8f9fa);
+ }
+ 
+ /* --- Highlighted Row Style --- */
+ /* Needs to be specific enough or come after nth-child rule */
+ .documents-table tbody tr.highlight-row td {
+     background-color: #e9ecef; /* Grey background from image */
+     /* Ensure it overrides zebra striping */
+ }
+ 
+ /* --- Column Widths & Alignments --- */
+ .documents-table th:nth-child(1), /* SL NO TH */
+ .documents-table td:nth-child(1) { /* SL NO TD */
+     width: 6%;
+     min-width: 50px;
+     text-align: center;
+ }
+ 
+ .documents-table th:nth-child(2), /* DOCS TH */
+ .documents-table td:nth-child(2) { /* DOCS TD */
+     width: 64%; /* Give most space to documents */
+     vertical-align: top; /* Align text block to top */
+     padding-top: var(--space-md); /* Add more top padding */
+     padding-bottom: var(--space-md);
+ }
+ 
+ .documents-table th:nth-child(3), /* VIEW TH */
+ .documents-table td:nth-child(3), /* VIEW TD */
+ .documents-table th:nth-child(4), /* DOWNLOAD TH */
+ .documents-table td:nth-child(4) { /* DOWNLOAD TD */
+     width: 15%;
+     min-width: 80px;
+     text-align: right;
+ }
+ 
+ 
+ /* --- Document Text Styling --- */
+ .documents-table td .doc-title {
+     display: block; /* Make it block level */
+     font-weight: 600;
+     color: var(--text-color-dark, #343a40);
+     margin-bottom: var(--space-xs, 4px);
+     text-transform: uppercase; /* Match image */
+ }
+ 
+ .documents-table td .doc-subtitle {
+     display: block; /* Make it block level */
+     font-style: italic;
+     font-size: 0.9em;
+     color: var(--text-color-medium, #6c757d);
+ }
+ 
+ 
+ /* --- Icon Link Styling --- */
+ .documents-table td a {
+     display: inline-block; /* Allows padding/margin */
+     color: var(--text-color-dark, #343a40);
+     text-decoration: none;
+     font-size: 1.3em; /* Make icons a bit larger */
+     padding: var(--space-xs); /* Small clickable area */
+     transition: color 0.2s ease-in-out, transform 0.15s ease;
+ }
+ 
+ .documents-table td a:hover {
+     color: var(--primary-color, #dc3545); /* Use theme color on hover */
+     transform: scale(1.1); /* Slight zoom effect */
+ }
+ 
+ /* Font Awesome specific icon adjustments if needed */
+ .documents-table td a .fa-eye,
+ .documents-table td a .fa-download {
+    vertical-align: middle; /* Align icons nicely */
+ }
+ 
+ 
+ /* =========================================
+    End Documents Table Styles
+    ========================================= */
+
+    /* =========================================
+   Infrastructure Table Specific Styles
+   ========================================= */
+
+/* Use existing .table-container or add specific margin if needed */
+.infrastructure-container {
+    margin-bottom: var(--space-xl);
+ }
+ 
+
+ 
+ /* Header Styling */
+ .infrastructure-table thead th {
+     background-color: var(--table-header-bg, #e69900); /* Orange background */
+     color: var(--text-color-light, #ffffff);
+     border-bottom: none;
+     border-right: 1px solid rgba(255, 255, 255, 0.15);
+     text-transform: uppercase;
+ }
+ .infrastructure-table thead th:last-child {
+     border-right: none;
+ }
+ 
+ 
+ /* Body Cell Styling */
+ .infrastructure-table tbody td {
+     padding: var(--space-md); /* Consistent padding */
+     vertical-align: middle;
+     border-bottom: 1px solid var(--border-color, #dee2e6);
+     line-height: 1.5; /* Improve readability for longer text */
+ }
+ 
+ /* Last row no border */
+ .infrastructure-table tbody tr:last-child td {
+     border-bottom: none;
+ }
+ 
+ /* Zebra Striping */
+ .infrastructure-table tbody tr:nth-child(even) td {
+     background-color: var(--background-light, #f8f9fa);
+ }
+ 
+ 
+ /* --- Column Widths & Alignments --- */
+ .infrastructure-table th:nth-child(1), /* SL NO TH */
+ .infrastructure-table td:nth-child(1) { /* SL NO TD */
+     width: 8%;
+     min-width: 60px;
+     text-align: center;
+     font-weight: 600;
+ }
+ 
+ .infrastructure-table th:nth-child(3), /* DETAILS TH */
+ .infrastructure-table td:nth-child(3) { /* DETAILS TD */
+     width: 25%; /* Give details column reasonable width */
+     min-width: 150px;
+     text-align: center;
+     padding-right: var(--space-lg);
+ }
+ 
+ .infrastructure-table th:nth-child(2), /* INFO TH */
+ .infrastructure-table td:nth-child(2) { /* INFO TD */
+     width: 67%; /* Remaining width */
+     text-align: left;
+ }
+ 
+ 
+ /* --- Table Button Styling --- */
+ .infrastructure-table td .table-button {
+     display: inline-block; /* Behave like a button */
+     background-color: #dc3545; /* Use primary red color */
+     color: var(--text-color-light, #ffffff);
+     padding: var(--space-sm) var(--space-md); /* Button padding */
+     border: none;
+     border-radius: var(--border-radius-sm, 4px); /* Standard small radius */
+     text-decoration: none;
+     font-weight: 500;
+     font-size: 0.9em;
+     text-align: center;
+     cursor: pointer;
+     transition: background-color 0.2s ease-in-out, transform 0.1s ease;
+     white-space: nowrap; /* Prevent text wrapping */
+ }
+ 
+ .infrastructure-table td .table-button:hover {
+     background-color: var(--primary-hover-color, #c82333); /* Darker red on hover */
+     transform: scale(1.02); /* Slight grow effect */
+ }
+ 
+ .infrastructure-table td .table-button:active {
+     background-color: var(--primary-active-color, #bd2130);
+     transform: scale(0.98); /* Press effect */
+ }
+ 
+ 
+ /* =========================================
+    End Infrastructure Table Styles
+    ========================================= */
+
+.section-header {
+    color: var(--font-primary);
+    padding: 20px;
+    padding-top: 50px;
+    width: 99vw;
+    text-align: center;
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+}

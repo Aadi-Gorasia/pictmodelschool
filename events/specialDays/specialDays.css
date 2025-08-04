@@ -1,0 +1,146 @@
+/* special-days.css */
+
+/* General Page Layout */
+.events-page {
+    padding: 40px 0;
+    background-color: #f8f9fa;
+}
+
+.page-title {
+    text-align: center;
+    font-size: 2.8rem;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    font-family: var(--font-primary);
+}
+
+.page-subtitle {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 50px auto; /* Increased bottom margin */
+    font-size: 1.1rem;
+    color: #666;
+}
+
+/* NEW: Section Heading Style */
+.section-heading {
+    text-align: center;
+    font-size: 2.2rem;
+    color: var(--primary-color);
+    margin-top: 60px; /* Space between sections */
+    margin-bottom: 30px;
+    font-family: var(--font-primary);
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.section-heading::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background-color: var(--secondary-color);
+    border-radius: 2px;
+}
+
+
+/* Event & Video Grid Styling */
+.event-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+/* Image Item Styling */
+.event-item {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: #fff;
+}
+
+.event-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.event-item img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.event-item:hover img {
+    transform: scale(1.05);
+}
+
+.event-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(to top, rgba(30, 58, 138, 0.95), transparent);
+    color: #fff;
+    padding: 30px 15px 15px 15px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    text-align: center;
+    transition: background 0.3s ease;
+}
+
+/* Video Item Styling */
+.video-item {
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden; /* Important for containing the video */
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.video-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+
+.video-item h4 {
+    font-size: 1.1rem;
+    color: var(--primary-color);
+    padding: 15px;
+    margin: 0;
+    background-color: #f1f1f1;
+    text-align: center;
+}
+
+.video-responsive {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    height: 0;
+    overflow: hidden;
+    flex-grow: 1; /* Allows the video to fill the card */
+}
+
+.video-responsive iframe,
+.video-responsive video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.featured-video-container {
+    max-width: 896px; /* A good large size, 16:9 friendly */
+    width: 100%; /* Ensures it's responsive on smaller screens */
+    margin: 0 auto 50px auto; /* Top, Right/Left auto (center), Bottom margin */
+}

@@ -1,0 +1,105 @@
+h2 {
+    font-family: var(--font-primary); 
+    font-weight: 700;
+    text-transform: uppercase; 
+    color: var(--primary-color); 
+    margin-top: 2.5em; 
+    margin-bottom: 1.2em; 
+    padding-bottom: 8px; 
+    border-bottom: 2px solid var(--secondary-color); 
+    font-size: 1.6em; 
+    transition: color var(--transition-speed) ease-in-out; 
+    width: fit-content; 
+    padding-left: 30px;
+}
+
+h2:hover {
+    color: var(--secondary-color); 
+}
+.feestruct-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    border-radius: 8px;
+    margin-top: 20px; 
+    margin-bottom: 30px;  
+}
+.page-banner {
+    background-size: cover;
+    background-position: center;
+    background-color: #3a2d20; /* Dark brown, from image */
+    background-image: url('../../media/images/background.jpg'); /* Ensure this path is correct */
+    color: #ffffff;
+    height: 30vh; /* User specified height */
+
+    /* Flexbox for centering the .container div within .page-banner */
+    display: flex;
+    align-items: center; /* Vertical centering */
+    justify-content: center; /* Horizontal centering */
+    text-align: center; /* Ensures text within children is centered by default */
+}
+
+/* The .container div INSIDE .page-banner */
+.page-banner .container {
+    /* This container holds h1 */
+    display: flex;
+    flex-direction: column; /* Stack h1 (and formerly breadcrumbs) vertically */
+    align-items: center;    /* Horizontally center h1 block */
+    justify-content: center;/* Vertically center h1 block within this container */
+    padding: 0 15px;        /* Optional: retain some horizontal padding */
+    width: 100%;            /* Allow it to take up available width */
+    max-width: 1170px;      /* Optional: constrain width like other containers */
+}
+
+.page-banner h1 {
+    font-family: var(--font-primary); /* Montserrat */
+    font-size: 2.2rem; /* Adjusted size */
+    font-weight: 700;
+    margin: 0; /* Reset margin, as it's the only element now */
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+}
+table {
+    width: 100%;
+    border-collapse: collapse; /* Removes double borders, good */
+    margin-top: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Optional subtle shadow */
+    border: 1px solid #ddd; /* Add outer border */
+
+    /* --- Add these lines --- */
+    border-radius: 8px;   /* Adjust the radius value as you like (e.g., 5px, 10px) */
+    overflow: hidden;     /* This is key for making it look right with cell backgrounds */
+}
+th, td {
+    border: 1px solid #ddd; /* Light grey border for cells */
+    padding: 10px 12px; /* Add padding for spacing */
+    text-align: center;
+    vertical-align: middle; /* Align text vertically */
+    font-size: 0.95em;
+}
+
+td {
+    font-style: italic;
+}
+
+th {
+    background-color: var(--primary-color); /* Orange/Gold color from image */
+    color: #fff; /* Dark text color for header */
+    font-weight: bold;
+    text-align: center; /* Center align header text */
+}
+
+/* Alternating row colors for readability */
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9; /* Very light grey for even rows */
+}
+tbody tr:nth-child(odd) {
+    background-color: #ffffff; /* White for odd rows */
+}
+
+tbody tr:hover {
+    background-color: #f1f1f1; /* Highlight row on hover */
+}
+
+/* Specific alignment if needed */
+td:first-child { /* Sr.no column */
+   text-align: center;
+}

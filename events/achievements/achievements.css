@@ -1,0 +1,259 @@
+/* achievements.css - BEYOND PERFECTION Edition */
+
+/* General Page Layout */
+.achievements-page {
+    /* No padding here, the wrappers will handle it */
+    background-color: #f8f9fa;
+}
+
+.page-header {
+    padding: 40px 15px;
+    text-align: center;
+}
+
+.page-title {
+    font-size: 3.2rem;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    font-family: var(--font-primary);
+}
+
+.page-subtitle {
+    max-width: 700px;
+    margin: 0 auto 20px auto;
+    font-size: 1.2rem;
+    color: #555;
+    font-family: var(--font-secondary);
+}
+
+.section-heading {
+    text-align: center;
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-top: 60px;
+    margin-bottom: 40px;
+    font-family: var(--font-primary);
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.section-heading::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background-color: var(--secondary-color);
+    border-radius: 2px;
+}
+
+/* Hero Story Wrapper - The magic starts here */
+.story-wrapper {
+    position: relative;
+    padding: 80px 0;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Creates the parallax effect */
+}
+
+/* Unique backgrounds for each story */
+#dtmun-story-wrapper {
+    background-image: url('https://pictmodelschool.edu.in/img/achievements/MUN-7.jpg');
+}
+#bits-story-wrapper {
+    background-image: url('https://pictmodelschool.edu.in/img/achievements/YEB%20BOOTCAMP-6.jpg');
+}
+
+/* Dark overlay for readability */
+.story-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(30, 58, 138, 0.7); /* Dark blue overlay */
+    z-index: 1;
+}
+
+/* Floating Glassmorphism Card */
+.story-card {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 50px;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px); /* For Safari */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    padding: 50px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+/* Story Content Styling */
+.story-content h3 {
+    font-size: 2.2rem;
+    color: var(--secondary-color);
+    margin-bottom: 20px;
+    font-family: var(--font-primary);
+}
+
+.story-content p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 25px;
+}
+
+/* Highlight List with Icons */
+.highlights-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.highlights-list li {
+    display: flex;
+    align-items: flex-start;
+    font-size: 1.05rem;
+}
+
+.highlights-list i {
+    font-size: 1.2rem;
+    color: var(--secondary-color);
+    margin-right: 15px;
+    margin-top: 5px;
+    width: 20px; /* Aligns text neatly */
+}
+
+/* Dynamic Image Collage */
+.story-image-collage {
+    display: grid;
+    gap: 15px;
+    grid-template-columns: 2fr 1fr; /* Main image is twice as wide */
+}
+
+.story-image-collage.bits-collage {
+    grid-template-columns: 1fr 2fr; /* Reverse for variety */
+}
+
+.story-image-collage img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.story-image-collage img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.25);
+}
+
+.main-image {
+    grid-row: span 2; /* Main image takes full height of the collage */
+}
+
+.side-images {
+    display: grid;
+    gap: 15px;
+    grid-template-rows: 1fr 1fr;
+}
+
+.bits-collage .main-image {
+    grid-column: 2;
+    grid-row: span 2;
+}
+.bits-collage .side-images {
+    grid-column: 1;
+    grid-row: span 2;
+}
+
+/* Container for standard content below hero stories */
+.standard-content-container {
+    padding-top: 20px; /* Give some space after the hero sections */
+}
+
+/* Award Certificate Styles */
+.award-category {
+    margin-bottom: 40px;
+}
+.award-category h3 {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 25px;
+    font-weight: bold;
+}
+.certificate-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+    justify-content: center;
+}
+.certificate-item img {
+    width: 100%;
+    height: auto;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.certificate-item img:hover {
+    transform: scale(1.03);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* General Gallery Grid Styles */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+}
+.gallery-item {
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+/* Responsive Overrides */
+@media (max-width: 991px) {
+    .story-card {
+        grid-template-columns: 1fr; /* Stack columns on tablets and mobile */
+        padding: 30px;
+    }
+    .bits-collage .main-image, .bits-collage .side-images {
+        grid-column: 1; /* Reset column for stacking */
+    }
+}
+
+@media (max-width: 767px) {
+    .page-title { font-size: 2.5rem; }
+    .page-subtitle { font-size: 1rem; }
+    .section-heading { font-size: 2rem; }
+    .story-wrapper {
+        padding: 40px 0;
+        background-attachment: scroll; /* Parallax is often jerky on mobile, disable it */
+    }
+    .story-card { padding: 25px; gap: 30px; }
+    .story-content h3 { font-size: 1.8rem; }
+    .story-image-collage { grid-template-columns: 1fr; }
+    .main-image { grid-row: auto; }
+    .side-images { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+}

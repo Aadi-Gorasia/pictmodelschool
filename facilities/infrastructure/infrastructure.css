@@ -1,0 +1,176 @@
+/* infrastructure.css - CORRECTED & ENHANCED */
+
+/* Hero Section */
+.infra-hero {
+    position: relative;
+    height: 50vh;
+    min-height: 350px;
+    background-image: url('https://pictmodelschool.edu.in/extra-images/library.png');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(30, 58, 138, 0.9), rgba(30, 58, 138, 0.5));
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+}
+
+.hero-content h1 {
+    font-family: var(--font-primary);
+    font-size: 3rem;
+    font-weight: 700;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+    margin-bottom: 15px;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    line-height: 1.7;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Main Content Area */
+.infra-main-content {
+    padding: 60px 15px;
+}
+
+/* Header: Filters */
+.infrastructure-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40px;
+    border-bottom: 1px solid #ddd;
+}
+
+.filter-tabs button {
+    font-family: var(--font-primary);
+    font-weight: 700;
+    background: none;
+    border: none;
+    padding: 15px 25px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    color: #555;
+    transition: color 0.3s ease, border-bottom-color 0.3s ease;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -1px; /* Aligns with the container's border */
+}
+
+.filter-tabs button:hover {
+    color: var(--primary-color);
+}
+
+.filter-tabs button.active {
+    color: var(--primary-color);
+    border-bottom-color: var(--secondary-color);
+}
+
+/* Cards Grid Layout */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+/* ====================================================== */
+/* START: THE CORE FIX IS HERE                            */
+/* ====================================================== */
+
+/* Individual Card Styling with Transitions */
+.card {
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
+    display: flex;
+    flex-direction: column;
+    
+    /* ADDED: Smooth transition for showing/hiding */
+    transition: opacity 0.4s ease, transform 0.4s ease, max-height 0.5s ease, margin 0.5s ease, padding 0.5s ease;
+    opacity: 1;
+    transform: scale(1);
+    max-height: 500px; /* Adjust if cards are taller */
+    margin: 0;
+    padding: 0;
+}
+
+/* The NEW hidden state: Fades out and collapses */
+.card.hidden {
+    opacity: 0;
+    transform: scale(0.95);
+    max-height: 0;
+    padding: 0;
+    margin: 0;
+    overflow: hidden; /* Crucial for collapsing */
+    pointer-events: none; /* Prevents interaction with hidden cards */
+}
+
+/* ====================================================== */
+/* END: CORE FIX                                          */
+/* ====================================================== */
+
+
+.card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+.card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+}
+
+.card-content {
+    padding: 25px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-content h3 {
+    font-family: var(--font-primary);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.card-content p {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.7;
+    flex-grow: 1;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 767px) {
+    .infra-hero { height: 40vh; }
+    .hero-content h1 { font-size: 2.2rem; }
+    .hero-content p { font-size: 1rem; }
+    .filter-tabs {
+        width: 100%;
+        overflow-x: auto;
+        justify-content: flex-start;
+    }
+    .filter-tabs button {
+        white-space: nowrap;
+    }
+}

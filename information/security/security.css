@@ -1,0 +1,367 @@
+
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+.security-container {
+    max-width: 80vw; 
+    margin: 40px auto; 
+    padding: 40px 50px; 
+    background-color: #ffffff; 
+    border-radius: 8px; 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07); 
+    animation: fadeInUp 0.7s ease-out forwards; 
+    opacity: 0; 
+
+
+    font-family: 'Inria Sans', sans-serif; 
+    color: #333333; 
+    line-height: 1.7; 
+}
+
+
+.security-container h1 {
+    font-family: 'Montserrat', sans-serif; 
+    font-size: 2.5rem; 
+    font-weight: 700;
+    color: var(--primary-color); 
+}
+
+
+.security-container .title-lines-wrapper {
+    text-align: center; 
+    margin-bottom: 2.5em; 
+    line-height: 0; 
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse; /* Removes double borders, good */
+    margin-top: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Optional subtle shadow */
+    border: 1px solid #ddd; /* Add outer border */
+
+    /* --- Add these lines --- */
+    border-radius: 8px;   /* Adjust the radius value as you like (e.g., 5px, 10px) */
+    overflow: hidden;     /* This is key for making it look right with cell backgrounds */
+}
+th, td {
+    border: 1px solid #ddd; /* Light grey border for cells */
+    padding: 10px 12px; /* Add padding for spacing */
+    text-align: center;
+    vertical-align: middle; /* Align text vertically */
+    font-size: 0.95em;
+}
+
+td {
+    font-style: italic;
+}
+
+th {
+    background-color: var(--primary-color); /* Orange/Gold color from image */
+    color: #fff; /* Dark text color for header */
+    font-weight: bold;
+    text-align: center; /* Center align header text */
+}
+
+/* Alternating row colors for readability */
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9; /* Very light grey for even rows */
+}
+tbody tr:nth-child(odd) {
+    background-color: #ffffff; /* White for odd rows */
+}
+
+tbody tr:hover {
+    background-color: #f1f1f1; /* Highlight row on hover */
+}
+
+/* Specific alignment if needed */
+td:first-child { /* Sr.no column */
+   text-align: center;
+}
+   
+
+
+.security-container .title-line,
+.security-container .title-line2 {
+    display: inline-block; 
+    vertical-align: middle;
+    height: 3px; 
+    border: none;
+    background: linear-gradient(to right, var(--secondary-color), var(--primary-color)); 
+    
+    border-radius: 1.5px; 
+}
+
+.security-container .title-line {
+    width: 80px; 
+}
+
+.security-container .title-line2 {
+    width: 50px; 
+    margin-left: 10px; 
+}
+
+
+.security-container h2 {
+    font-family: var(--font-primary); 
+    font-weight: 700;
+    text-transform: uppercase; 
+    color: var(--primary-color); 
+    margin-top: 2.5em; 
+    margin-bottom: 1.2em; 
+    padding-bottom: 8px; 
+    border-bottom: 2px solid var(--secondary-color); 
+    font-size: 1.6em; 
+    transition: color var(--transition-speed) ease-in-out; 
+    width: fit-content; 
+}
+
+.security-container h2:hover {
+    color: var(--secondary-color); 
+}
+
+
+.security-container h3 {
+    font-family: var(--font-secondary); 
+    font-weight: 700;
+    color: var(--primary-color); 
+    font-size: 1.3em; 
+    margin-top: 2em; 
+    margin-bottom: 1em; 
+}
+
+
+.security-container p {
+     margin-bottom: 1rem; 
+     text-align: justify; 
+     line-height: 1.7; 
+}
+
+
+.security-container p.definition {
+    margin-left: 15px; 
+    text-align: left; 
+    padding: 10px 18px; 
+    border-left: 4px solid var(--secondary-color); 
+    margin-bottom: 1em; 
+    background-color: #f8f9fa; 
+    border-radius: 4px; 
+    transition: border-left-color var(--transition-speed) ease-in-out, background-color var(--transition-speed) ease-in-out; 
+}
+
+.security-container p.definition:hover {
+    border-left-color: var(--primary-color); 
+    background-color: #f1f3f5; 
+}
+
+
+.security-container p strong,
+.security-container li strong {
+    font-weight: 700; 
+    color: var(--primary-color); 
+    transition: color var(--transition-speed) ease-in-out; 
+}
+
+
+.security-container p strong:hover,
+.security-container li strong:hover {
+    color: var(--secondary-color); 
+}
+
+
+.security-container ol,
+.security-container ul {
+    margin-left: 25px; 
+    margin-bottom: 1rem; 
+    padding-left: 0; 
+}
+
+
+.security-container ol li,
+.security-container ul li {
+    margin-bottom: 0.8em; 
+    padding-left: 20px; 
+    position: relative; 
+    border-radius: 4px; 
+    transition: transform var(--transition-speed) ease-in-out; 
+    
+    text-align: left; 
+    line-height: 1.7; 
+}
+
+
+.security-container ol {
+    list-style: none; 
+    counter-reset: ordered-list-counter; 
+}
+
+
+.security-container ol > li::before {
+    counter-increment: ordered-list-counter; 
+    content: counter(ordered-list-counter) "."; 
+    position: absolute;
+    left: -10px; 
+    top: 0px; 
+    font-weight: bold; 
+    color: var(--primary-color); 
+    width: 25px; 
+    text-align: right; 
+    padding-right: 5px; 
+    
+}
+
+
+.security-container ul {
+     list-style: none; 
+}
+
+
+.security-container ul > li::before {
+    content: ''; 
+    position: absolute;
+    left: 0px; 
+    top: 0.55em; 
+    width: 7px; 
+    height: 7px; 
+    background-color: var(--secondary-color); 
+    border-radius: 50%; 
+    
+}
+
+
+.security-container ol ol,
+.security-container ol ul,
+.security-container ul ol,
+.security-container ul ul {
+    margin-left: 30px; 
+    margin-top: 0.7em; 
+    margin-bottom: 0.7em; 
+}
+
+
+.security-container ol ol > li,
+.security-container ul ul > li,
+.security-container ul ol > li,
+.security-container ol ul > li {
+     font-size: 0.95em; 
+     margin-bottom: 0.6em; 
+}
+
+
+.security-container ul ul > li::before {
+     background-color: var(--primary-color); 
+     
+     
+}
+.security-container ol ol > li::before {
+     left: -15px; 
+     
+     
+}
+.security-container ol ul > li::before {
+     background-color: var(--primary-color); 
+}
+.security-container ul ol > li::before {
+     left: -15px; 
+     
+}
+
+
+.security-container ol > li:hover,
+.security-container ul > li:hover {
+    transform: translateX(5px); 
+    
+    
+}
+
+
+
+.security-container ol ol > li:hover,
+.security-container ul ul > li:hover,
+.security-container ul ol > li:hover,
+.security-container ol ul > li:hover {
+    transform: translateX(3px); 
+    
+    
+}
+
+
+@media (max-width: 768px) {
+    .security-container {
+        max-width: 95%; 
+        padding: 25px 20px; 
+        margin: 20px auto; 
+    }
+
+    .security-container h1 { font-size: 2em; } 
+    .security-container h2 { font-size: 1.4em; }
+    .security-container h3 { font-size: 1.15em; }
+
+    
+    .security-container p,
+    .security-container li {
+        text-align: left;
+    }
+
+    
+    .security-container ol > li:hover,
+    .security-container ul > li:hover,
+    .security-container ol ol > li:hover,
+    .security-container ul ul > li:hover,
+    .security-container ul ol > li:hover,
+    .security-container ol ul > li:hover {
+        transform: none;
+        background-color: transparent; 
+    }
+
+     
+    .security-container ol,
+    .security-container ul {
+        margin-left: 15px; 
+    }
+    .security-container ol li,
+    .security-container ul li {
+        padding-left: 25px; 
+    }
+
+     
+     .security-container ol > li::before {
+         left: -5px; 
+         width: auto; 
+         text-align: left; 
+     }
+    .security-container ul > li::before {
+        left: 5px; 
+         top: 0.6em;
+    }
+
+    
+    .security-container ol ol,
+    .security-container ol ul,
+    .security-container ul ol,
+    .security-container ul ul {
+        margin-left: 20px; 
+    }
+     .security-container ol ol > li::before {
+         left: -5px;
+         width: auto;
+         text-align: left;
+     }
+    .security-container ul ul > li::before {
+         left: 5px;
+          top: 0.6em;
+     }
+     
+
+}

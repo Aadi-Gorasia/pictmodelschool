@@ -1,0 +1,120 @@
+/* book-list.css */
+
+.booklist-page {
+    padding: 60px 0;
+    background-color: #f8f9fa;
+}
+
+.page-title {
+    text-align: center;
+    font-size: 2.8rem;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    font-family: var(--font-primary);
+}
+
+.page-subtitle {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 60px auto;
+    font-size: 1.2rem;
+    color: #666;
+}
+
+.section-heading {
+    text-align: center;
+    font-size: 2.2rem;
+    color: var(--primary-color);
+    margin-top: 40px; /* Space between sections */
+    margin-bottom: 30px;
+    font-family: var(--font-primary);
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.section-heading::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background-color: var(--secondary-color);
+    border-radius: 2px;
+}
+
+.booklist-grid {
+    display: grid;
+    /* Creates a responsive grid that shows as many cards as fit */
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.book-card {
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 35px 25px;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.book-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+}
+
+.book-card i {
+    font-size: 3.5rem;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.book-card h3 {
+    font-family: var(--font-primary);
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 25px;
+}
+
+.btn-download {
+    display: inline-block;
+    background-color: var(--secondary-color);
+    color: #fff;
+    padding: 12px 25px;
+    border-radius: 50px; /* Pill shape */
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-download:hover {
+    background-color: #a01e2a; /* Darker red from your theme */
+    transform: scale(1.05);
+}
+
+.btn-download i {
+    font-size: 1em;
+    color: #fff;
+    margin-left: 8px;
+    margin-bottom: 0;
+    vertical-align: middle;
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+    .page-title {
+        font-size: 2.2rem;
+    }
+    .page-subtitle {
+        font-size: 1.1rem;
+    }
+    .section-heading {
+        font-size: 1.8rem;
+    }
+}

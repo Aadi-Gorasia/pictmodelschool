@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CHANGE THE TITLE FOR EACH PAGE -->
+    <title>PICT Model School - Cafeteria</title>
+
+    <!-- Common Stylesheet -->
+    <link rel="stylesheet" href="../../general.css"> <!-- Adjust path if needed -->
+    <link rel="stylesheet" href="cafeteria.css">
+
+    <!-- PAGE-SPECIFIC Stylesheet (Link AFTER general.css) -->
+    <!-- <link rel="stylesheet" href="page-specific.css"> -->
+
+    <!-- Fonts & Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Inria+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Add other font links if needed for specific pages -->
+
+</head>
+<body>
+    <!-- ====================================================== -->
+    <!-- START: Navbar Section (Copy this into every page)   -->
+    <!-- ====================================================== -->
+    <header>
+        <nav class="navbar">
+            <a class="logo" href="../../home/index.html">PICT Model School</a>
+            <input type="checkbox" id="menu-toggle">
+            <label for="menu-toggle" class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+            <ul class="menu">
+                <li class="nav-item"><a href="../../about/index.html">‎ ‎ ‎ ‎ About‎ ‎ ‎ ‎ </a>
+                </li>
+                <li class="nav-item submenu"><a>Mandatory Public Disclosure <i class="fa fa-caret-down"></i></a>
+                    <ul class="dropdown">
+                        <li><a href="../../mandatoryPublicDisclosure/index.html#general-info">General Information</a></li>
+                        <li><a href="../../mandatoryPublicDisclosure/index.html#docs-inf">Documents & Information</a></li>
+                        <li><a href="../../mandatoryPublicDisclosure/index.html#results-academics">Results & Academics</a></li>
+                        <li><a href="../../mandatoryPublicDisclosure/index.html#teaching-staff">Teaching Staff</a></li>
+                        <li><a href="../../mandatoryPublicDisclosure/index.html#school-infra">School Infrastructure</a></li>
+                    </ul>
+                </li>
+               
+                <li class="nav-item submenu"><a> Facilities ‎ ‎ ‎ <i class="fa fa-caret-down"></i></a>
+                    <ul class="dropdown">
+                        <li><a href="../../facilities/infirmary/index.html">Infirmary</a></li>
+                        <li><a href="../../facilities/cafeteria/index.html">Cafeteria</a></li>
+                        <li><a href="../../facilities/infrastructure/index.html">Infrastructure</a></li>
+                        <li><a href="../../facilities/transport/index.html">Transport</a></li>
+                        <li><a href="../../facilities/uniform/index.html">Uniform</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item submenu"><a> Information ‎ ‎ ‎ <i class="fa fa-caret-down"></i></a>
+                    <ul class="dropdown">
+                        <li><a href="../../information/security/index.html">Security</a></li>
+                         <li><a href="../../information/feeStructure/index.html">Fee Structure</a></li>
+                        <li><a href="../../information/bookList/index.html">Booklist</a></li>
+                        <li><a href="../../information/faqs/index.html">FAQs</a></li>
+                        <li><a href="../../information/helpDesk/index.html">Help Desk</a></li> 
+                    </ul>
+                </li>
+
+                <li class="nav-item submenu"><a> Events ‎ ‎ ‎ <i class="fa fa-caret-down"></i></a>
+                    <ul class="dropdown">
+                        <li><a href="../../events/specialDays/index.html">Special Days</a></li>
+                        <li><a href="../../events/achievements/index.html">Achievements</a></li>
+                        <li><a href="../../events/G20 Activities/index.html">G20 Activities</a></li>
+                        <li><a href="../../events/sports/index.html">Sports</a></li>
+                    </ul>
+                </li>
+                
+                <li class="nav-item submenu"><a> PTA ‎ ‎ ‎ <i class="fa fa-caret-down"></i></a>
+                    <ul class="dropdown">
+                        <li><a href="../../pta/members/index.html">Members</a></li>
+                        <li><a href="../../pta/byeLaws/index.html">By-Laws</a></li>
+                        <li><a href="../../pta/notifications/index.html">Notifications</a></li>
+                        <li><a href="../../pta/minutesOfMeeting/index.html">Minutes</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item submenu"><a>Offerings ‎ ‎ ‎ <i class="fa fa-caret-down"></i></a>
+                    <ul class="dropdown">
+                        <li><a href="../../offerings/index.html">School</a></li>
+                        <li><a href="../../offerings/cambridge/index.html">Cambridge English</a></li>
+                    </ul>
+                </li>
+                
+                <li class="nav-item submenu"><a href="../../testimonials/index.html"> Testimonials ‎ ‎ ‎</a>
+                </li>
+                <li class="nav-item submenu"><a href="../../careers/index.html"> Careers ‎ ‎ ‎ </a>
+                </li>
+                <li class="nav-item submenu"><a href="../../contact/index.html"> Contact ‎ ‎ ‎</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <!-- ====================================================== -->
+    <!-- END: Navbar Section                                    -->
+    <!-- ====================================================== -->
+
+
+    <!-- ====================================================== -->
+    <!-- START: Main Content Section (Replace this part)      -->
+    <!-- ====================================================== -->
+    <main>
+        <section>
+            <h2 style="padding-top: 30px;">CAFETERIA MENU FOR THE MONTH OF JULY 2025</h2>
+        </section>
+        <section style="padding: 10px 60px; text-align: center;">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Day</th>
+                        <th>Breakfast</th>
+                        <th>Total approx. Calories/Protein per serving</th>
+                        <th>Lunch</th>
+                        <th>Total approx. Calories/Protein per serving</th>
+                        <th>Snacks</th>
+                        <th>2.5 to 5 yrs</th>
+                        <th>6-10 yrs</th>
+                        <th>10-17 yrs</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+    <td>01/07/2025</td>
+    <td>Tuesday</td>
+    <td>Veg Wheat Noodles + Fruit</td>
+    <td>450 kcal / 11g</td>
+    <td>Roti + Yellow Dal Tadka + Stuffed Bhindi + Plain Rice + Buttermilk</td>
+    <td>820 kcal / 25g</td>
+    <td>Oats and Jaggery Cookies</td>
+    <td>2 No.</td>
+    <td>3 No.</td>
+    <td>3 No.</td>
+</tr>
+<tr>
+    <td>02/07/2025</td>
+    <td>Wednesday</td>
+    <td>Veg Onion Cheese Ragi Uthappam + Chutney + Fruit</td>
+    <td>470 kcal / 16g</td>
+    <td>Roti + Rajma Masala + Potato Cabbage + Jeera Rice + Cucumber Onion salad</td>
+    <td>870 kcal / 26g</td>
+    <td>Banana Chips</td>
+    <td>50gm</td>
+    <td>75gm</td>
+    <td>75gm</td>
+</tr>
+<tr>
+    <td>03/07/2025</td>
+    <td>Thursday</td>
+    <td>Carrot Peas Poha + Fruit</td>
+    <td>420 kcal / 10g</td>
+    <td>Plain Puri + Paneer Matar Curry + Tawa Pulav + Boondi Raita<br>
+        <small>6-7 yrs - Plain Puri (2 pc)<br>
+        8-10 yrs - Plain Puri (4 pc)<br>
+        11-12 yrs - Plain Puri (6 pc)<br>
+        13-17 yrs - Plain Puri (8 pc)</small>
+    </td>
+    <td>840 kcal / 25g</td>
+    <td>Muffins</td>
+    <td>1</td>
+    <td>2</td>
+    <td>2</td>
+</tr>
+<tr>
+    <td>04/07/2025</td>
+    <td>Friday</td>
+    <td>Potato Sandwich + Green Chutney + Fruit</td>
+    <td>450 kcal / 12g</td>
+    <td>Roti + Red Masoor with Drumstick + Carrot Peas Veg + Jeera Rice + Fruit Custard</td>
+    <td>850 kcal / 23g</td>
+    <td>Rajgeera Laddoo</td>
+    <td>1</td>
+    <td>1</td>
+    <td>1</td>
+</tr>
+<tr>
+    <td>05/07/2025</td>
+    <td>Saturday</td>
+    <td>Peanut Aloo Dhabeli (2 Pc) + Green Chutney + Fruit</td>
+    <td>400 kcal / 10g</td>
+    <td>Roti + Soya Gravy + Flat Beans with aloo + Lemon Rice + Tomato Cucumber Salad</td>
+    <td>850 kcal / 22g</td>
+    <td>Chikki (Peanut and Jaggery Bar)</td>
+    <td>2</td>
+    <td>3</td>
+    <td>3</td>
+</tr>
+
+                  
+                    <tr>
+                        <td colspan="10" style="background-color:#ffdbfc; text-align: center;">Fruits: Papaya, Banana, Apple and Guava will be served in rotation throughout the week</td>
+                    </tr>
+                    
+                    <tr>
+    <td>07/07/2025</td>
+    <td>Monday</td>
+    <td>Vegetable Poha with Peas + Fruit</td>
+    <td>420 kcal / 10g</td>
+    <td>
+        Plain Paratha + Paneer Lababdar + Mixed Veg Rice + Buttermilk<br>
+        <small>
+            6-7 yrs - Plain Paratha (2 pc)  <br>
+            8-10 yrs - Plain Paratha (3 pc)  <br>
+            11-12 yrs - Plain Paratha (4 pc)  <br>
+            13-17 yrs - Plain Paratha (5 pc)  
+        </small>
+    </td>
+    <td>550 kcal / 12g<br>
+    670 kcal / 15g<br>
+    790 kcal / 18g<br>
+    910 kcal / 21g</td>
+    <td>Bread Jam</td>
+    <td>1 No.</td>
+    <td>2 No.</td>
+    <td>2 No.</td>
+</tr>
+<tr>
+    <td>08/07/2025</td>
+    <td>Tuesday</td>
+    <td>Green Moong Dosa + Potato Bhaji + Fruit</td>
+    <td>420 kcal / 16g</td>
+    <td>Roti + Sev Bhaji + Aloo Beans + Plain Rice + Beetroot Raita</td>
+    <td>800 kcal / 22g</td>
+    <td>Cookies Ragi</td>
+    <td>2 No.</td>
+    <td>3 No.</td>
+    <td>3 No.</td>
+</tr>
+<tr>
+    <td>09/07/2025</td>
+    <td>Wednesday</td>
+    <td>Masala Multigrain Paratha + Tomato Chutney + Fruit</td>
+    <td>450 kcal / 15g</td>
+    <td>Roti + Moong Dal + Stuffed Capsicum + Ghee Rice + Koshimbir</td>
+    <td>850 kcal / 28g</td>
+    <td>Shakkarpara</td>
+    <td>2</td>
+    <td>3</td>
+    <td>3</td>
+</tr>
+<tr>
+    <td>10/07/2025</td>
+    <td>Thursday</td>
+    <td>Cheese Vegetable Sandwich +  Chutney + Fruit</td>
+    <td>400 kcal / 12g</td>
+    <td>Roti + Dal Makhani + Mix Veg + Jeera Rice + Sewai Kheer</td>
+    <td>870 kcal / 27g</td>
+    <td>Tetra Pack Buttermilk</td>
+    <td>1</td>
+    <td>1</td>
+    <td>1</td>
+</tr>
+<tr>
+    <td>11/07/2025</td>
+    <td>Friday</td>
+    <td>Idli Sambhar (3 Pc) + Fruit</td>
+    <td>430 kcal / 15g</td>
+    <td>Roti + Kadhi Pakoda + French Fries + Dal Khichdi + Salad</td>
+    <td>970 kcal / 25g</td>
+    <td>Poha Chivda</td>
+    <td>50gm</td>
+    <td>75gm</td>
+    <td>75gm</td>
+</tr>
+
+                    
+                    <tr>
+                        <td colspan="10" style="background-color:#ffdbfc; text-align: center;">Fruits: Papaya, Banana, Apple and Guava will be served in rotation throughout the week</td>
+                    </tr>
+                    
+                    <tr>
+    <td>14/07/2025</td>
+    <td>Monday</td>
+    <td>Red Sauce Pasta with Vegetables + Cheese and Fruit</td>
+    <td>420 kcal / 12g</td>
+    <td>Roti + Dal Palak + Jeera Fried Baby Potato + Corn Rice + Tomato and Cucumber Salad + Gulab Jamun</td>
+    <td>970 kcal / 28g</td>
+    <td>Oats and Jaggery Cookies</td>
+    <td>2 No.</td>
+    <td>3 No.</td>
+    <td>3 No.</td>
+</tr>
+
+<tr>
+    <td>15/07/2025</td>
+    <td>Wednesday</td>
+    <td>Cabbage Stuffed Paratha + Curd</td>
+    <td>430 kcal / 10g</td>
+   <td>Veg Noodles + Chilly Manchurian + Paneer Schezwan Rice + Tomato Soup</td>
+   <td>860 kcal / 26g</td>
+    <td>Puffed Rice Chivda (Roasted)</td>
+    
+   <td>50gm</td>
+    <td>75gm</td>
+    <td>75gm</td>
+</tr>
+<tr>
+    
+    <td>16/07/2025</td>
+    <td>Tuesday</td>
+    <td>Vegetable Ragi Idli + Chutney + Fruit</td>
+    <td>450 kcal / 15g</td>
+    
+     <td>
+        Plain Puri + Dum Aloo + Plain Dal + Jeera Rice + Pomegranate Raita<br>
+        <small>
+            6-7 yrs - Plain Puri (2 pc)  <br>
+            8-10 yrs - Plain Puri (4 pc)  <br>
+            11-12 yrs - Plain Puri (6 pc)  <br>
+            13-17 yrs - Plain Puri (8 pc) 
+        </small>
+    </td>
+    
+    <td> 550 kcal / 12g<br>
+    670 kcal / 15g<br>
+    790 kcal / 18g<br>
+     910 kcal / 21g</td>
+    
+    <td>Muffins</td>
+   
+      <td>1</td>
+    <td>2</td>
+    <td>2</td>
+</tr>
+
+<tr>
+    <td>17/07/2025</td>
+    <td>Thursday</td>
+    <td>Corn Capsicum in White Sauce Sandwich + Fruit</td>
+    <td>450 kcal / 14g</td>
+    <td>Roti + Plain Toor Dal Tadka + Peas Capsicum Aloo Veg + Soya Rice + Buttermilk</td>
+    <td>810 kcal / 27g</td>
+    <td>Rajgeera Laddoo</td>
+    <td>1</td>
+    <td>1</td>
+    <td>1</td>
+</tr>
+<tr>
+    <td>18/07/2025</td>
+    <td>Friday</td>
+    <td>Vegetable Vermicelli with Peanuts + Fruit</td>
+    <td>450 kcal / 12g</td>
+    <td>Roti + Green Mung Usual + Bhindi Fry + Plain Rice + Beetroot Salad</td>
+    <td>800 kcal / 25g</td>
+    <td>Soya Sticks</td>
+    <td>50gm</td>
+    <td>75gm</td>
+    <td>75gm</td>
+</tr>
+<tr>
+    <td>19/07/2025</td>
+    <td>Saturday (Grandparents Day)</td>
+    <td>Puri Sabji</td>
+    <td>470 kcal / 15g</td>
+    <td>Roti + Black Chana Masala + Curd Rice + Onion Pakoda</td>
+    <td>840 kcal / 26g</td>
+    <td>-</td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+
+                    
+                    <tr>
+                        <td colspan="10" style="background-color:#ffdbfc; text-align: center;">Fruits: Papaya, Banana, Apple and Guava will be served in rotation throughout the week</td>
+                    </tr>
+                    
+                    
+                    <tr>
+    <td>21/07/2025</td>
+    <td>Monday</td>
+    <td>Akkha Masoor Dosa + Sabji + Fruit</td>
+    <td>410 kcal / 16g</td>
+    <td>Roti + White Peas Masala + Tawa Veg + Tadka Rice + Onion Raita</td>
+    <td>950 kcal / 26g</td>
+    <td>Tetra Pack Buttermilk</td>
+    <td>1</td>
+    <td>1</td>
+    <td>1</td>
+</tr>
+<tr>
+    <td>22/07/2025</td>
+    <td>Tuesday</td>
+    <td>Veg Rawa Upma + Chutney + Fruit</td>
+    <td>380 kcal / 10g</td>
+    <td>
+        Plain Paratha + Lauki Besan Kofta Curry + Onion Rice + Pomegranate Raita<br>
+        <small>
+            6-7 yrs - Plain Paratha (2 pc)  <br>
+            8-10 yrs - Plain Paratha (3 pc) <br>
+            11-12 yrs - Plain Paratha (4 pc)  <br>
+            13-17 yrs - Plain Paratha (5 pc) -
+        </small>
+    </td>
+    <td>550 kcal / 12g <br>
+     670 kcal / 15g<br>
+     790 kcal / 18g<br>
+     910 kcal / 21g</td>
+    <td>Rava Ladoo</td>
+    <td>1</td>
+    <td>1</td>
+    <td>1</td>
+</tr>
+<tr>
+    <td>23/07/2025</td>
+    <td>Wednesday</td>
+    <td>Cucumber + Paneer + Onion Sandwich + Fruit</td>
+    <td>380 kcal / 15g</td>
+    <td>Roti + Potato Gobi + Red Masoor Tadka + Veg Biryani + Cucumber Raita</td>
+    <td>810 kcal / 24g</td>
+    <td>Coconut Biscuit</td>
+    <td>2</td>
+    <td>2</td>
+    <td>3</td>
+</tr>
+<tr>
+    <td>24/07/2025</td>
+    <td>Thursday</td>
+    <td>
+        Veg Poha + Veg Soya Cutlet + Green Chutney + Fruit<br>
+        6–10 yrs: (2 pc)<br>11–17 yrs: (4 pc)
+    </td>
+    <td>
+        250 kcal / 8g<br> 600 kcal / 18g
+    </td>
+    <td>Roti + Mixed Dal Tadka + Bhindi Fry + Plain Rice + Mixed Kachumber Salad</td>
+    <td>820 kcal / 23g</td>
+    <td>Ragi Chips</td>
+    <td>50gm</td>
+    <td>75gm</td>
+    <td>75gm</td>
+</tr>
+<tr>
+    <td>25/07/2025</td>
+    <td>Friday</td>
+    <td>Aloo Paratha + Curd + Fruit</td>
+    <td>420 kcal / 10g</td>
+    <td>Roti + Shahi Paneer + Moti Pulao + Plain Curd + Kala Jamun</td>
+    <td>1050 kcal / 28g</td>
+    <td>Cake Slice</td>
+    <td>1</td>
+    <td>2</td>
+    <td>2</td>
+</tr>
+
+                  
+                    <tr>
+                        <td colspan="10" style="background-color:#ffdbfc; text-align: center;">Fruits: Papaya, Banana, Apple and Guava will be served in rotation throughout the week</td>
+                    </tr>
+                    
+                    <tr>
+    <td>28/07/2025</td>
+    <td>Monday</td>
+    <td>Masala Idli with Fried Vegetables + Tomato Chutney + Fruit</td>
+    <td>450 kcal / 12g</td>
+    <td>Roti + Chana Dal Tadka + Aloo Gobi + Plain Rice + Mixed Salad with Boiled Sprouts</td>
+    <td>860 kcal / 29g</td>
+    <td>Poha Chivda</td>
+    <td>50gm</td>
+    <td>75gm</td>
+    <td>75gm</td>
+</tr>
+<tr>
+    <td>29/07/2025</td>
+    <td>Tuesday</td>
+    <td>Veg Stuffed Multigrain Paratha + Curd + Fruit</td>
+    <td>430 kcal / 15g</td>
+    <td>Roti + Paneer Matar Malai + Veg Pulao + Boondi Raita + Moong Dal Halwa</td>
+    <td>1050 kcal / 28g</td>
+    <td>Shakkarpara Sweet</td>
+    <td>50gm</td>
+    <td>75gm</td>
+    <td>75gm</td>
+</tr>
+<tr>
+    <td>30/07/2025</td>
+    <td>Wednesday</td>
+    <td>Besan Puri + Bhaji + Fruit</td>
+    <td>400 kcal / 12g</td>
+    <td>Roti + Akkha Masoor Dal + Peas Cabbage + Tomato Rice + Buttermilk</td>
+    <td>840 kcal / 27g</td>
+    <td>Chakali</td>
+    <td>2</td>
+    <td>2</td>
+    <td>3</td>
+</tr>
+<tr>
+    <td>31/07/2025</td>
+    <td>Thursday</td>
+    <td>Vegetable Poha with Peanut + Fruit</td>
+    <td>420 kcal / 10g</td>
+    <td>Roti + Chole Masala + Tendli Aloo Fry + Jeera Rice + Sliced Onion Salad</td>
+    <td>880 kcal / 29g</td>
+    <td>Oats Cookies</td>
+    <td>1</td>
+    <td>2</td>
+    <td>2</td>
+</tr>
+                    <!--Add more <tr> tags for every day and then fill in the data-->
+                </tbody>
+            </table>    
+        </section><br><br>
+        <a href="../cafeteria/PICT MS July 2025-1.pdf" class="pdf-link" target="_blank" style="margin-left: 60px;">
+                <b>Menu for the month of July 2025</b>
+                <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+        </a><br>
+        <section style="padding-left: 60px;" class="cf-container">
+        <br> 
+                    
+            <p class="p"><u>Fruits include seasonal variants</u></p>
+            <p class="p">This plan aims to meet the nutritional needs of students (ages 2.5 to 18) and staff (up to 55 years old) by ensuring a balanced intake of macronutrients (carbohydrates, proteins, and fats) and micronutrients (vitamins and minerals).</p>
+            <p class="p">The plan is designed to be culturally appropriate, inclusive of diverse dietary preferences, and aligned with modern nutritional standards to promote overall health, well-being, and academic performance.</p>
+            <p class="p">Balanced Caloric Intake: Each breakfast is designed to provide 350-450 kcal energy and 10-15 grams of protein.<br>Each lunch is designed to provide 700-800 kcal of energy and 25-30 grams of protein.<br>The meal plan aligns well with the recommended dietary allowance (RDA) for school-aged children as per ICMR.<br>Appealing and Delicious: Meals are designed to be visually appealing and flavorful while ensuring optimal nutrition, encouraging children to enjoy their meals without compromise.</p>
+        </section>
+        <section class="cf-container">
+            <h2>KEY CONSIDERATIONS BY ICMR FOR MEETING THE DAILY DIETARY REQUIREMENT</h2>
+            <p class="p">The table shown below provides a clear overview of the ideal balance of macronutrients in a typical breakfast/lunch for schoolchildren, teens, or adults.</p>
+            <table>
+                <tbody>
+                    <tr style="font-weight: bold;">
+                        <td>Nutrient</td>
+                        <td>Recommended Intake(Breakfast)</td>
+                        <td>Source (Examples Breakfast)</td>
+                        <td>Recommended Intake (Lunch)</td>
+                        <td>Source Examples (Lunch)</td>
+                    </tr>
+                    <tr>
+                        <td>Total Calories</td>
+                        <td>300-600 kcal (depending on age)</td>
+                        <td>Varies based on age and activity level</td>
+                        <td>500-800 kcal (depending on age)</td>
+                        <td>Varies based on age and activity level</td>
+                    </tr>
+                    <tr>
+                        <td>Carbohydrates</td>
+                        <td>45-60% of total calories 40-60 g</td>
+                        <td>Whole grains, fruits, vegetables, and starchy foods</td>
+                        <td>50-60% of total calories 60-90 g</td>
+                        <td>Whole grains, rice, roti, vegetables, legumes</td>
+                    </tr>
+                    <tr>
+                        <td>Protein</td>
+                        <td>15-20% of total calories 10-20 g</td>
+                        <td>Yogurt, beans, nuts, seeds, and Paneer</td>
+                        <td>15-20% of total calories 15-25 g</td>
+                        <td>Lentils, paneer, legumes, dairy, nuts</td>
+                    </tr>
+                    <tr>
+                        <td>Healthy Fats</td>
+                        <td>15-20% of total calories 10-15 g</td>
+                        <td>Nuts, seeds, and refined oil</td>
+                        <td>15-20% of total calories 15-20 g</td>
+                        <td>Ghee, refined oil, nuts, and seeds</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <!-- ====================================================== -->
+    <!-- END: Main Content Section                               -->
+    <!-- ====================================================== -->
+
+
+    <!-- ====================================================== -->
+    <!-- START: Enhanced Footer Section                       -->
+    <!-- ====================================================== -->
+    <footer class="footer-enhanced">
+        <div class="footer-main">
+            <div class="container">
+                <div class="footer-row">
+
+                    <!-- Column 1: Quick Links -->
+                    <div class="footer-col">
+                        <h4>Quick Links</h4>
+                        <ul>
+                            <li><a href="../../home/index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                            <li><a href="../../about/index.html"><i class="fas fa-chevron-right"></i> About</a></li>
+                            <li><a href="../../offerings/index.html"><i class="fas fa-chevron-right"></i> Offerings</a></li>
+                            <li><a href="../../facilities/cafeteria/cafeteria.css"><i class="fas fa-chevron-right"></i> Facilities</a></li>
+                            <li><a href="../../events/specialDays/index.html"><i class="fas fa-chevron-right"></i> Events</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Column 2: More Quick Links -->
+                    <div class="footer-col">
+                        <h4>Explore More</h4>
+                        <ul>
+                            <li><a href="../../pta/members/index.html"><i class="fas fa-chevron-right"></i> PTA</a></li>
+                            <li><a href="../../information/security/index.html"><i class="fas fa-chevron-right"></i> Information</a></li>
+                            <li><a href="../../testimonials/index.html"><i class="fas fa-chevron-right"></i> Testimonials</a></li>
+                            <li><a href="../../careers/index.html"><i class="fas fa-chevron-right"></i> Careers</a></li> 
+                            <li><a href="../../offerings/cambridge/index.html"><i class="fas fa-chevron-right"></i> Cambridge</a></li>
+                        </ul>
+                    </div>
+
+                     <!-- Column 3: Contact Snippet & Credits -->
+                     <div class="footer-col">
+                        <h4>Get In Touch</h4>
+                        <p class="footer-contact">
+                            <i class="fas fa-map-marker-alt"></i>Survey No.6 & 7/54B Near Balewadi Stadium, Mahalunge, Pune, Maharashtra 411045<br>
+                            <i class="fas fa-phone"></i> <a href="tel:+9102066806300">+91-020 6680 6300</a><br>
+                            <i class="fas fa-envelope"></i> <a href="mailto:info@pictmodelschool.com">info@pictmodelschool.com</a>
+                        </p>
+                        <h4 class="credits-heading">Credits</h4>
+                        <p class="credits-text">
+                            Made by Aadi Gorasia & Laukik Kolte
+                        </p>
+                    </div>
+
+
+                    <!-- Column 4: Follow Us -->
+                    <div class="footer-col">
+                        <h4>Follow Us</h4>
+                        <p class="follow-us-text">Stay connected with our school community!</p>
+                        <div class="social-links">
+                            <a href="https://www.facebook.com/pictmodelschool/about/?_rdr" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://x.com/pictmodelschool" aria-label="Twitter / X" target="_blank" rel="noopener noreferrer"><i class="fab fa-x"></i></a> 
+                            <a href="https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwjFsd7ozZ-MAxVed2wGHRtSOgIQFnoECBgQAQ&url=https%3A%2F%2Fwww.instagram.com%2Fpictmodelschool%2F%3Fhl%3Den&usg=AOvVaw0YQPmUEv8PLahY76eeAMeL&opi=89978449" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwio86HwzZ-MAxWZRmcHHUYgIlYQFnoECCAQAQ&url=https%3A%2F%2Fin.linkedin.com%2Fcompany%2Fpict-model-school&usg=AOvVaw2Y_-o9bB9-nxk9iqEzBu4B&opi=89978449" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
+                         <!-- <a href="#" aria-label="YouTube" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i></a>  -->
+                         
+                         <!--
+                         <div class="footer-logo">
+                            <img src="../path/to/your/school_logo_white.png" alt="PICT Model School Logo">
+                         </div>
+                         -->
+                    </div>
+
+                </div><!-- /.footer-row -->
+            </div><!-- /.container -->
+        </div><!-- /.footer-main -->
+
+        <div class="footer-bottom">
+            <div class="container">
+                <p>© <span id="current-year"></span> PICT Model School. All Rights Reserved.</p>
+                <!-- Optional: Add links to Privacy Policy / Terms -->
+                 <br><hr><br>
+                <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a></p>
+            </div>
+        </div><!-- /.footer-bottom -->
+    </footer>
+    <!-- ====================================================== -->
+    <!-- END: Enhanced Footer Section                         -->
+    <!-- ====================================================== -->
+    <script>
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+    <!-- Common JavaScript -->
+    <script src="../../main.js"></script> <!-- Adjust path if needed -->
+
+    
+
+</body>
+</html>

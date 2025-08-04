@@ -1,0 +1,660 @@
+
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+.admissionHelpDesk-container {
+    max-width: 80vw; 
+    margin: 40px auto; 
+    padding: 40px 50px; 
+    background-color: #ffffff; 
+    border-radius: 8px; 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07); 
+    animation: fadeInUp 0.7s ease-out forwards; 
+    opacity: 0; 
+
+
+    font-family: 'Inria Sans', sans-serif; 
+    color: #333333; 
+    line-height: 1.7; 
+}
+
+
+.admissionHelpDesk-container h1 {
+    font-family: 'Montserrat', sans-serif; 
+    font-size: 2.5rem; 
+    font-weight: 700;
+    color: var(--primary-color); 
+}
+
+
+.admissionHelpDesk-container .title-lines-wrapper {
+    text-align: center; 
+    margin-bottom: 2.5em; 
+    line-height: 0; 
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse; /* Removes double borders, good */
+    margin-top: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Optional subtle shadow */
+    border: 1px solid #ddd; /* Add outer border */
+
+    /* --- Add these lines --- */
+    border-radius: 8px;   /* Adjust the radius value as you like (e.g., 5px, 10px) */
+    overflow: hidden;     /* This is key for making it look right with cell backgrounds */
+}
+th, td {
+    border: 1px solid #ddd; /* Light grey border for cells */
+    padding: 10px 12px; /* Add padding for spacing */
+    text-align: center;
+    vertical-align: middle; /* Align text vertically */
+    font-size: 0.95em;
+}
+
+td {
+    font-style: italic;
+}
+
+th {
+    background-color: var(--primary-color); /* Orange/Gold color from image */
+    color: #fff; /* Dark text color for header */
+    font-weight: bold;
+    text-align: center; /* Center align header text */
+}
+
+/* Alternating row colors for readability */
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9; /* Very light grey for even rows */
+}
+tbody tr:nth-child(odd) {
+    background-color: #ffffff; /* White for odd rows */
+}
+
+tbody tr:hover {
+    background-color: #f1f1f1; /* Highlight row on hover */
+}
+
+/* Specific alignment if needed */
+td:first-child { /* Sr.no column */
+   text-align: center;
+}
+   
+
+
+.admissionHelpDesk-container .title-line,
+.admissionHelpDesk-container .title-line2 {
+    display: inline-block; 
+    vertical-align: middle;
+    height: 3px; 
+    border: none;
+    background: linear-gradient(to right, var(--secondary-color), var(--primary-color)); 
+    
+    border-radius: 1.5px; 
+}
+
+.admissionHelpDesk-container .title-line {
+    width: 80px; 
+}
+
+.admissionHelpDesk-container .title-line2 {
+    width: 50px; 
+    margin-left: 10px; 
+}
+
+
+.admissionHelpDesk-container h2 {
+    font-family: var(--font-primary); 
+    font-weight: 700;
+    text-transform: uppercase; 
+    color: var(--primary-color); 
+    margin-top: 2.5em; 
+    margin-bottom: 1.2em; 
+    padding-bottom: 8px; 
+    border-bottom: 2px solid var(--secondary-color); 
+    font-size: 1.6em; 
+    transition: color var(--transition-speed) ease-in-out; 
+    width: fit-content; 
+}
+
+.admissionHelpDesk-container h2:hover {
+    color: var(--secondary-color); 
+}
+
+
+.admissionHelpDesk-container h3 {
+    font-family: var(--font-secondary); 
+    font-weight: 700;
+    color: var(--primary-color); 
+    font-size: 1.3em; 
+    margin-top: 2em; 
+    margin-bottom: 1em; 
+}
+
+
+.admissionHelpDesk-container p {
+     margin-bottom: 1rem; 
+     text-align: justify; 
+     line-height: 1.7; 
+}
+
+
+.admissionHelpDesk-container p.definition {
+    margin-left: 15px; 
+    text-align: left; 
+    padding: 10px 18px; 
+    border-left: 4px solid var(--secondary-color); 
+    margin-bottom: 1em; 
+    background-color: #f8f9fa; 
+    border-radius: 4px; 
+    transition: border-left-color var(--transition-speed) ease-in-out, background-color var(--transition-speed) ease-in-out; 
+}
+
+.admissionHelpDesk-container p.definition:hover {
+    border-left-color: var(--primary-color); 
+    background-color: #f1f3f5; 
+}
+
+
+.admissionHelpDesk-container p strong,
+.admissionHelpDesk-container li strong {
+    font-weight: 700; 
+    color: var(--primary-color); 
+    transition: color var(--transition-speed) ease-in-out; 
+}
+
+
+.admissionHelpDesk-container p strong:hover,
+.admissionHelpDesk-container li strong:hover {
+    color: var(--secondary-color); 
+}
+
+
+.admissionHelpDesk-container ol,
+.admissionHelpDesk-container ul {
+    margin-left: 25px; 
+    margin-bottom: 1rem; 
+    padding-left: 0; 
+}
+
+
+.admissionHelpDesk-container ol li,
+.admissionHelpDesk-container ul li {
+    margin-bottom: 0.8em; 
+    padding-left: 20px; 
+    position: relative; 
+    border-radius: 4px; 
+    transition: transform var(--transition-speed) ease-in-out; 
+    
+    text-align: left; 
+    line-height: 1.7; 
+}
+
+
+.admissionHelpDesk-container ol {
+    list-style: none; 
+    counter-reset: ordered-list-counter; 
+}
+
+
+.admissionHelpDesk-container ol > li::before {
+    counter-increment: ordered-list-counter; 
+    content: counter(ordered-list-counter) "."; 
+    position: absolute;
+    left: -10px; 
+    top: 0px; 
+    font-weight: bold; 
+    color: var(--primary-color); 
+    width: 25px; 
+    text-align: right; 
+    padding-right: 5px; 
+    
+}
+
+
+.admissionHelpDesk-container ul {
+     list-style: none; 
+}
+
+
+.admissionHelpDesk-container ul > li::before {
+    content: ''; 
+    position: absolute;
+    left: 0px; 
+    top: 0.55em; 
+    width: 7px; 
+    height: 7px; 
+    background-color: var(--secondary-color); 
+    border-radius: 50%; 
+    
+}
+
+
+.admissionHelpDesk-container ol ol,
+.admissionHelpDesk-container ol ul,
+.admissionHelpDesk-container ul ol,
+.admissionHelpDesk-container ul ul {
+    margin-left: 30px; 
+    margin-top: 0.7em; 
+    margin-bottom: 0.7em; 
+}
+
+
+.admissionHelpDesk-container ol ol > li,
+.admissionHelpDesk-container ul ul > li,
+.admissionHelpDesk-container ul ol > li,
+.admissionHelpDesk-container ol ul > li {
+     font-size: 0.95em; 
+     margin-bottom: 0.6em; 
+}
+
+
+.admissionHelpDesk-container ul ul > li::before {
+     background-color: var(--primary-color); 
+     
+     
+}
+.admissionHelpDesk-container ol ol > li::before {
+     left: -15px; 
+     
+     
+}
+.admissionHelpDesk-container ol ul > li::before {
+     background-color: var(--primary-color); 
+}
+.admissionHelpDesk-container ul ol > li::before {
+     left: -15px; 
+     
+}
+
+
+.admissionHelpDesk-container ol > li:hover,
+.admissionHelpDesk-container ul > li:hover {
+    transform: translateX(5px); 
+    
+    
+}
+
+
+
+.admissionHelpDesk-container ol ol > li:hover,
+.admissionHelpDesk-container ul ul > li:hover,
+.admissionHelpDesk-container ul ol > li:hover,
+.admissionHelpDesk-container ol ul > li:hover {
+    transform: translateX(3px); 
+    
+    
+}
+
+
+@media (max-width: 768px) {
+    .admissionHelpDesk-container {
+        max-width: 95%; 
+        padding: 25px 20px; 
+        margin: 20px auto; 
+    }
+
+    .admissionHelpDesk-container h1 { font-size: 2em; } 
+    .admissionHelpDesk-container h2 { font-size: 1.4em; }
+    .admissionHelpDesk-container h3 { font-size: 1.15em; }
+
+    
+    .admissionHelpDesk-container p,
+    .admissionHelpDesk-container li {
+        text-align: left;
+    }
+
+    
+    .admissionHelpDesk-container ol > li:hover,
+    .admissionHelpDesk-container ul > li:hover,
+    .admissionHelpDesk-container ol ol > li:hover,
+    .admissionHelpDesk-container ul ul > li:hover,
+    .admissionHelpDesk-container ul ol > li:hover,
+    .admissionHelpDesk-container ol ul > li:hover {
+        transform: none;
+        background-color: transparent; 
+    }
+
+     
+    .admissionHelpDesk-container ol,
+    .admissionHelpDesk-container ul {
+        margin-left: 15px; 
+    }
+    .admissionHelpDesk-container ol li,
+    .admissionHelpDesk-container ul li {
+        padding-left: 25px; 
+    }
+
+     
+     .admissionHelpDesk-container ol > li::before {
+         left: -5px; 
+         width: auto; 
+         text-align: left; 
+     }
+    .admissionHelpDesk-container ul > li::before {
+        left: 5px; 
+         top: 0.6em;
+    }
+
+    
+    .admissionHelpDesk-container ol ol,
+    .admissionHelpDesk-container ol ul,
+    .admissionHelpDesk-container ul ol,
+    .admissionHelpDesk-container ul ul {
+        margin-left: 20px; 
+    }
+     .admissionHelpDesk-container ol ol > li::before {
+         left: -5px;
+         width: auto;
+         text-align: left;
+     }
+    .admissionHelpDesk-container ul ul > li::before {
+         left: 5px;
+          top: 0.6em;
+     }
+     
+
+}
+
+
+    h3 {
+        margin-top: 20px;
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+      color: var(--primary-color);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-primary);
+    }
+
+    .section {
+      margin-bottom: 24px;
+    }
+
+    .subject-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .subject-card {
+      background: #e8edf8;
+      padding: 12px;
+      border-radius: 10px;
+      text-align: center;
+      font-size: 0.9rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      transition: var(--transition-speed);
+      color: var(--text-dark);
+    }
+
+    .subject-card:hover {
+      background: #dbe4f5;
+      transform: translateY(-2px);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    .icon {
+      font-size: 1.4rem;
+    }
+
+    .single-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .notice-label {
+      color: red;
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    .admission-button {
+      display: inline-block;
+      padding: 10px 20px;
+      font-weight: bold;
+      font-size: 18px;
+      font-family: sans-serif;
+      background-color: #f0f0f0;
+      color: #000;
+      border: none;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .admission-button:hover {
+      background-color: #e0e0e0;
+    }
+
+.tnc {
+      text-align: center;
+      padding: 30px 40px;
+    }
+
+    .checkbox-label {
+      font-size: 16px;
+      color: #d32f2f; /* red tone similar to "Update" */
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 25px;
+    }
+
+    .checkbox-label input {
+      transform: scale(1.2);
+    }
+
+    .admission-button {
+      padding: 12px 28px;
+      font-size: 18px;
+      font-weight: bold;
+      background-color: rgb(79, 79, 79);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .admission-button:hover {
+      background-color: var(--text-dark);
+      transform: translateY(-5px);
+      transition: .3s ease;
+    }
+
+    .admission-button:disabled {
+      background-color: #cccccc;
+      cursor: not-allowed;
+    }
+
+    /* General Body and Container Styles (Keep or adapt from previous examples) */
+body {
+    font-family: 'Open Sans', sans-serif;
+    line-height: 1.7;
+    margin: 0;
+    background-color: #e9ecef;
+    color: #333;
+}
+
+.checklist-outer-container {
+    max-width: 1100px;
+    margin: 30px auto;
+}
+
+.checklist-header {
+    color: #fff;
+    padding: 25px 30px;
+    text-align: center;
+    margin-bottom: 25px; /* Space before the sections grid */
+}
+
+.checklist-header h1 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 2em;
+    font-weight: 700;
+}
+
+.alert-note {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--primary-color);
+    padding: 12px 18px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    font-size: 0.95em;
+}
+
+.alert-note strong {
+    font-weight: 600;
+}
+
+.mandatory-key {
+    font-size: 0.9em;
+    opacity: 0.9;
+}
+
+.asterisk-example {
+    color: var(--secondary-color);
+    font-weight: bold;
+}
+
+/* --- Styles for the Sections using CSS Multi-column Layout --- */
+.sections-grid {
+    /* On smaller screens, it will naturally be a single column flow */
+    /* No specific display property needed here for single column default */
+    padding-top: 1px; /* Minor hack to help prevent margin collapsing issues with children */
+}
+
+.document-section {
+    background-color: #ffffff;
+    padding: 20px 25px; /* Adjusted padding slightly */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Slightly adjusted shadow */
+    margin-bottom: 20px; /* This will be the space between items vertically IN THE SAME COLUMN */
+    break-inside: avoid-column; /* CRUCIAL: Tries to prevent a card from splitting across columns */
+    /* Ensure sections take up necessary width before columnization */
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.document-section h2 {
+    font-size: 1.3em; /* Adjusted for potentially narrower columns */
+    color: #2c3e50;
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+}
+
+.section-icon {
+    margin-right: 10px;
+    font-size: 1.1em;
+    color: #4a90e2;
+}
+
+.section-subtitle {
+    font-size: 0.85em;
+    color: #6c757d;
+    margin-bottom: 12px;
+    font-style: italic;
+}
+
+.document-section ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.document-section li {
+    padding: 8px 0;
+    border-bottom: 1px dashed #f1f1f1;
+    font-size: 0.95em;
+    color: #495057;
+}
+
+.document-section li:last-child {
+    border-bottom: none;
+}
+
+.mandatory-mark {
+    color: #e74c3c;
+    font-weight: bold;
+    margin-left: 4px;
+}
+
+.note-inline {
+    font-size: 0.8em;
+    color: #555;
+    background-color: #f8f9fa;
+    padding: 5px 8px;
+    border-radius: 4px;
+    margin-top: 5px;
+    display: block;
+    border-left: 3px solid #4a90e2;
+}
+
+/* --- Responsive: Applying Multi-column Layout for larger screens --- */
+@media (min-width: 768px) { /* Start 2-column layout for tablets and wider */
+    .sections-grid {
+        column-count: 2;       /* Tells the browser to create two columns */
+        column-gap: 20px;      /* The space between the columns themselves */
+    }
+
+    /*
+       The .document-section already has margin-bottom for vertical spacing
+       within a column. `break-inside: avoid-column;` helps keep them intact.
+    */
+}
+
+/* Optional: For very wide screens, you could even go to 3 columns */
+/*
+@media (min-width: 1200px) {
+    .sections-grid {
+        column-count: 3;
+        column-gap: 25px;
+    }
+}
+*/
+
+/* Adjustments for very small screens (single column by default) */
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+    .checklist-header {
+        padding: 20px 15px;
+        border-radius: 8px; /* Make radius consistent if not full-width */
+    }
+    .checklist-header h1 {
+        font-size: 1.5em;
+    }
+    .document-section {
+        padding: 15px;
+        margin-bottom: 15px;
+    }
+    .document-section h2 {
+        font-size: 1.2em;
+    }
+}

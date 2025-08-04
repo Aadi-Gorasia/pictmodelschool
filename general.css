@@ -1,0 +1,559 @@
+/* general.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Liter&display=swap');
+
+/* --- Base Styles & Variables --- */
+:root {
+    --primary-color: #1E3A8A; /* Dark Blue */
+    --secondary-color: #D72638; /* Red */
+    --text-light: #ffffff;
+    --text-dark: #333333;
+    --text-muted: #bbbbbb;
+    --footer-bg: #011a5a;
+    --font-primary: 'Montserrat', sans-serif;
+    --font-secondary: 'Inria Sans', sans-serif;
+    --font-tertiary: "Liter", sans-serif;
+    --menu-overlay-bg: rgba(0, 0, 0, 0.95);
+    --transition-speed: 0.3s;
+    --navbar-height: 70px;
+}
+
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-secondary);
+    color: var(--text-dark);
+    line-height: 1.6;
+    background-color: #F5F5F5;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+main {
+    padding-top: var(--navbar-height);
+    min-height: calc(100vh - var(--navbar-height) - 200px);
+    position: relative; /* <<< ADD THIS */
+    z-index: 0;         /* <<< ADD THIS */
+}
+
+.container {
+	max-width: 1170px;
+	margin:auto;
+    padding: 0 15px;
+}
+
+/* --- Navbar --- */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #1e3b8ae8;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+    height: var(--navbar-height);
+    z-index: 9999; /* Keep this high */
+    transform: translateZ(0); /* <<< --- ADD THIS LINE --- */
+    -webkit-transform: translateZ(0); /* Optional: for older browser compatibility */
+}
+
+.logo {
+    color: var(--text-light);
+    font-size: 24px;
+    font-weight: bold;
+    font-family: var(--font-primary);
+    text-decoration: none;
+    margin-right: auto;
+}
+
+/* --- Hamburger Menu (ALWAYS VISIBLE) --- */
+#menu-toggle {
+    display: none;
+}
+
+.hamburger {
+    display: block;
+    cursor: pointer;
+    z-index: 1001;
+    padding: 10px;
+    transition: transform 0.4s ease;
+    margin-left: 20px;
+}
+
+.hamburger span {
+    display: block;
+    width: 30px;
+    height: 4px;
+    background: var(--text-light);
+    margin: 5px 0;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+/* Hamburger Animation */
+#menu-toggle:checked + .hamburger { transform: rotate(45deg); }
+#menu-toggle:checked + .hamburger span:nth-child(1) { transform: translateY(9px) rotate(180deg); }
+#menu-toggle:checked + .hamburger span:nth-child(2) { opacity: 0; }
+#menu-toggle:checked + .hamburger span:nth-child(3) { transform: translateY(-9px) rotate(90deg); }
+
+/* --- Navigation Menu (Overlay with Grid Layout) --- */
+.menu {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 85vw;
+    max-width: 700px; /* Slightly wider */
+    height: 100vh;
+    background: var(--menu-overlay-bg);
+    transition: left 0.4s ease;
+    z-index: 999;
+    overflow-y: auto;
+    padding: calc(var(--navbar-height) + 40px) 40px 40px 40px; /* Increased padding */
+    list-style: none;
+
+    /* --- Grid Layout --- */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px 35px; /* Increased gap */
+    align-items: stretch; /* Stretch items vertically */
+}
+
+/* Show Menu overlay when Toggle is Checked */
+#menu-toggle:checked ~ .menu {
+    left: 0;
+}
+
+/* --- Styles for items INSIDE the overlay menu GRID --- */
+.menu .nav-item {
+    list-style: none;
+    position: relative; /* *** CRITICAL for absolute dropdown positioning *** */
+    display: flex; /* Keeps item content aligned if needed, though link takes over */
+    flex-direction: column; /* Stack link + dropdown */
+    align-items: stretch;
+    text-align: center;
+    transition: opacity var(--transition-speed) ease-in-out;
+}
+
+.menu .nav-item a {
+    color: var(--text-light);
+    font-size: 18px; /* Slightly larger font */
+    font-weight: bold; /* Make text bolder */
+    font-family: var(--font-secondary);
+    display: flex; /* Align icon and text */
+    align-items: center; /* Vertically center */
+    justify-content: center; /* Horizontally center */
+    padding: 20px 15px; /* Increased padding for bigger feel */
+    width: 100%;
+    min-height: 70px; /* Increased minimum height */
+    transition: color var(--transition-speed), background-color var(--transition-speed);
+    text-decoration: none;
+    white-space: normal;
+    border-radius: 5px;
+    line-height: 1.5; /* Improved line height */
+    background-color: rgba(255, 255, 255, 0.05); /* Subtle background */
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3); /* Add slight shadow */
+}
+
+.menu .nav-item a:hover {
+     color: var(--text-muted);
+     background-color: rgba(255, 255, 255, 0.15);
+     box-shadow: 0 2px 5px rgba(0,0,0,0.4);
+}
+
+.menu .nav-item a i.fa-caret-down {
+    margin-left: 10px; /* More space */
+    transition: transform var(--transition-speed);
+}
+
+/* Rotate caret on parent hover */
+.nav-item.submenu:hover > a i.fa-caret-down {
+    transform: rotate(180deg);
+}
+
+/* --- Submenu / Dropdown (HOVER TO OPEN) --- */
+.submenu .dropdown {
+    /* Positioning & Visibility */
+    position: absolute; /* Position relative to parent .nav-item */
+    top: 100%; /* Position below the parent link */
+    left: 0;
+    z-index: 1010; /* Ensure it's above other items */
+    width: 100%; /* Match parent width */
+    min-width: 200px; /* Minimum width */
+    opacity: 0; /* Hidden by default */
+    visibility: hidden;
+    transform: translateY(10px); /* Start slightly lower */
+    transition: opacity var(--transition-speed) ease, visibility var(--transition-speed) ease, transform var(--transition-speed) ease;
+
+    /* Styling */
+    background: var(--primary-color); /* Slightly different bg */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border-radius: 0 0 5px 5px;
+    padding: 10px 0; /* Vertical padding */
+    margin-top: 2px; /* Small gap from parent */
+}
+
+/* Show dropdown on PARENT LI hover */
+.nav-item.submenu:hover > .dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.submenu .dropdown li {
+    width: 100%;
+}
+
+.submenu .dropdown li a {
+    font-size: 15px;
+    font-weight: normal; /* Normal weight for dropdown */
+    padding: 12px 20px; /* Adjust padding */
+    justify-content: flex-start; /* Align left */
+    min-height: auto;
+    background-color: red;
+    border-radius: 0;
+    background-color: transparent; /* No background on items */
+    box-shadow: none; /* No shadow on items */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08); /* Optional separator */
+}
+.submenu .dropdown li:last-child a {
+    border-bottom: none;
+}
+
+.submenu .dropdown li a:hover {
+     background-color: rgba(255, 255, 255, 0.1); /* Hover for dropdown items */
+     color: var(--text-light); /* Keep text light */
+     box-shadow: none;
+     text-align: center;
+}
+
+
+/* --- Hover Effect (Hide Others) - INSIDE OPENED GRID MENU --- */
+#menu-toggle:checked ~ .menu > .nav-item {
+    opacity: 1;
+}
+#menu-toggle:checked ~ .menu:has(> .nav-item:hover) > .nav-item {
+    opacity: 0.2;
+}
+#menu-toggle:checked ~ .menu > .nav-item:hover {
+    opacity: 1 !important;
+}
+/* --- End Hover Effect --- */
+
+
+/* Footer */
+
+/* general.css */
+
+/* --- Enhanced Footer Styles --- */
+.footer-enhanced {
+    background-color: var(--footer-bg); /* #011a5a - Keep the dark blue */
+    color: var(--text-muted); /* #bbbbbb */
+    padding-top: 60px; /* More top padding */
+    /* Optional: Add a subtle top border */
+    border-top: 4px solid var(--primary-color); /* #1E3A8A */
+    font-family: var(--font-secondary); /* 'Inria Sans' */
+}
+
+
+.footer-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -15px; /* Gutter compensation */
+}
+
+.footer-col {
+    width: 25%; /* Four columns */
+    padding: 0 15px; /* Gutters */
+    margin-bottom: 30px;
+}
+
+.footer-col h4 {
+    font-size: 18px;
+    color: var(--text-light); /* #ffffff */
+    text-transform: uppercase; /* Use uppercase for stronger headings */
+    margin-bottom: 25px;
+    font-weight: 700; /* Bolder headings */
+    font-family: var(--font-primary); /* 'Montserrat' for headings */
+    position: relative;
+    padding-bottom: 10px;
+}
+
+/* Underline effect for headings */
+.footer-col h4::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background-color: var(--secondary-color); /* #D72638 - Red accent */
+    height: 3px;
+    width: 50px;
+    border-radius: 2px;
+}
+
+.footer-col ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-col ul li {
+    margin-bottom: 12px; /* Slightly more space */
+}
+
+.footer-col ul li a {
+    font-size: 16px;
+    color: var(--text-muted);
+    text-decoration: none;
+    display: inline-block; /* Needed for transforms */
+    transition: color var(--transition-speed) ease, transform var(--transition-speed) ease;
+}
+
+/* Add icon before links */
+.footer-col ul li a i {
+    font-size: 0.8em; /* Make icon slightly smaller */
+    margin-right: 8px;
+    color: var(--secondary-color); /* Red icon */
+    transition: transform var(--transition-speed) ease;
+}
+
+.footer-col ul li a:hover {
+    color: var(--text-light);
+    transform: translateX(5px); /* Slight move right on hover */
+}
+
+.footer-col ul li a:hover i {
+     transform: rotate(360deg); /* Rotate icon on hover */
+}
+
+/* Contact Info Styling */
+.footer-contact {
+    font-size: 15px;
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+.footer-contact i {
+    margin-right: 10px;
+    color: var(--secondary-color);
+    width: 15px;
+    text-align: center;
+}
+.footer-contact a {
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color var(--transition-speed) ease;
+}
+.footer-contact a:hover {
+    color: var(--text-light);
+    text-decoration: underline;
+}
+
+
+/* Credits Styling */
+.credits-heading {
+    margin-top: 20px; /* Space above credits heading */
+}
+.credits-text {
+    font-size: 15px;
+    line-height: 1.7;
+}
+.credits-text i.fa-heart {
+    transition: transform 0.3s ease;
+}
+.credits-text:hover i.fa-heart {
+    transform: scale(1.3); /* Make heart slightly bigger on hover */
+}
+
+
+/* Follow Us Text */
+.follow-us-text {
+    font-size: 15px;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+/* Social Links Styling */
+.social-links a {
+    display: inline-flex; /* Use inline-flex for better alignment */
+    align-items: center;
+    justify-content: center;
+    height: 45px; /* Slightly larger */
+    width: 45px;
+    background-color: var(--secondary-color); /* Subtle background */
+    margin: 0 8px 10px 0; /* Adjust spacing */
+    border-radius: 50%; /* Circular icons */
+    color: var(--text-light);
+    transition: all 0.4s ease; /* Smoother transition */
+    font-size: 18px; /* Slightly larger icons */
+    text-decoration: none;
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle border */
+}
+
+/* God-level hover effect for social icons */
+.social-links a:hover {
+    color: #fff; /* Dark blue text */
+    background-color: var(--primary-color); /* White background */
+    transform: translateY(-5px) rotate(15deg); /* Lift and slight rotate */
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2); /* Add glow */
+    border-color: var(--text-light);
+}
+
+
+/* Optional Footer Logo */
+.footer-logo {
+    margin-top: 25px;
+    opacity: 0.8;
+}
+.footer-logo img {
+    max-width: 150px;
+    height: auto;
+}
+
+
+/* --- Footer Bottom Bar --- */
+.footer-bottom {
+    background-color: rgba(0, 0, 0, 0.2); /* Slightly darker strip */
+    padding: 15px 0;
+    text-align: center;
+    font-size: 14px;
+    margin-top: 30px; /* Space above the bottom bar */
+    border-top: 1px solid rgba(255, 255, 255, 0.1); /* Faint separator line */
+}
+
+.footer-bottom p {
+    margin: 5px 0;
+}
+
+.footer-bottom a {
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color var(--transition-speed);
+}
+.footer-bottom a:hover {
+    color: var(--text-light);
+    text-decoration: underline;
+}
+
+
+/* --- Responsive Footer --- */
+@media (max-width: 992px) {
+    .footer-col {
+        width: 50%; /* Two columns on tablets */
+        margin-bottom: 35px;
+    }
+    /* Ensure last 2 columns stack nicely if needed */
+}
+
+@media (max-width: 767px) {
+    .footer-col {
+        width: 100%; /* Single column on mobile */
+        margin-bottom: 30px;
+        text-align: center; /* Center align content on mobile */
+    }
+    .footer-col h4::after {
+        left: 50%; /* Center the underline */
+        transform: translateX(-50%);
+    }
+    .footer-col ul li a {
+        justify-content: center; /* Center link text if needed */
+    }
+    .footer-col ul li a i{
+        margin-right: 5px; /* Adjust icon spacing */
+    }
+     .social-links {
+        text-align: center; /* Center social icons container */
+    }
+    .social-links a {
+        margin: 0 5px 10px 5px; /* Adjust mobile spacing */
+    }
+     .footer-logo {
+        display: flex;
+        justify-content: center; /* Center logo */
+    }
+     .footer-bottom {
+         padding: 15px 10px; /* Add side padding */
+     }
+}
+
+/* --- Scroll-to-Top Button --- */
+#scrollToTopBtn {
+    display: none; /* Hidden by default */
+    position: fixed; /* Keep it in view */
+    bottom: 30px;    /* Distance from bottom */
+    right: 30px;     /* Distance from right */
+    z-index: 1050;   /* Ensure it's above most content, adjust if needed */
+
+    /* Appearance */
+    background-color: var(--secondary-color); /* Use accent color (red) */
+    color: var(--text-light); /* White icon */
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 0; /* Reset padding */
+    border-radius: 50%; /* Make it circular */
+    width: 50px;       /* Set width */
+    height: 50px;      /* Set height */
+    font-size: 20px;   /* Icon size */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Add shadow */
+
+    /* Icon Centering */
+    display: flex; /* Changed from none - JS will toggle this */
+    align-items: center;
+    justify-content: center;
+
+    /* Transitions */
+    transition: background-color 0.3s ease, opacity 0.4s ease, visibility 0.4s ease, transform 0.3s ease;
+
+    /* Initial hidden state using opacity/visibility for potential fade */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px); /* Start slightly lower for fade-up effect */
+}
+
+#scrollToTopBtn.visible {
+    /* Styles when button should be shown */
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0); /* Move to final position */
+}
+
+
+#scrollToTopBtn:hover {
+    background-color: #a01e2a; /* Darker shade of red on hover */
+    transform: translateY(-3px) scale(1.05); /* Slight lift and scale */
+}
+
+#scrollToTopBtn:active {
+     transform: translateY(-1px) scale(1.02); /* Subtle press effect */
+}
+
+/* Responsive adjustment */
+@media (max-width: 767px) {
+    #scrollToTopBtn {
+        bottom: 20px;
+        right: 20px;
+        width: 45px;
+        height: 45px;
+        font-size: 18px;
+    }
+}
+

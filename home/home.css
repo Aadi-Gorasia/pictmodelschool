@@ -1,0 +1,1001 @@
+/* home.css - Styles specific to the home page */
+
+/* --- Hero Section --- */
+
+.hero {
+    position: relative;
+    width: 100%;
+    height: calc(100vh - var(--navbar-height)); /* Full viewport height minus navbar */
+    overflow: hidden;
+    display: flex; /* Use flex for positioning overlay/button */
+    align-items: center; /* Center overlay vertically */
+    justify-content: left; /* Center overlay horizontally */
+    padding-left: 10vw;
+}
+
+.hero-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(../media/images/hero_image.jpg); /* ADJUST PATH AS NEEDED */
+    background-size: cover;
+    background-position: center;
+    filter: blur(5px) brightness(0.7); /* Adjust blur and brightness */
+    z-index: 1;
+}
+
+.overlay {
+    position: relative; /* Position relative to hero */
+    text-align: center; /* Center text */
+    color: var(--text-light);
+    z-index: 2; /* Above hero image */
+    padding: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.overlay h1 {
+    font-size: 3.5em; /* Main heading size */
+    font-family: var(--font-primary);
+    margin-bottom: 10px;
+    display: inline; /* For cursor */
+}
+
+/* Cursor Styling */
+.cursor {
+    display: inline-block;
+    width: 4px;
+    background-color: var(--text-light);
+    margin-left: 5px;
+    animation: blink 1s step-end infinite;
+    vertical-align: bottom; /* Align with text baseline */
+}
+
+@keyframes blink {
+    from, to { background-color: transparent; }
+    50% { background-color: var(--text-light); }
+}
+
+/* Enroll Button */
+.enroll {
+    position: absolute;
+    bottom: 15%; /* Position from bott
+    transform: translateX(-50%); /* Center horizontally */
+    background: var(--secondary-color);
+    color: var(--text-light);
+    font-size: 1.3em;
+    padding: 15px 35px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    font-family: var(--font-primary);
+    transition: background-color var(--transition-speed), box-shadow var(--transition-speed), transform var(--transition-speed);
+    z-index: 2; /* Above hero image */
+    justify-content: left;
+}
+
+.enroll:hover {
+    background-color: darkred;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    transform: translateX(-50%) translateY(-3px); /* Add slight lift */
+}
+
+/* --- Button Section --- */
+.btn-primary {
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; /* Allow buttons to wrap */
+    gap: 2em; /* Space between buttons */
+    background-color: #fff; /* Optional: White background for this section */
+}
+
+.btn-primary a {
+    background-color: var(--secondary-color);
+    padding: 15px 45px;
+    cursor: pointer;
+    border-radius: 8px;
+    font-family: var(--font-secondary);
+    font-size: 18px;
+    color: var(--text-light);
+    border: none;
+    transition: background-color var(--transition-speed), box-shadow var(--transition-speed), transform var(--transition-speed);
+    font-weight: bold;
+}
+
+.btn-primary a:hover {
+    background-color: darkred;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    transform: translateY(-3px);
+}
+
+
+/* --- About Me Section Styles --- */
+#about-me {
+    padding: 60px 0; /* Vertical padding for the section */
+    background-color: #fff; /* White background for the section */
+    overflow: hidden; /* Prevents potential overflow issues */
+}
+
+/* --- Section Title Styles --- */
+.section-title {
+    text-align: center;
+    margin-bottom: 50px;
+    font-size: 2.5rem; /* Make title large */
+    color: #333;
+    text-transform: uppercase; /* Optional: Uppercase title */
+    letter-spacing: 1px; /* Optional: Spacing */
+    position: relative; /* Needed for the underline pseudo-element */
+    display: inline-block; /* Make container fit the text */
+    left: 50%; /* Center the inline-block element */
+    transform: translateX(-50%); /* Fine-tune centering */
+}
+
+
+.section-title2 {
+    text-align: center;
+    margin-bottom: 50px;
+    font-size: 2.5rem; /* Make title large */
+    color: #333;
+    text-transform: uppercase; /* Optional: Uppercase title */
+    letter-spacing: 1px; /* Optional: Spacing */
+    position: relative; /* Needed for the underline pseudo-element */
+    display: inline-block; /* Make container fit the text */
+    left: 10%; /* Center the inline-block element */
+    transform: translateX(-50%); /* Fine-tune centering */
+}
+
+
+
+.section-title-3 {
+    text-align: center;
+    margin-bottom: 50px;
+    font-size: 2.5rem; /* Make title large */
+    color: #333;
+    text-transform: uppercase; /* Optional: Uppercase title */
+    letter-spacing: 1px; /* Optional: Spacing */
+    position: relative; /* Needed for the underline pseudo-element */
+    display: inline-block; /* Make container fit the text */
+    left: 20%; /* Center the inline-block element */
+    transform: translateX(-50%); /* Fine-tune centering */
+}
+
+/* The "Sick" Underline */
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px; /* Position underline below the text */
+    left: 50%; /* Start underline at the center */
+    transform: translateX(-50%); /* Center the underline */
+    width: 70px; /* Width of the underline */
+    height: 5px; /* Thickness of the underline */
+    background: linear-gradient(90deg, #1E3A8A, #011a5a); /* Cool gradient color */
+    border-radius: 3px; /* Slightly rounded edges */
+}
+
+.section-title2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px; /* Position underline below the text */
+    left: 50%; /* Start underline at the center */
+    transform: translateX(-50%); /* Center the underline */
+    width: 70px; /* Width of the underline */
+    height: 5px; /* Thickness of the underline */
+    background: linear-gradient(90deg, #1E3A8A, #011a5a); /* Cool gradient color */
+    border-radius: 3px; /* Slightly rounded edges */
+}
+
+.section-title-3::after {
+    content: '';
+    position: absolute;
+    bottom: -10px; /* Position underline below the text */
+    left: 50%; /* Start underline at the center */
+    transform: translateX(-50%); /* Center the underline */
+    width: 70px; /* Width of the underline */
+    height: 5px; /* Thickness of the underline */
+    background: linear-gradient(90deg, #1E3A8A, #011a5a); /* Cool gradient color */
+    border-radius: 3px; /* Slightly rounded edges */
+}
+
+/* --- About Content Layout (Flexbox) --- */
+.about-content {
+    display: flex;
+    align-items: center; /* Vertically align items in the middle */
+    gap: 50px; /* Space between image and text column */
+    flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+}
+
+.about-image-column,
+.about-text-column {
+    flex: 1; /* Each column tries to take up equal space */
+    min-width: 300px; /* Minimum width before wrapping */
+}
+
+/* --- Image Styles & Effects --- */
+.about-image-column {
+    text-align: center; /* Center image if column is wider */
+}
+
+.about-image {
+    max-width: 100%; /* Make image responsive */
+    height: 50vh;
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); /* Softer, deeper shadow */
+    display: block; /* Removes extra space below image */
+    margin: 0 auto; /* Center image within its column */
+    
+    box-shadow: 15px 15px var(--primary-color); /* Glow effect using underline color */
+
+    /* --- The "Sick" Effects --- */
+    transition: 
+        transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), /* Smooth transform */
+        box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), /* Smooth shadow */
+        filter 0.4s ease-out; /* Smooth filter */
+    
+    /* Optional starting effect (e.g., slight desaturation) */
+    /* filter: grayscale(30%); */ 
+}
+
+/* Hover Effects */
+.about-image:hover {
+    transform: translateY(-10px);
+    box-shadow: -15px 15px #1E3A8A; /* Glow effect using underline color */
+    filter: grayscale(0%); /* Ensure full color on hover if starting grayscale */
+}
+
+.homeLearnMore {
+    background-color: var(--secondary-color);
+    padding-left:30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    top: 100px;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-primary);
+    font-weight: 100;
+    font-size: 18px;
+}
+.homeLearnMore:hover {
+    background-color: darkred;
+    transition: 0.3s;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* --- Text Styles --- */
+.about-text-column h3 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: #222;
+    /* Optional gradient text (might affect readability) */
+    /* background: linear-gradient(90deg, #4fc3f7, #1de9b6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; */
+}
+
+.about-text-column p {
+    margin-bottom: 15px;
+    color: #555; /* Slightly lighter text color */
+    font-size: 1rem; /* Adjust as needed */
+}
+
+/* Optional Social Links Style */
+
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 2rem; /* Slightly smaller title on mobile */
+    }
+    
+    .about-content {
+        flex-direction: column; /* Stack image and text vertically */
+        gap: 30px; /* Reduce gap when stacked */
+    }
+
+    .about-image-column,
+    .about-text-column {
+        min-width: 100%; /* Ensure columns take full width when stacked */
+        text-align: center; /* Center text content on mobile */
+    }
+
+    .about-text-column {
+         text-align: left; /* Or keep text left-aligned */
+    }
+
+    .about-image {
+        max-width: 80%; /* You might want to limit image width on mobile */
+    }
+}
+
+/* --- Carousel / Slider Section --- */
+.carousel-section {
+    padding: 50px 0;
+    background-color: #eee; /* Light background for slider section */
+    /* Add overflow hidden here IF the slider might peek out */
+    /* overflow: hidden; */
+}
+
+.slider {
+    width: 95vw; /* Use viewport width */
+    /* max-width: 1100px; Max width */
+    height: 100vh; /* Adjust height as needed */
+    max-height: 550px;
+    margin: auto;
+    position: relative; /* Establishes positioning context */
+    overflow: hidden;  /* Keeps sliding items contained */
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    z-index: 1; /* <<< --- ADD THIS LINE --- */
+                 /* Ensures the slider is below the navbar (z-index: 1000) */
+}
+
+.slider .list {
+    position: absolute;
+    width: 100%; /* List takes full slider width */
+    height: 100%;
+    left: 0;
+    top: 0;
+    display: flex;
+    /* Transform creates its own stacking context - this is why parent z-index helps */
+    transition: transform 0.7s ease-in-out;
+    will-change: transform;
+}
+
+.slider .list .item {
+    width: 100%; /* Each item takes full slider width */
+    height: 100%;
+    flex-shrink: 0; /* Prevent items from shrinking */
+}
+
+.slider .list img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Cover the area */
+    display: block; /* Remove extra space below image */
+}
+
+/* Buttons */
+.slider .buttons {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    right: 15px;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-between;
+    z-index: 10;
+}
+
+.slider .buttons button {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.6);
+    color: var(--text-dark);
+    border: none;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color var(--transition-speed), color var(--transition-speed);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.slider .buttons button:hover {
+    background-color: var(--secondary-color);
+    color: var(--text-light);
+}
+
+/* Dots */
+.slider .dots {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 10;
+    padding: 0; /* Reset default ul padding */
+    margin: 0; /* Reset default ul margin */
+}
+
+.slider .dots li {
+    list-style: none;
+    width: 12px;
+    height: 12px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+    transition: width var(--transition-speed), background-color var(--transition-speed);
+    cursor: pointer;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.slider .dots li.active {
+    width: 30px;
+    border-radius: 20px;
+    background-color: var(--secondary-color);
+}
+
+/* --- Full Width Looping Video Section --- */
+.full-width-video-section {
+    width: 100%; /* Ensure section takes full width */
+    padding: 100px; /* Remove default padding */
+    margin: 50px 0; /* Add vertical space above/below the section (adjust as needed) */
+    line-height: 0; /* Prevent extra space below video */
+    overflow: hidden; /* Recommended to prevent potential minor overflows */
+}
+
+#looping-video {
+    display: block; /* Remove extra space below video */
+    width: 100%; /* Make video fill the container width */
+    height: auto; /* Maintain aspect ratio automatically */
+    max-height: 100vh; /* Optional: Limit max height (e.g., 75% of viewport height) */
+                       /* Remove or adjust if you want video's natural height */
+
+    /* --- THE BORDER --- */
+    border-top: 8px solid var(--primary-color); /* Example: 8px solid blue top border */
+    border-bottom: 8px solid var(--primary-color); /* Example: 8px solid blue bottom border */
+    /* Add left/right borders if desired */
+    border-left: 8px solid var(--primary-color);
+    border-right: 8px solid var(--primary-color);
+    border-radius: 20px;
+    /* left: 5%; */
+    box-sizing: border-box; /* IMPORTANT: Include border within the element's width */
+    object-fit: cover; /* Optional: Ensures video covers the container, might crop edges */
+                       /* Remove if you want to see the whole video ('contain' or default) */
+}
+
+/* Optional: Responsive adjustments */
+@media (max-width: 767px) {
+    .full-width-video-section {
+        margin: 30px 0; /* Adjust margin for mobile */
+    }
+     #looping-video {
+        max-height: 50vh; /* Potentially smaller max height on mobile */
+        border-width: 5px; /* Thinner border on mobile */
+    }
+}
+
+
+/* --- Video Title Overlay Styles --- */
+.video-title-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+    background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4));
+
+    /* --- Fade Out Setup --- */
+    opacity: 1; /* Start fully visible */
+    visibility: visible; /* Start visible */
+    transition: opacity 1.0s ease-out, visibility 1.0s ease-out; /* Define transition for fade (1s duration) */
+                                                              /* Adjust 1.0s to control fade speed */
+    pointer-events: auto; /* Allow interaction initially */
+}
+
+/* Add this new class rule */
+.video-title-overlay.fade-out {
+    opacity: 0; /* Target state: fully transparent */
+    visibility: hidden; /* Target state: hidden (better for accessibility/performance than just opacity) */
+    pointer-events: none; /* Prevent interaction when faded */
+}
+
+
+.video-title-overlay h2 {
+    color: var(--text-light);
+    font-family: var(--font-primary);
+    font-size: 3em;
+    font-weight: 700;
+    margin: 0;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+    line-height: 1.3;
+    /* Ensure title text also respects the parent's transition if needed */
+    /* transition: opacity 1.0s ease-out; */ /* Usually not needed */
+}
+
+
+/* --- Achievements Section --- */
+.achievements-section {
+    padding: 80px 0; /* Vertical spacing */
+    background-color: #f9f9f9; /* Optional: Light background */
+}
+
+/* --- Section Title --- */
+.section-title-container {
+    text-align: center;
+    margin-bottom: 50px; /* Space below title */
+}
+
+/* --- Achievements Grid --- */
+.achievements-grid {
+    display: grid;
+    /* --- Core 4x4 Layout --- */
+    grid-template-columns: repeat(4, 1fr); /* 4 equal columns */
+    gap: 25px; /* Space between grid items (adjust as needed) */
+
+    /* Optional: Limit grid width and center */
+    width: 95vw;
+    margin: 0 auto;
+    padding: 0 15px; /* Add padding if container isn't used */
+}
+
+.achievement-item {
+    background-color: #fff; /* White background for items */
+    border-radius: 8px; /* Slightly rounded corners */
+    overflow: hidden; /* Ensures image respects border radius */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08); /* Subtle shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.achievement-item:hover {
+    transform: translateY(-5px) scale(1.02); /* Lift effect on hover */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+}
+
+.achievement-item img {
+    display: block; /* Remove extra space below image */
+    width: 100%; /* Make image fill its container */
+    height: auto; /* Maintain aspect ratio */
+    /* Optional: Force aspect ratio if images vary (might crop) */
+    /* aspect-ratio: 1 / 1; */ /* Example: Square aspect ratio */
+    /* object-fit: cover; */ /* Use with aspect-ratio to cover area */
+}
+
+.logo-slider-container {
+    width: 90%; /* Adjust width as needed */
+    max-width: 1200px; /* Optional max width */
+    margin: 0 auto;
+    text-align: center;
+    height: 40vh;
+}
+
+.logo-slider-container h2 {
+    font-size: 2em; /* Adjust size */
+    color: #2c3e50; /* Dark blue color */
+    margin-top: 3%;
+    margin-bottom: 50px;
+    font-weight: 600; /* Adjust weight */
+    text-transform: uppercase;
+}
+
+
+
+/* ===== GRID CONTAINER ===== */
+.stats-grid {
+    display: grid;
+    /* Create 4 equal columns */
+    grid-template-columns: repeat(4, 1fr);
+    /* Rows size automatically based on content */
+    width: 100%;
+    max-width: 1400px; /* Adjust max-width as needed */
+    margin: 40px auto; /* Center the grid and add vertical space */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Optional subtle shadow */
+    overflow: hidden; /* Ensures contained borders/shadows */
+}
+
+/* ===== INDIVIDUAL STAT BOX STYLING ===== */
+.stat-box {
+    color: white; /* Text color inside boxes */
+    padding: 35px 25px; /* Inner spacing */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Vertically center content */
+    align-items: center; /* Horizontally center content */
+    text-align: center;
+    min-height: 210px; /* Minimum height for consistency */
+    box-sizing: border-box; /* Include padding in width/height calculation */
+}
+
+/* ===== TEXT STYLING (NUMBERS & LABELS) ===== */
+.stat-number {
+    font-size: 3.6em; /* Base size for numbers */
+    font-weight: 600; /* Semi-bold weight for numbers */
+    line-height: 1.1;
+    margin: 8px 0; /* Adjusted vertical spacing */
+    font-family: var(--font-primary);
+}
+
+.stat-number.large { /* Modifier for extra large numbers */
+    font-size: 4.2em; /* Adjusted size for emphasis */
+    font-weight: 700; /* Bold weight for largest numbers */
+}
+
+.stat-label {
+    font-size: 01em; /* Slightly smaller label size */
+    font-weight: 500; /* Medium weight for labels */
+    text-transform: uppercase;
+    line-height: 1.5; /* Increased line height for readability */
+    margin: 8px 0 0 0; /* Space above label */
+    max-width: 90%;
+    letter-spacing: 0.5px; /* Subtle letter spacing for uppercase */
+    font-family: var(--font-secondary);
+}
+
+.stat-label.small-top { /* Modifier for labels appearing above the number */
+    font-size: 0.8em; /* Smaller size for top labels */
+    font-weight: 400; /* Regular weight */
+    margin-bottom: 12px; /* More space below top label */
+    letter-spacing: 0.3px; /* Less spacing */
+}
+
+/* ===== BAR CHART SPECIFIC STYLES ===== */
+.bar-chart-box {
+    /* Use flexbox alignment to manage space */
+    justify-content: space-between;
+    /* Adjust padding if needed, especially top */
+    padding-top: 20px;
+    padding-bottom: 25px;
+}
+
+.bar-chart-container {
+    display: flex;
+    align-items: flex-end; /* Bars align to bottom */
+    justify-content: space-around; /* Space out bars */
+    width: 85%; /* Chart width within its box */
+    height: 100px; /* Height allocated FOR THE BARS */
+    margin-top: 30px; /* MARGIN ABOVE BARS to make space for labels */
+    margin-bottom: 20px; /* Space below bars, before bottom label */
+    position: relative; /* Needed for context if absolutely positioning anything */
+}
+
+.bar-wrapper {
+    display: flex;
+    /* ** Key change: Puts label visually above the bar in flex flow ** */
+    flex-direction: column-reverse;
+    align-items: center; /* Center items horizontally (label and bar) */
+    text-align: center;
+    width: 22%; /* Width for each label+bar group */
+    height: 100%; /* Wrapper takes full height of the bar container */
+    position: static; /* Default positioning is fine */
+}
+
+.bar-label {
+    font-size: 1em; /* Size for bar numbers */
+    font-weight: bolder;   /* Semi-bold bar labels */
+    color: #444;        /* Slightly darker text color for contrast */
+    font-family: var(--font-primary);
+    white-space: nowrap; /* Prevent number wrapping */
+    /* ** Key change: Small margin below label to separate from bar ** */
+    margin-bottom: 4px;
+    z-index: 1; /* Ensure label is visually on top */
+    /* ** REMOVED absolute positioning rules ** */
+}
+
+.bar {
+    background-color: #3C7A3E; /* Dark green bars */
+    width: 60%; /* Width of the actual bar */
+    border-radius: 3px 3px 0 0; /* Slightly rounded top */
+    transition: height 0.5s ease-out; /* Optional animation */
+    /* height is set via inline style in HTML */
+    /* Bar sits at bottom due to align-items:flex-end on container */
+}
+
+.stat-label.bottom-label {
+    /* Pushes label to bottom if bar-chart-box uses space-between */
+    margin-top: auto;
+    font-weight: 500; /* Match other labels */
+    font-size: 1em;
+}
+
+/* ===== BACKGROUND COLORS ===== */
+.color-medium-green-1 { background-color: #73B44B; }
+.color-light-green-2 { background-color: #AED888; }
+.color-dark-green-2 { background-color: #4A8E51; }
+.color-light-green-1 { background-color: #90C861; }
+/* Color for the bar chart box */
+.color-chart-green { background-color: #9ACD32; } /* LimeGreen or adjust */
+.color-dark-green-1 { background-color: #3C7A3E; }
+
+
+/* ===== RESPONSIVE ADJUSTMENTS ===== */
+
+/* Tablet View */
+@media (max-width: 992px) {
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr); /* Switch to 2 columns */
+    }
+    .stat-box {
+        min-height: 190px;
+        padding: 30px 20px;
+    }
+    .stat-number {
+        font-size: 3.2em;
+    }
+    .stat-number.large {
+        font-size: 3.8em;
+    }
+     .stat-label {
+        font-size: 0.85em;
+    }
+    /* Bar Chart Responsive */
+    .bar-chart-container {
+        height: 90px;
+        margin-top: 25px;
+    }
+     .bar-label {
+        font-size: 0.8em;
+        margin-bottom: 3px;
+    }
+}
+
+/* Mobile View */
+@media (max-width: 576px) {
+    .stats-grid {
+        grid-template-columns: 1fr; /* Switch to 1 column */
+        max-width: 95%;
+        margin: 25px auto;
+    }
+    .stat-box {
+        min-height: 170px;
+        padding: 25px 15px;
+    }
+    .stat-number {
+        font-size: 2.8em;
+    }
+     .stat-number.large {
+        font-size: 3.4em;
+    }
+     .stat-label {
+        font-size: 0.8em;
+        letter-spacing: 0.2px;
+     }
+    .stat-label.small-top {
+        font-size: 0.75em;
+        margin-bottom: 10px;
+    }
+    /* Bar Chart Responsive */
+     .bar-chart-container {
+        height: 80px;
+        width: 90%;
+        margin-top: 20px;
+     }
+    .bar-label {
+        font-size: 0.75em;
+        margin-bottom: 2px;
+    }
+     .bar {
+        width: 55%;
+     }
+}
+
+/* Separator Style (like the image) */
+.separator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px; /* Space below separator */
+}
+
+.separator span {
+    height: 2px;
+    width: 50px; /* Adjust line width */
+    background-color: #bdc3c7; /* Light gray line */
+    display: inline-block;
+}
+
+.separator .book-icon {
+    height: 25px; /* Adjust icon size */
+    margin: 0 15px; /* Space around icon */
+    /* You'll need an actual book icon image file */
+    /* If you don't have one, remove the img tag and adjust spans */
+    filter: grayscale(50%) sepia(10%) saturate(500%) hue-rotate(10deg); /* Approximate gold/yellow tint */
+}
+
+
+/* The main slider area */
+.logo-slider {
+    width: 100%;
+    overflow: hidden; /* Crucial: Hides the logos outside the viewport */
+    position: relative; /* Needed for pseudo-elements if adding fade */
+    padding: 20px 0; /* Vertical padding for logos */
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); /* Optional fade effect */
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); /* For Safari/Chrome */
+
+}
+
+/* The track that holds and animates the logos */
+.logo-track {
+    display: flex;
+    /* Calculate width: (logo width + margin) * number of logos * 2 */
+    /* Let's estimate logo width ~150px + margin 60px = 210px */
+    /* 210px * 6 logos * 2 sets = 2520px */
+    width: calc(210px * 12); /* Adjust '210px' based on your actual logo sizes and margins */
+    animation: scroll 30s linear infinite; /* Adjust '30s' to control speed */
+}
+
+/* Individual logo items */
+.logo-item {
+    height: 80px; /* Adjust height as needed */
+    width: 150px; /* Set a fixed width for calculation or use auto */
+    margin: 0 30px; /* Space between logos (adjust width calculation if changed) */
+    flex-shrink: 0; /* Prevent logos from shrinking */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-item img {
+    max-height: 100%; /* Ensure image fits within the item height */
+    max-width: 100%; /* Ensure image fits within the item width */
+    object-fit: contain; /* Maintain aspect ratio */
+    filter: grayscale(100%); /* Optional: make logos grayscale */
+    opacity: 0.7; /* Optional: make logos slightly transparent */
+    transition: filter 0.3s ease, opacity 0.3s ease;
+}
+
+.logo-item img:hover {
+    filter: grayscale(0%); /* Optional: color on hover */
+    opacity: 1; /* Optional: full opacity on hover */
+}
+
+/* Pause animation on hover (optional) */
+.logo-slider:hover .logo-track {
+    animation-play-state: paused;
+}
+
+/* The scrolling animation */
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        /* Move left by the width of one full set of original logos */
+        /* 210px * 6 logos = 1260px */
+        transform: translateX(calc(-210px * 6)); /* Adjust calculation if needed */
+    }
+}
+
+/* Simple Responsive Adjustment */
+@media (max-width: 768px) {
+    .logo-slider-container h2 {
+        font-size: 1.5em;
+    }
+    .logo-item {
+        height: 60px;
+        width: 120px;
+        margin: 0 20px;
+    }
+    /* Recalculate track width and animation transform for smaller size */
+    /* New item total width = 120px + 40px = 160px */
+    .logo-track {
+        width: calc(160px * 12);
+        animation: scroll-mobile 30s linear infinite; /* Separate animation or adjust keyframes */
+    }
+
+    @keyframes scroll-mobile {
+         0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(calc(-160px * 6));
+        }
+    }
+}
+
+/* --- Responsive Grid Adjustments --- */
+
+/* Tablets (e.g., <= 992px) - 3 columns */
+@media (max-width: 992px) {
+    .achievements-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+     .section-title {
+        font-size: 2.4em;
+    }
+}
+
+/* Smaller Tablets / Large Phones (e.g., <= 768px) - 2 columns */
+@media (max-width: 768px) {
+    .achievements-section {
+        padding: 60px 0;
+    }
+    .achievements-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+     .section-title {
+        font-size: 2.1em;
+    }
+     .title-decorator i.fa-book-open {
+        font-size: 1.6em;
+    }
+}
+
+/* Phones (e.g., <= 576px) - 1 column */
+@media (max-width: 576px) {
+     .achievements-section {
+        padding: 40px 0;
+    }
+    .achievements-grid {
+        grid-template-columns: repeat(1, 1fr); /* Stack items */
+        gap: 20px; /* Increase gap slightly when stacked */
+         max-width: 380px; /* Limit width when stacked */
+    }
+     .section-title {
+        font-size: 1.8em;
+    }
+     .title-decorator i.fa-book-open {
+        font-size: 1.4em;
+    }
+    .title-decorator .line {
+        width: 40px;
+    }
+}
+
+/* --- Responsive rules remain the same --- */
+/* ... */
+
+/* --- Responsive Home Page Styles --- */
+
+@media (max-width: 767px) {
+    .hero {
+        height: 70vh; /* Shorter hero on mobile */
+    }
+    .overlay h1 {
+        font-size: 2.5em;
+    }
+    .enroll {
+        font-size: 1.1em;
+        padding: 12px 30px;
+        bottom: 10%;
+    }
+    .btn-primary {
+        padding: 30px 15px;
+        gap: 1.5em;
+    }
+    .btn-primary button {
+        font-size: 16px;
+        padding: 12px 35px;
+        width: 70%; /* Make buttons wider */
+        max-width: 300px;
+    }
+
+    .slider {
+        height: 40vh; /* Shorter slider */
+        width: 95vw;
+    }
+    .slider .buttons button {
+        width: 35px;
+        height: 35px;
+        font-size: 16px;
+    }
+     .slider .dots {
+        bottom: 10px;
+    }
+     .slider .dots li {
+         width: 10px;
+         height: 10px;
+     }
+      .slider .dots li.active {
+         width: 25px;
+     }
+}
+
+@media (max-width: 574px) {
+     .overlay h1 {
+        font-size: 2em;
+    }
+     .enroll {
+        font-size: 1em;
+        padding: 10px 25px;
+    }
+     .btn-primary button {
+         width: 85%;
+     }
+}
