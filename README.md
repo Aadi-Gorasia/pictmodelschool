@@ -15,7 +15,7 @@ We are Aadi Gorasia and Laukik Kolte, and we are incredibly honored to present t
 
 It all started with the idea that our school deserved a modern, easy-to-use, and beautiful online presence that truly reflects our amazing community. The path from that initial idea to the website you see today was filled with late nights learning new coding languages, debugging tricky problems, and meticulously designing each page. Every button, every color, and every feature was crafted with the goal of serving our students, parents, and faculty better.
 
-This project would not have been possible without the guidance and support from our school's staff. I want to extend a special and heartfelt thank you to **Suprabha Pawar and Anagha Gorhe** for their constant encouragement, , and especially **Principal Abira Mishra** for believing in this student-led initiative and giving me the opportunity to make a real-world impact on our school. The meetings and conversations we had were invaluable in shaping the final product.
+This project would not have been possible without the guidance and support from our school's staff. I want to extend a special and heartfelt thank you to **Suprabha Pawar and Anagha Gorhe** for their constant encouragement, and especially **Principal Abira Mishra** for believing in this student-led initiative and giving me the opportunity to make a real-world impact on our school. The meetings and conversations we had were invaluable in shaping the final product.
 
 We hope this website serves our school well for years to come. We thank you for this opportunity.
 
