@@ -4,7 +4,7 @@
 **Date:** 2nd August 2025
 **Lead Developer:** Aadi Gorasia and Laukik Kolte
 **Contact:** aadi.gorasia6@gmail.com / thealseries@gmail.com / gorasiaaadi06@gmail.com
-
+**Laukik's Github** https://github.com/flamefv
 ---
 
 ### A Note From the Developers
