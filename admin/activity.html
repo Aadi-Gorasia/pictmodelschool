@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Activity - Studio CMS</title>
+<link rel="stylesheet" href="/_cms/assets/app.css">
+</head>
+<body>
+<div class="app-shell">
+  <div class="app-sidebar" id="app-sidebar"></div>
+  <main class="app-main">
+    <div class="page-header">
+      <div>
+        <h1 class="page-title">Activity</h1>
+        <p class="page-subtitle">Logins, publishes, drafts, uploads, and account changes.</p>
+      </div>
+    </div>
+    <div class="table-card">
+      <div class="activity-list" id="activity-list"><div class="spinner"></div></div>
+    </div>
+  </main>
+</div>
+<script src="/_cms/assets/app.js"></script>
+<script>
+App.boot("activity", async () => {
+  try {
+    const data = await App.api("/_cms/api/activity?limit=200");
+    renderActivity(data.activity);
+  } catch (err) {
+    App.toast(err.message, "error");
+  }
+});
+
+function renderActivity(items) {
+  const list = document.getElementById("activity-list");
+  if (!items.length) {
+    list.innerHTML = '<div class="empty-state">' + App.icon("activity") + "<div>No activity yet.</div></div>";
+    return;
+  }
+  list.innerHTML = items.map((a) =>
+    '<div class="activity-row"><div style="flex:1;">' + App.escapeHtml(a.message) + '</div><div class="activity-time">' + App.formatDateTime(a.createdAt) + "</div></div>"
+  ).join("");
+}
+</script>
+</body>
+</html>

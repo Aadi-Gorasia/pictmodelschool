@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Design system - Studio CMS</title>
+<link rel="stylesheet" href="/_cms/assets/app.css">
+<style>
+  .token-section { margin-bottom: 22px; }
+  .token-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px; }
+  .token-card { display: flex; align-items: center; gap: 10px; padding: 10px; background: var(--panel-2); border: 1px solid var(--border); border-radius: 10px; }
+  .token-card input[type=text] { padding: 7px 9px; font-size: 12px; }
+  .token-card input[type=color] { -webkit-appearance: none; width: 32px; height: 32px; padding: 0; border: 1px solid var(--border-strong); border-radius: 7px; background: none; flex: none; }
+  .token-card-label { width: 90px; flex: none; font-size: 11.5px; font-weight: 700; color: var(--muted); text-transform: capitalize; }
+  .save-bar { position: sticky; bottom: 0; margin-top: 20px; padding: 14px 18px; background: rgba(20,21,29,.95); border: 1px solid var(--border-strong); border-radius: 14px; display: flex; align-items: center; justify-content: space-between; backdrop-filter: blur(10px); }
+</style>
+</head>
+<body>
+<div class="app-shell">
+  <div class="app-sidebar" id="app-sidebar"></div>
+  <main class="app-main">
+    <div class="page-header">
+      <div>
+        <h1 class="page-title">Design system</h1>
+        <p class="page-subtitle">Global tokens rendered as CSS variables on every page. Changing a value here updates anything bound to that token across the whole site.</p>
+      </div>
+    </div>
+    <div id="design-content"><div class="spinner"></div></div>
+  </main>
+</div>
+<script src="/_cms/assets/app.js"></script>
+<script>
+let tokens = null;
+let settings = null;
+let currentUser = null;
+let dirty = false;
+
+App.boot("design", async (user) => {
+  currentUser = user;
+  try {
+    const [tokenData, settingsData] = await Promise.all([App.api("/_cms/api/design-tokens"), App.api("/_cms/api/settings")]);
+    tokens = tokenData.tokens;
+    settings = settingsData.settings;
+    render();
+  } catch (err) {
+    document.getElementById("design-content").innerHTML = '<div class="empty-state">' + App.escapeHtml(err.message) + "</div>";
+  }
+});
+
+function render() {
+  const readOnly = currentUser.role !== "admin";
+  const content = document.getElementById("design-content");
+  content.innerHTML =
+    tokenSection("Colors", "colors", tokens.colors, "color", readOnly) +
+    tokenSection("Typography", "typography", tokens.typography, "text", readOnly) +
+    tokenSection("Spacing scale", "spacing", tokens.spacing, "text", readOnly) +
+    tokenSection("Corner radius", "radius", tokens.radius, "text", readOnly) +
+    tokenSection("Shadows", "shadow", tokens.shadow, "text", readOnly) +
+    tokenSection("Container", "container", tokens.container, "text", readOnly) +
+    breakpointSection(readOnly) +
+    (readOnly ? "" : '<div class="save-bar"><span class="cell-muted" id="dirty-note">No unsaved changes</span><button class="btn btn-primary" id="save-btn">Save changes</button></div>');
+
+  if (!readOnly) {
+    content.addEventListener("input", () => setDirty(true));
+    document.getElementById("save-btn").addEventListener("click", saveAll);
+  }
+}
+
+function tokenSection(title, category, values, kind, readOnly) {
+  const rows = Object.entries(values || {}).map(([key, value]) => {
+    if (kind === "color") {
+      const hex = /^#([0-9a-f]{3}|[0-9a-f]{6})$/i.test(value) ? value : "#000000";
+      return (
+        '<div class="token-card"><span class="token-card-label">' + App.escapeHtml(prettify(key)) + "</span>" +
+        '<input type="color" value="' + hex + '" data-cat="' + category + '" data-key="' + key + '" data-pair="' + key + '-swatch" ' + (readOnly ? "disabled" : "") + ">" +
+        '<input type="text" value="' + App.escapeHtml(value) + '" data-cat="' + category + '" data-key="' + key + '" ' + (readOnly ? "disabled" : "") + " style=\"flex:1;\">" +
+        "</div>"
+      );
+    }
+    return (
+      '<div class="token-card"><span class="token-card-label">' + App.escapeHtml(prettify(key)) + "</span>" +
+      '<input type="text" value="' + App.escapeHtml(value) + '" data-cat="' + category + '" data-key="' + key + '" ' + (readOnly ? "disabled" : "") + " style=\"flex:1;\">" +
+      "</div>"
+    );
+  }).join("");
+  return '<div class="token-section"><h2 class="section-title">' + title + '</h2><div class="token-grid">' + rows + "</div></div>";
+}
+
+function breakpointSection(readOnly) {
+  return (
+    '<div class="token-section"><h2 class="section-title">Responsive breakpoints</h2><div class="token-grid">' +
+    '<div class="token-card"><span class="token-card-label">Tablet max</span><input type="text" id="bp-tablet" value="' + settings.breakpoints.tablet + '" ' + (readOnly ? "disabled" : "") + " style=\"flex:1;\"><span class=\"cell-muted\">px</span></div>" +
+    '<div class="token-card"><span class="token-card-label">Mobile max</span><input type="text" id="bp-mobile" value="' + settings.breakpoints.mobile + '" ' + (readOnly ? "disabled" : "") + " style=\"flex:1;\"><span class=\"cell-muted\">px</span></div>" +
+    "</div></div>"
+  );
+}
+
+function prettify(key) {
+  return key.replace(/([a-z0-9])([A-Z])/g, "$1 $2").toLowerCase();
+}
+
+// Keep the color swatch and hex text input for the same token in sync.
+document.addEventListener("input", (e) => {
+  if (e.target.type === "color") {
+    const pair = e.target.parentElement.querySelector('input[type=text][data-key="' + e.target.dataset.key + '"]');
+    if (pair) pair.value = e.target.value;
+  }
+});
+
+function setDirty(v) {
+  dirty = v;
+  const note = document.getElementById("dirty-note");
+  if (note) note.textContent = v ? "Unsaved changes" : "No unsaved changes";
+}
+
+async function saveAll() {
+  const payload = { colors: {}, typography: {}, spacing: {}, radius: {}, shadow: {}, container: {} };
+  document.querySelectorAll("#design-content input[data-cat]").forEach((input) => {
+    if (input.type === "color") return; // the paired text input carries the value
+    payload[input.dataset.cat][input.dataset.key] = input.value;
+  });
+  const breakpoints = {
+    tablet: Number(document.getElementById("bp-tablet").value) || settings.breakpoints.tablet,
+    mobile: Number(document.getElementById("bp-mobile").value) || settings.breakpoints.mobile,
+  };
+
+  try {
+    await Promise.all([
+      App.api("/_cms/api/design-tokens", { method: "PATCH", body: payload }),
+      App.api("/_cms/api/settings", { method: "PATCH", body: { breakpoints } }),
+    ]);
+    setDirty(false);
+    App.toast("Design system updated - live across the site immediately.", "success");
+  } catch (err) {
+    App.toast(err.message, "error");
+  }
+}
+</script>
+</body>
+</html>

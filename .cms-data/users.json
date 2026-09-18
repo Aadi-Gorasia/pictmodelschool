@@ -1,0 +1,10 @@
+{
+  "user_4ZyZ8Lv5zVbz": {
+    "id": "user_4ZyZ8Lv5zVbz",
+    "username": "Aadi",
+    "passwordHash": "scrypt$16384$8$1$c3267425fa50cb728b092c370ac647fa$8d6efc2e5053fb1a8ce767b4e07494ecd232974fa01ccd2c4d3bdf3de2fe3a2eabacfceb2511679cd85f006835cc93c1f175b241f5b3d85b935af8a031d586fb",
+    "role": "admin",
+    "createdAt": 1789767413791,
+    "createdBy": null
+  }
+}

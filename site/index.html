@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Northwind Studio - Independent design &amp; build</title>
+<meta name="description" content="Northwind Studio is a small independent design and build practice.">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: -apple-system, "Segoe UI", sans-serif; color: #1a1a1f; background: #fff; }
+  header { position: sticky; top: 0; z-index: 10; display: flex; align-items: center; justify-content: space-between; padding: 18px 32px; background: #fff; border-bottom: 1px solid #eee; }
+  header .brand { font-weight: 800; letter-spacing: -.01em; }
+  header nav { display: flex; gap: 24px; }
+  header nav a { color: #1a1a1f; text-decoration: none; font-size: 14px; }
+  .hero { padding: 96px 32px; max-width: 780px; margin: 0 auto; text-align: center; }
+  .hero h1 { font-size: 44px; line-height: 1.1; margin: 0 0 18px; }
+  .hero p { font-size: 18px; color: #555; margin: 0 0 28px; }
+  .hero a.cta { display: inline-block; padding: 14px 26px; background: #1a1a1f; color: #fff; border-radius: 8px; text-decoration: none; font-weight: 600; }
+  .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; padding: 64px 32px; max-width: 1100px; margin: 0 auto; }
+  .feature { padding: 24px; border: 1px solid #eee; border-radius: 12px; }
+  .feature h3 { margin: 0 0 8px; }
+  .feature p { margin: 0; color: #555; font-size: 14px; line-height: 1.6; }
+  footer { padding: 40px 32px; text-align: center; color: #888; font-size: 13px; border-top: 1px solid #eee; }
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">Northwind Studio</div>
+  <nav>
+    <a href="/index.html">Home</a>
+    <a href="/about.html">About</a>
+    <a href="/contact.html">Contact</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1>We design small, useful things.</h1>
+  <p>Northwind Studio is a two-person practice building thoughtful websites and products for independent businesses.</p>
+  <a class="cta" href="/contact.html">Start a project</a>
+</section>
+
+<section class="features">
+  <div class="feature">
+    <h3>Design</h3>
+    <p>Interfaces that feel considered, not templated. We sweat the details so your customers don't have to think.</p>
+  </div>
+  <div class="feature">
+    <h3>Build</h3>
+    <p>Fast, accessible, maintainable sites - no bloated frameworks unless the project actually needs one.</p>
+  </div>
+  <div class="feature">
+    <h3>Support</h3>
+    <p>We stick around after launch. Most of our clients have worked with us for years, not weeks.</p>
+  </div>
+</section>
+
+<footer>
+  &copy; 2026 Northwind Studio. Built in-house.
+</footer>
+</body>
+</html>
