@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Media - Studio CMS</title>
+<link rel="stylesheet" href="/_cms/assets/app.css">
+<style>
+  .media-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 14px; }
+  .media-card { background: var(--panel); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+  .media-thumb { height: 130px; background: #0b0c11; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+  .media-thumb img { width: 100%; height: 100%; object-fit: cover; }
+  .media-thumb svg { width: 30px; height: 30px; color: var(--muted); }
+  .media-info { padding: 10px 12px; }
+  .media-name { font-size: 12px; font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .media-meta { color: var(--muted); font-size: 11px; margin-top: 2px; }
+  .media-actions { display: flex; gap: 6px; padding: 0 12px 12px; }
+</style>
+</head>
+<body>
+<div class="app-shell">
+  <div class="app-sidebar" id="app-sidebar"></div>
+  <main class="app-main">
+    <div class="page-header">
+      <div>
+        <h1 class="page-title">Media library</h1>
+        <p class="page-subtitle" id="media-count-line">Loading...</p>
+      </div>
+      <div class="page-actions">
+        <input type="file" id="file-input" style="display:none;" accept="image/png,image/jpeg,image/webp,image/gif,image/svg+xml,.pdf,.zip,.doc,.docx,.txt">
+        <button class="btn btn-primary" id="upload-btn">Upload file</button>
+      </div>
+    </div>
+    <div class="media-grid" id="media-grid"><div class="spinner"></div></div>
+  </main>
+</div>
+<script src="/_cms/assets/app.js"></script>
+<script>
+let currentUser = null;
+App.boot("media", async (user) => {
+  currentUser = user;
+  await loadMedia();
+});
+
+async function loadMedia() {
+  try {
+    const data = await App.api("/_cms/api/media");
+    document.getElementById("media-count-line").textContent = data.media.length + (data.media.length === 1 ? " file" : " files");
+    renderMedia(data.media);
+  } catch (err) {
+    App.toast(err.message, "error");
+  }
+}
+
+function renderMedia(items) {
+  const grid = document.getElementById("media-grid");
+  if (!items.length) {
+    grid.innerHTML = '<div class="empty-state" style="grid-column:1/-1;">' + App.icon("media") + "<div>No uploads yet.</div></div>";
+    return;
+  }
+  grid.innerHTML = items.map((m) => {
+    const isImage = m.mime && m.mime.indexOf("image/") === 0;
+    const dims = m.width && m.height ? m.width + "\u00D7" + m.height + " \u00B7 " : "";
+    return (
+      '<div class="media-card">' +
+      '<div class="media-thumb">' + (isImage ? '<img src="' + m.url + '" alt="">' : App.icon("file")) + "</div>" +
+      '<div class="media-info"><div class="media-name" title="' + App.escapeHtml(m.originalName) + '">' + App.escapeHtml(m.originalName) + '</div>' +
+      '<div class="media-meta">' + dims + App.formatBytes(m.size) + "</div></div>" +
+      '<div class="media-actions">' +
+      '<button class="btn btn-secondary btn-sm" data-act="copy" data-url="' + App.escapeHtml(m.url) + '" style="flex:1;">Copy URL</button>' +
+      (currentUser.role === "admin" ? '<button class="btn btn-danger btn-icon btn-sm" data-act="delete" data-id="' + App.escapeHtml(m.id) + '">' + App.icon("trash") + "</button>" : "") +
+      "</div></div>"
+    );
+  }).join("");
+}
+
+document.getElementById("upload-btn").addEventListener("click", () => document.getElementById("file-input").click());
+document.getElementById("file-input").addEventListener("change", async (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+  try {
+    const res = await fetch("/upload", {
+      method: "POST",
+      headers: { "Content-Type": file.type || "application/octet-stream", "X-Filename": encodeURIComponent(file.name) },
+      body: file,
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || "Upload failed.");
+    App.toast("Uploaded", "success");
+    loadMedia();
+  } catch (err) {
+    App.toast(err.message, "error");
+  } finally {
+    e.target.value = "";
+  }
+});
+
+document.addEventListener("click", async (e) => {
+  const btn = e.target.closest("[data-act]");
+  if (!btn) return;
+  if (btn.dataset.act === "copy") {
+    const full = window.location.origin + btn.dataset.url;
+    try {
+      await navigator.clipboard.writeText(full);
+      App.toast("Copied: " + full, "success");
+    } catch {
+      App.toast(full, "success");
+    }
+  }
+  if (btn.dataset.act === "delete") {
+    const ok = await App.confirmModal({ title: "Delete this file?", message: "If it's used on a live page, that image will break there.", confirmLabel: "Delete", danger: true });
+    if (!ok) return;
+    try {
+      await App.api("/_cms/api/media/" + encodeURIComponent(btn.dataset.id), { method: "DELETE" });
+      App.toast("Deleted", "success");
+      loadMedia();
+    } catch (err) {
+      App.toast(err.message, "error");
+    }
+  }
+});
+</script>
+</body>
+</html>

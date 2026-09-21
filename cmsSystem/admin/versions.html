@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Versions - Studio CMS</title>
+<link rel="stylesheet" href="/_cms/assets/app.css">
+<style>
+  .version-row { display: flex; align-items: center; gap: 14px; padding: 14px 16px; border-bottom: 1px solid var(--border); }
+  .version-row:last-child { border-bottom: none; }
+  .version-num { width: 46px; text-align: center; font-weight: 800; font-size: 13px; color: #a78bfa; flex: none; }
+  .version-info { flex: 1; min-width: 0; }
+  .version-page { font-weight: 700; font-size: 13px; }
+  .version-meta { color: var(--muted); font-size: 11.5px; margin-top: 2px; }
+  .version-summary { color: #c7c9d4; font-size: 12.5px; margin-top: 3px; font-style: italic; }
+  .diff-viewer { max-height: 60vh; overflow: auto; border: 1px solid var(--border); border-radius: 10px; margin-top: 12px; background: #0b0c11; }
+  select#page-filter { width: 240px; }
+</style>
+</head>
+<body>
+<div class="app-shell">
+  <div class="app-sidebar" id="app-sidebar"></div>
+  <main class="app-main">
+    <div class="page-header">
+      <div>
+        <h1 class="page-title">Version history</h1>
+        <p class="page-subtitle">Every publish creates a version. Restoring loads it into a draft - it never touches the live page until you publish again.</p>
+      </div>
+      <div class="page-actions">
+        <select id="page-filter"><option value="">All pages</option></select>
+      </div>
+    </div>
+    <div class="table-card">
+      <div id="versions-list"><div class="spinner"></div></div>
+    </div>
+  </main>
+</div>
+<script src="/_cms/assets/app.js"></script>
+<script>
+let allVersions = [];
+let currentUser = null;
+
+App.boot("versions", async (user) => {
+  currentUser = user;
+  const params = new URLSearchParams(window.location.search);
+  const pathFilter = params.get("path") || "";
+  await loadPagesForFilter(pathFilter);
+  await loadVersions(pathFilter);
+  document.getElementById("page-filter").addEventListener("change", (e) => {
+    const url = new URL(window.location);
+    if (e.target.value) url.searchParams.set("path", e.target.value); else url.searchParams.delete("path");
+    window.history.replaceState({}, "", url);
+    loadVersions(e.target.value);
+  });
+});
+
+async function loadPagesForFilter(selected) {
+  try {
+    const data = await App.api("/_cms/api/pages");
+    const select = document.getElementById("page-filter");
+    data.pages.forEach((p) => {
+      const opt = document.createElement("option");
+      opt.value = p.path;
+      opt.textContent = p.path;
+      if (p.path === selected) opt.selected = true;
+      select.appendChild(opt);
+    });
+  } catch (err) { /* non-fatal */ }
+}
+
+async function loadVersions(path) {
+  const list = document.getElementById("versions-list");
+  list.innerHTML = '<div class="spinner"></div>';
+  try {
+    const url = "/_cms/api/versions" + (path ? "?path=" + encodeURIComponent(path) : "");
+    const data = await App.api(url);
+    allVersions = data.versions;
+    renderVersions();
+  } catch (err) {
+    App.toast(err.message, "error");
+  }
+}
+
+function renderVersions() {
+  const list = document.getElementById("versions-list");
+  if (!allVersions.length) {
+    list.innerHTML = '<div class="empty-state">' + App.icon("versions") + "<div>No versions published yet.</div></div>";
+    return;
+  }
+  list.innerHTML = allVersions.map((v, idx) => {
+    const prev = allVersions[idx + 1]; // one older, since sorted newest-first
+    return (
+      '<div class="version-row">' +
+      '<div class="version-num">v' + v.number + "</div>" +
+      '<div class="version-info"><div class="version-page">' + App.escapeHtml(v.pagePath) + '</div>' +
+      '<div class="version-meta">' + App.escapeHtml(v.authorName) + " \u00B7 " + App.formatDateTime(v.createdAt) + "</div>" +
+      (v.summary ? '<div class="version-summary">\u201C' + App.escapeHtml(v.summary) + "\u201D</div>" : "") +
+      "</div>" +
+      '<div class="cell-actions">' +
+      '<button class="btn btn-secondary btn-sm" data-act="preview" data-id="' + v.id + '">Preview</button>' +
+      (prev ? '<button class="btn btn-secondary btn-sm" data-act="diff" data-a="' + prev.id + '" data-b="' + v.id + '">Compare to v' + prev.number + "</button>" : "") +
+      '<button class="btn btn-primary btn-sm" data-act="restore" data-id="' + v.id + '" data-page="' + App.escapeHtml(v.pagePath) + '" data-num="' + v.number + '">Restore</button>' +
+      "</div></div>"
+    );
+  }).join("");
+}
+
+document.addEventListener("click", async (e) => {
+  const btn = e.target.closest("[data-act]");
+  if (!btn) return;
+
+  if (btn.dataset.act === "preview") {
+    window.open("/_cms/api/versions/" + btn.dataset.id + "/html", "_blank");
+  }
+
+  if (btn.dataset.act === "diff") {
+    openDiffModal(btn.dataset.a, btn.dataset.b);
+  }
+
+  if (btn.dataset.act === "restore") {
+    const ok = await App.confirmModal({
+      title: "Restore v" + btn.dataset.num + "?",
+      message: "This creates a new DRAFT of \"" + btn.dataset.page + "\" from this version. It won't go live until you publish it from the editor.",
+      confirmLabel: "Restore to draft",
+    });
+    if (!ok) return;
+    try {
+      await App.api("/_cms/api/versions/" + btn.dataset.id + "/restore", { method: "POST" });
+      App.toast("Restored into a new draft - open the page in the editor to review and publish it.", "success");
+    } catch (err) {
+      App.toast(err.message, "error");
+    }
+  }
+});
+
+async function openDiffModal(a, b) {
+  const overlay = document.createElement("div");
+  overlay.className = "modal-overlay";
+  overlay.innerHTML = '<div class="modal" style="width:min(720px,96vw);"><h3>Comparing versions</h3><div class="diff-viewer" id="diff-body"><div class="spinner"></div></div><div class="modal-actions"><button class="btn btn-secondary" data-act="close">Close</button></div></div>';
+  document.body.appendChild(overlay);
+  overlay.addEventListener("click", (e) => { if (e.target === overlay || e.target.dataset.act === "close") overlay.remove(); });
+
+  try {
+    const data = await App.api("/_cms/api/versions/diff?a=" + encodeURIComponent(a) + "&b=" + encodeURIComponent(b));
+    const body = document.getElementById("diff-body");
+    if (data.tooLarge) {
+      body.innerHTML = '<div class="empty-state">' + App.escapeHtml(data.reason) + "</div>";
+      return;
+    }
+    if (!data.stats.added && !data.stats.removed) {
+      body.innerHTML = '<div class="empty-state">No differences.</div>';
+      return;
+    }
+    body.innerHTML = data.ops
+      .filter((op, i) => op.type !== "equal" || isNearChange(data.ops, i))
+      .map((op) => '<div class="diff-line diff-' + op.type + '">' + (op.type === "add" ? "+ " : op.type === "remove" ? "- " : "  ") + App.escapeHtml(op.line) + "</div>")
+      .join("");
+  } catch (err) {
+    document.getElementById("diff-body").innerHTML = '<div class="empty-state">' + App.escapeHtml(err.message) + "</div>";
+  }
+}
+
+// Only show unchanged lines within 2 lines of a real change, so a diff on a
+// full page doesn't dump hundreds of identical lines into the modal.
+function isNearChange(ops, i) {
+  for (let d = -2; d <= 2; d++) {
+    const n = ops[i + d];
+    if (n && n.type !== "equal") return true;
+  }
+  return false;
+}
+</script>
+</body>
+</html>

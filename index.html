@@ -1,11 +1,7 @@
-<!doctype html>
-<html lang="en"><head><base href="/"><style data-cms-design-system>
-:root{--site-primary:#7c5cff;--site-secondary:#5b5bd6;--site-accent:#a78bfa;--site-background:#ffffff;--site-surface:#f7f7fa;--site-text:#15151a;--site-muted:#686b78;--site-border:#e7e7ed;--site-heading-font:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;--site-body-font:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;--site-base-size:16px;--site-line-height:1.55;--site-space-xs:4px;--site-space-sm:8px;--site-space-md:16px;--site-space-lg:24px;--site-space-xl:48px;--site-section-space:64px;--site-gutter:24px;--site-radius-small:8px;--site-radius-medium:12px;--site-radius-large:18px;--site-radius-button:10px;--site-shadow-small:0 1px 3px rgba(0,0,0,.08);--site-shadow-medium:0 10px 30px rgba(0,0,0,.10);--site-container-width:1200px;--site-page-gutter:24px}
-body{font-family:var(--site-body-font);font-weight:400;line-height:var(--site-line-height);color:var(--site-text)}
-h1,h2,h3,h4,h5,h6{font-family:var(--site-heading-font);font-weight:700}
-a{color:var(--site-primary)}
-button,input[type="submit"],input[type="button"]{border-radius:var(--site-radius-button)}
-</style>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PICT Model School - Home</title>
@@ -14,360 +10,17 @@ button,input[type="submit"],input[type="button"]{border-radius:var(--site-radius
 
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
+
     <!-- Page Specific Styles -->
     <link rel="stylesheet" href="home.css">
     <!-- Fonts & Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&amp;family=Inria+Sans:wght@400;700&amp;display=swap" rel="stylesheet">
-<style>
-      #cms-editor-wrapper #cms-browse-toggle.active {
-        background: var(--cms-accent);
-      }
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Inria+Sans:wght@400;700&display=swap" rel="stylesheet">
+</head>
 
-      #cms-tree-panel {
-        position: fixed;
-        left: 12px;
-        top: 12px;
-        bottom: 78px;
-        width: min(330px, calc(100vw - 24px));
-        display: flex;
-        flex-direction: column;
-        color: var(--cms-text);
-        background: var(--cms-panel);
-        border: 1px solid var(--cms-border);
-        border-radius: 14px;
-        box-shadow: var(--cms-shadow);
-        backdrop-filter: blur(20px);
-        z-index: 2147483646;
-        transform: translateX(calc(-100% - 20px));
-        transition: transform .22s cubic-bezier(.2,.8,.2,1);
-        overflow: hidden;
-      }
-
-      #cms-tree-panel.active { transform: translateX(0); }
-
-      .cms-tree-header {
-        min-height: 55px;
-        padding: 10px 12px 10px 15px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        border-bottom: 1px solid var(--cms-border);
-      }
-
-      .cms-tree-tools {
-        padding: 10px;
-        border-bottom: 1px solid var(--cms-border);
-      }
-
-      .cms-tree-tools .cms-input { margin: 0; }
-
-      #cms-tree-list {
-        overflow: auto;
-        padding: 7px;
-      }
-
-      .cms-tree-item {
-        width: 100%;
-        min-height: 34px;
-        padding: 5px 8px;
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        color: #d4d4d8;
-        background: transparent;
-        border: 0;
-        border-radius: 7px;
-        text-align: left;
-        cursor: pointer;
-        font-size: 11px;
-      }
-
-      .cms-tree-item:hover {
-        color: white;
-        background: rgba(255,255,255,.08);
-      }
-
-      .cms-tree-indent {
-        color: #52525b;
-        max-width: 45px;
-        overflow: hidden;
-      }
-
-      .cms-tree-tag {
-        color: var(--cms-accent-2);
-        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-      }
-
-      .cms-tree-name {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
-
-      .cms-advanced-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 7px;
-      }
-
-      .cms-adv-field {
-        min-width: 0;
-      }
-
-      .cms-adv-field > span,
-      .cms-attr-row > span {
-        display: block;
-        margin: 0 0 4px;
-        color: #85858f;
-        font-size: 10px;
-      }
-
-      .cms-adv-field .cms-input {
-        margin: 0;
-        font-size: 11px;
-      }
-
-      .cms-attribute-editor {
-        margin-top: 14px;
-      }
-
-      .cms-attr-row {
-        display: grid;
-        grid-template-columns: 80px 1fr;
-        align-items: end;
-        gap: 7px;
-        margin-bottom: 7px;
-      }
-
-      .cms-attr-row .cms-input {
-        margin: 0;
-        font-size: 11px;
-      }
-
-      .cms-computed-box {
-        margin-top: 13px;
-        padding: 10px;
-        color: #a1a1aa;
-        background: rgba(255,255,255,.035);
-        border: 1px solid rgba(255,255,255,.07);
-        border-radius: 9px;
-        font-size: 10px;
-        line-height: 1.7;
-      }
-
-      .cms-computed-box b { color: #e5e7eb; }
-
-      #cms-preview-frame {
-        position: fixed;
-        top: 8px;
-        left: 50%;
-        height: calc(100vh - 16px);
-        max-width: calc(100vw - 16px);
-        transform: translateX(-50%);
-        display: none;
-        pointer-events: none;
-        border: 1px dashed rgba(99,102,241,.55);
-        border-radius: 12px;
-        z-index: 2147483640;
-        background: transparent;
-      }
-
-      #cms-preview-frame.active { display: block; }
-
-      #cms-preview-label {
-        position: absolute;
-        top: 6px;
-        left: 6px;
-        padding: 4px 7px;
-        color: #c7d2fe;
-        background: rgba(30,27,75,.9);
-        border: 1px solid rgba(129,140,248,.3);
-        border-radius: 6px;
-        font: 10px ui-monospace, monospace;
-      }
-
-      @media (max-width: 640px) {
-        #cms-tree-panel { width: calc(100vw - 24px); }
-        .cms-advanced-grid { grid-template-columns: 1fr; }
-      }
-    </style><style>
-      #cms-editor-wrapper #cms-browse-toggle.active {
-        background: var(--cms-accent);
-      }
-
-      #cms-tree-panel {
-        position: fixed;
-        left: 12px;
-        top: 12px;
-        bottom: 78px;
-        width: min(330px, calc(100vw - 24px));
-        display: flex;
-        flex-direction: column;
-        color: var(--cms-text);
-        background: var(--cms-panel);
-        border: 1px solid var(--cms-border);
-        border-radius: 14px;
-        box-shadow: var(--cms-shadow);
-        backdrop-filter: blur(20px);
-        z-index: 2147483646;
-        transform: translateX(calc(-100% - 20px));
-        transition: transform .22s cubic-bezier(.2,.8,.2,1);
-        overflow: hidden;
-      }
-
-      #cms-tree-panel.active { transform: translateX(0); }
-
-      .cms-tree-header {
-        min-height: 55px;
-        padding: 10px 12px 10px 15px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        border-bottom: 1px solid var(--cms-border);
-      }
-
-      .cms-tree-tools {
-        padding: 10px;
-        border-bottom: 1px solid var(--cms-border);
-      }
-
-      .cms-tree-tools .cms-input { margin: 0; }
-
-      #cms-tree-list {
-        overflow: auto;
-        padding: 7px;
-      }
-
-      .cms-tree-item {
-        width: 100%;
-        min-height: 34px;
-        padding: 5px 8px;
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        color: #d4d4d8;
-        background: transparent;
-        border: 0;
-        border-radius: 7px;
-        text-align: left;
-        cursor: pointer;
-        font-size: 11px;
-      }
-
-      .cms-tree-item:hover {
-        color: white;
-        background: rgba(255,255,255,.08);
-      }
-
-      .cms-tree-indent {
-        color: #52525b;
-        max-width: 45px;
-        overflow: hidden;
-      }
-
-      .cms-tree-tag {
-        color: var(--cms-accent-2);
-        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-      }
-
-      .cms-tree-name {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
-
-      .cms-advanced-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 7px;
-      }
-
-      .cms-adv-field {
-        min-width: 0;
-      }
-
-      .cms-adv-field > span,
-      .cms-attr-row > span {
-        display: block;
-        margin: 0 0 4px;
-        color: #85858f;
-        font-size: 10px;
-      }
-
-      .cms-adv-field .cms-input {
-        margin: 0;
-        font-size: 11px;
-      }
-
-      .cms-attribute-editor {
-        margin-top: 14px;
-      }
-
-      .cms-attr-row {
-        display: grid;
-        grid-template-columns: 80px 1fr;
-        align-items: end;
-        gap: 7px;
-        margin-bottom: 7px;
-      }
-
-      .cms-attr-row .cms-input {
-        margin: 0;
-        font-size: 11px;
-      }
-
-      .cms-computed-box {
-        margin-top: 13px;
-        padding: 10px;
-        color: #a1a1aa;
-        background: rgba(255,255,255,.035);
-        border: 1px solid rgba(255,255,255,.07);
-        border-radius: 9px;
-        font-size: 10px;
-        line-height: 1.7;
-      }
-
-      .cms-computed-box b { color: #e5e7eb; }
-
-      #cms-preview-frame {
-        position: fixed;
-        top: 8px;
-        left: 50%;
-        height: calc(100vh - 16px);
-        max-width: calc(100vw - 16px);
-        transform: translateX(-50%);
-        display: none;
-        pointer-events: none;
-        border: 1px dashed rgba(99,102,241,.55);
-        border-radius: 12px;
-        z-index: 2147483640;
-        background: transparent;
-      }
-
-      #cms-preview-frame.active { display: block; }
-
-      #cms-preview-label {
-        position: absolute;
-        top: 6px;
-        left: 6px;
-        padding: 4px 7px;
-        color: #c7d2fe;
-        background: rgba(30,27,75,.9);
-        border: 1px solid rgba(129,140,248,.3);
-        border-radius: 6px;
-        font: 10px ui-monospace, monospace;
-      }
-
-      @media (max-width: 640px) {
-        #cms-tree-panel { width: calc(100vw - 24px); }
-        .cms-advanced-grid { grid-template-columns: 1fr; }
-      }
-    </style></head>
-
-<body data-aos-easing="ease-in-out" data-aos-duration="800" data-aos-delay="0">
+<body>
     <!-- Navbar -->
     
     <header>
@@ -385,8 +38,8 @@ button,input[type="submit"],input[type="button"]{border-radius:var(--site-radius
                 <li class="nav-item submenu"><a>Mandatory Public Disclosure <i class="fa fa-caret-down"></i></a>
                     <ul class="dropdown">
                         <li><a href="../mandatoryPublicDisclosure/index.html#general-info">General Information</a></li>
-                        <li><a href="../mandatoryPublicDisclosure/index.html#docs-inf">Documents &amp; Information</a></li>
-                        <li><a href="../mandatoryPublicDisclosure/index.html#results-academics">Results &amp; Academics</a></li>
+                        <li><a href="../mandatoryPublicDisclosure/index.html#docs-inf">Documents & Information</a></li>
+                        <li><a href="../mandatoryPublicDisclosure/index.html#results-academics">Results & Academics</a></li>
                         <li><a href="../mandatoryPublicDisclosure/index.html#teaching-staff">Teaching Staff</a></li>
                         <li><a href="../mandatoryPublicDisclosure/index.html#school-infra">School Infrastructure</a></li>
                     </ul>
@@ -450,25 +103,27 @@ button,input[type="submit"],input[type="button"]{border-radius:var(--site-radius
     <!-- Main Content Section -->
     <main>
         <section class="hero">
-            <div class="hero-image aos-init aos-animate" data-aos="fade-up">
+            <div class="hero-image" data-aos="fade-up">
                 <!-- Background set in home.css -->
             </div>
             <div class="overlay">
-                <h1 id="typing-text" class="" style="font-size: 63px;">Enroll Today!</h1><span class="cursor" style="animation-play-state: running;"></span>
+                <h1 id="typing-text"></h1><span class="cursor"></span>
             </div>
-            <button class="enroll" style="transform: scale(1);">Enroll Now</button>
+            <button class="enroll">Enroll Now</button>
         </section>
 
         <div class="btn-primary">
-            <a href="https://ssolive.myclassboard.com/Account/Login?ReturnUrl=%2Fconnect%2Fauthorize%2Fcallback%3Fclient_id%3DX6TTZZ6K9NNUBAF5L0P7%26redirect_uri%3Dhttps%253A%252F%252Fcorp35.myclassboard.com%252Fsso%252FCallback%26response_type%3Dcode%26scope%3Dopenid%2520profile%2520offline_access" target="_blank" "="" class="btn-pp">Parent Portal</a>
+            <a href="https://ssolive.myclassboard.com/Account/Login?ReturnUrl=%2Fconnect%2Fauthorize%2Fcallback%3Fclient_id%3DX6TTZZ6K9NNUBAF5L0P7%26redirect_uri%3Dhttps%253A%252F%252Fcorp35.myclassboard.com%252Fsso%252FCallback%26response_type%3Dcode%26scope%3Dopenid%2520profile%2520offline_access" target="_blank"" class="btn-pp">Parent Portal</a>
             <a href="../information/helpDesk/index.html" class="btn-admissions">Admissions</a>
             <a href="../information/helpDesk/index.html#seniorSecondary" class="btn-ss">Senior Secondary</a>
         </div>
 
-        <section id="about-us" data-aos="fade-up" data-aos-delay="300" class="aos-init aos-animate">
+
+
+        <section id="about-us"  data-aos="fade-up" data-aos-delay="300">
             <br><br><br>
             <div class="container">
-                <h2 class="section-title"><span class="">About Us</span></h2>
+                <h2 class="section-title"><span>About Us</span></h2>
     
                 <div class="about-content">
                     <div class="about-image-column">
@@ -477,14 +132,18 @@ button,input[type="submit"],input[type="button"]{border-radius:var(--site-radius
                             Use a good quality, roughly square or portrait-oriented image.
                             Replace 'your-image.jpg' with the actual path to your image.
                         -->
-                        <img src="../media/images/hero_image.jpg" alt="A descriptive alt text about the image (e.g., A picture of [Your Name])" class="about-image">
+                        <img src="../media/images/hero_image.jpg" 
+                             alt="A descriptive alt text about the image (e.g., A picture of [Your Name])" 
+                             class="about-image">
                     </div>
                     <div class="about-text-column">
-                        <h3 class="">Our School</h3>
+                        <h3>Our School</h3>
                         <p>
                             Learning by Doing
                         </p>
-                        <p class="">Okay the CMSS WORKSS hiiii does ir work thi??</p><br>
+                        <p>
+                            PICT Model School has adopted a unique methodology that is well suited to the child's innate quest to learn by "doing". Most of the learning activities are through a number of sequential and scientifically designed tools for multi-sensory aspects and individualized education. The school provides an array of valuable experiences from which children create their knowledge.
+                        </p><br>
                         <a class="homeLearnMore" href="../about/index.html">
                             Learn More
                         </a><br><br>
@@ -500,9 +159,9 @@ button,input[type="submit"],input[type="button"]{border-radius:var(--site-radius
         </section>
 
 <br><br><br>
-        <section class="carousel-section aos-init aos-animate" data-aos="fade-up" data-aos-delay="600">
+        <section class="carousel-section" data-aos="fade-up" data-aos-delay="600" >
             <div class="slider">
-                <div class="list" style="transform: translateX(-200%);">
+                <div class="list">
                     <!-- Slider Items -->
                     <div class="item">
                         <img src="https://pictmodelschool.edu.in/images/banner%203.jpg" alt="Slide 1">
@@ -511,7 +170,7 @@ button,input[type="submit"],input[type="button"]{border-radius:var(--site-radius
                         <img src="https://pictmodelschool.edu.in/img/sliders/Exam-Result-Banners3.webp" alt="Slide 2">
                     </div>
                     <div class="item">
-                         <img src="https://pictmodelschool.edu.in/img/sliders/Exam-Result-Banners2.webp" alt="Slide 3" class="">
+                         <img src="https://pictmodelschool.edu.in/img/sliders/Exam-Result-Banners2.webp" alt="Slide 3">
                     </div>
                     <div class="item">
                          <img src="https://pictmodelschool.edu.in/img/sliders/Exam-Result-Banners1.webp" alt="Slide 4">
@@ -529,11 +188,11 @@ button,input[type="submit"],input[type="button"]{border-radius:var(--site-radius
 
                 <!-- Dots -->
                 <ul class="dots">
-                    <li class=""></li>
-                    <li class=""></li>
                     <li class="active"></li>
-                    <li class=""></li>
-                    <li class=""></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
                 </ul>
             </div>
         </section>
@@ -541,8 +200,13 @@ button,input[type="submit"],input[type="button"]{border-radius:var(--site-radius
             <!-- ====================================================== -->
     <!-- START: Full Width Looping Video Section              -->
     <!-- ====================================================== -->
-    <section class="full-width-video-section aos-init aos-animate" data-aos="fade-up" data-aos-delay="800">
-        <video id="looping-video" autoplay="" loop="" muted="" playsinline="" poster="../media/images/hero_image.jpg"> 
+    <section class="full-width-video-section" data-aos="fade-up" data-aos-delay="800">
+        <video id="looping-video"
+               autoplay
+               loop
+               muted
+               playsinline
+               poster="../media/images/hero_image.jpg"> 
            
             <source src="../media/videos/pictitlevid.mp4" type="video/mp4">
             
@@ -559,8 +223,9 @@ button,input[type="submit"],input[type="button"]{border-radius:var(--site-radius
     <!-- ====================================================== -->
     <section class="achievements-section">
 
+
             <!-- Section Title Block -->
-            <div class="section-title-container aos-init aos-animate" data-aos="fade-up" data-aos-delay="1050">
+            <div class="section-title-container" data-aos="fade-up" data-aos-delay="1050">
                 <h2 class="section-title2">Achievements</h2>
                 <!-- <div class="title-decorator">
                     <span class="line"></span>
@@ -601,16 +266,16 @@ button,input[type="submit"],input[type="button"]{border-radius:var(--site-radius
                 </div>
                 <!-- Grid Item 8 -->
                 <div class="achievement-item">
-                    <img src="../media/images/hero_image.jpg" alt="Achievement: Kaushik Annadata Prestigious Inspire Award" class="">
+                    <img src="../media/images/hero_image.jpg" alt="Achievement: Kaushik Annadata Prestigious Inspire Award">
                 </div>
                  <!-- Grid Item 9 (Example Placeholder) -->
                  <div class="achievement-item">
-                    
-                <img src="../media/images/background.jpg" alt="Placeholder Achievement 9" class=""></div>
+                    <img src="../media/images/background.jpg" alt="Placeholder Achievement 9">
+                </div>
                  <!-- Grid Item 10 (Example Placeholder) -->
                  <div class="achievement-item">
-                    
-                <img src="../media/images/background.jpg" alt="Placeholder Achievement 10" class=""></div>
+                    <img src="../media/images/background.jpg" alt="Placeholder Achievement 10">
+                </div>
                  <!-- Grid Item 11 (Example Placeholder) -->
                  <div class="achievement-item">
                     <img src="../media/images/background.jpg" alt="Placeholder Achievement 11">
@@ -762,15 +427,16 @@ button,input[type="submit"],input[type="button"]{border-radius:var(--site-radius
                      <div class="footer-col">
                         <h4>Get In Touch</h4>
                         <p class="footer-contact">
-                            <i class="fas fa-map-marker-alt"></i>Survey No.6 &amp; 7/54B Near Balewadi Stadium, Mahalunge, Pune, Maharashtra 411045<br>
+                            <i class="fas fa-map-marker-alt"></i>Survey No.6 & 7/54B Near Balewadi Stadium, Mahalunge, Pune, Maharashtra 411045<br>
                             <i class="fas fa-phone"></i> <a href="tel:+9102066806300">+91-020 6680 6300</a><br>
                             <i class="fas fa-envelope"></i> <a href="mailto:info@pictmodelschool.com">info@pictmodelschool.com</a>
                         </p>
                         <h4 class="credits-heading">Credits</h4>
                         <p class="credits-text">
-                            Made by Aadi Gorasia &amp; Laukik Kolte
+                            Made by Aadi Gorasia & Laukik Kolte
                         </p>
                     </div>
+
 
                     <!-- Column 4: Follow Us -->
                     <div class="footer-col">
@@ -779,8 +445,8 @@ button,input[type="submit"],input[type="button"]{border-radius:var(--site-radius
                         <div class="social-links">
                             <a href="https://www.facebook.com/pictmodelschool/about/?_rdr" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
                             <a href="https://x.com/pictmodelschool" aria-label="Twitter / X" target="_blank" rel="noopener noreferrer"><i class="fab fa-x"></i></a> 
-                            <a href="https://www.google.com/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=&amp;cad=rja&amp;uact=8&amp;ved=2ahUKEwjFsd7ozZ-MAxVed2wGHRtSOgIQFnoECBgQAQ&amp;url=https%3A%2F%2Fwww.instagram.com%2Fpictmodelschool%2F%3Fhl%3Den&amp;usg=AOvVaw0YQPmUEv8PLahY76eeAMeL&amp;opi=89978449" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
-                            <a href="https://www.google.com/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=&amp;cad=rja&amp;uact=8&amp;ved=2ahUKEwio86HwzZ-MAxWZRmcHHUYgIlYQFnoECCAQAQ&amp;url=https%3A%2F%2Fin.linkedin.com%2Fcompany%2Fpict-model-school&amp;usg=AOvVaw2Y_-o9bB9-nxk9iqEzBu4B&amp;opi=89978449" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwjFsd7ozZ-MAxVed2wGHRtSOgIQFnoECBgQAQ&url=https%3A%2F%2Fwww.instagram.com%2Fpictmodelschool%2F%3Fhl%3Den&usg=AOvVaw0YQPmUEv8PLahY76eeAMeL&opi=89978449" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwio86HwzZ-MAxWZRmcHHUYgIlYQFnoECCAQAQ&url=https%3A%2F%2Fin.linkedin.com%2Fcompany%2Fpict-model-school&usg=AOvVaw2Y_-o9bB9-nxk9iqEzBu4B&opi=89978449" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
                          <!-- <a href="#" aria-label="YouTube" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i></a>  -->
                          
                          <!--
@@ -796,21 +462,22 @@ button,input[type="submit"],input[type="button"]{border-radius:var(--site-radius
 
         <div class="footer-bottom">
             <div class="container">
-                <p class="">© <span id="current-year" class="">2026</span> PICT Model School. All Rights Reserved.</p>
+                <p>© <span id="current-year"></span> PICT Model School. All Rights Reserved.</p>
                 <!-- Optional: Add links to Privacy Policy / Terms -->
                  <br><hr><br>
                 
             </div>
         </div><!-- /.footer-bottom -->
-    </div></footer>
+    </footer>
     <!-- ====================================================== -->
     <!-- END: Enhanced Footer Section                         -->
     <!-- ====================================================== -->
 
+
     <!-- ====================================================== -->
     <!-- START: Scroll-to-Top Button                        -->
     <!-- ====================================================== -->
-    <button id="scrollToTopBtn" title="Go to top" class="visible">
+    <button id="scrollToTopBtn" title="Go to top">
         <i class="fas fa-arrow-up"></i>
     </button>
     <!-- ====================================================== -->
@@ -822,30 +489,9 @@ button,input[type="submit"],input[type="button"]{border-radius:var(--site-radius
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
+
     <!-- Page Specific JS -->
     <script src="../home.js"></script>
+</body>
 
-                    
-                    
-                    
-                
-
-<script>window.__CMS_PAGE__="/index.html"</script><script>
-(()=>{const q=s=>document.querySelector(s),qa=s=>Array.from(document.querySelectorAll(s));const currentPage=window.__CMS_PAGE__||'/';let csrf=null,baseLive=null,dirty=false,saveTimer=null,resize=null;
-function strip(){const d=document.documentElement.cloneNode(true);d.querySelector('#cms-editor-wrapper')?.remove();d.querySelectorAll('.cms-selected-element').forEach(e=>e.classList.remove('cms-selected-element'));d.querySelectorAll('[data-cms-temp-id],[data-cms-runtime]').forEach(e=>{e.removeAttribute('data-cms-temp-id');e.removeAttribute('data-cms-runtime')});return '<!doctype html>\n'+d.outerHTML}
-async function api(u,o={}){const r=await fetch(u,{credentials:'same-origin',...o,headers:{'Content-Type':'application/json',...(o.headers||{}),...(csrf?{'X-CMS-CSRF':csrf}:{})}});const t=await r.text();let d={};try{d=t?JSON.parse(t):{}}catch{}if(!r.ok)throw new Error(d.error||('HTTP '+r.status));return d}
-function status(t){const e=q('#cms-save-status');if(e)e.textContent=t;const cp=q('#cms-current-page');if(cp)cp.textContent=currentPage}
-function selected(){return q('.cms-selected-element')}
-async function meta(){const m=await api('/api/draft?path='+encodeURIComponent(currentPage));baseLive=m.baseLiveVersionId||null;status(m.exists?'Draft loaded':'Saved')}
-async function saveDraft(){status('Saving…');const html=strip();const r=await api('/api/draft?path='+encodeURIComponent(currentPage),{method:'PUT',body:JSON.stringify({html,baseLiveVersionId:baseLive})});baseLive=r.baseLiveVersionId||baseLive;dirty=false;status('Draft saved');return r}
-async function publish(){if(!bootUser?.canPublish)return;status('Publishing…');const r=await api('/api/publish',{method:'POST',body:JSON.stringify({pagePath:currentPage,baseLiveVersionId:baseLive})});baseLive=r.version.id;dirty=false;status('Published v'+r.version.versionNumber);toast('Published v'+r.version.versionNumber)}
-function toast(m){let e=q('#cms-toast');if(e){e.textContent=m;e.classList.add('show');setTimeout(()=>e.classList.remove('show'),2600)}}
-function openDashboard(){location.href='/_cms'}
-function addDock(){const dock=q('#cms-master-dock');if(!dock)return;if(!q('#cms-dashboard-btn')){const b=document.createElement('button');b.id='cms-dashboard-btn';b.className='cms-button secondary';b.textContent='Dashboard';b.onclick=openDashboard;dock.insertBefore(b,q('#save-btn'))}if(bootUser?.canPublish&&!q('#cms-publish-btn')){const b=document.createElement('button');b.id='cms-publish-btn';b.className='cms-button';b.textContent='Publish';b.onclick=publish;dock.appendChild(b)}const sb=q('#save-btn');if(sb){sb.textContent='Save Draft';sb.title='Save draft (Ctrl/Cmd+S)';sb.onclick=()=>saveDraft().catch(e=>toast(e.message))}}
-function addInspectorTools(){const body=q('#dynamic-controls');if(!body||q('#cms-advanced-tools'))return;const box=document.createElement('section');box.id='cms-advanced-tools';box.className='cms-group';box.innerHTML='<label class="cms-label">Layout & responsive</label><div class="cms-row"><select id="cms-display"><option value="">Display</option><option>block</option><option>flex</option><option>grid</option><option>inline-block</option><option>none</option></select><select id="cms-flex-dir"><option value="">Direction</option><option>row</option><option>column</option></select></div><div class="cms-row"><input id="cms-gap" class="cms-input" placeholder="Gap"><input id="cms-radius" class="cms-input" placeholder="Radius"></div><div class="cms-row"><input id="cms-mt" class="cms-input" placeholder="Margin top"><input id="cms-mb" class="cms-input" placeholder="Margin bottom"></div><div class="cms-row"><input id="cms-px" class="cms-input" placeholder="Padding X"><input id="cms-py" class="cms-input" placeholder="Padding Y"></div><label class="cms-label">Responsive overrides</label><div class="cms-row"><input id="cms-tab" class="cms-input" placeholder="Tablet CSS"><input id="cms-mob" class="cms-input" placeholder="Mobile CSS"></div><button id="cms-apply-layout" class="cms-button secondary">Apply</button>';body.appendChild(box);q('#cms-apply-layout').onclick=()=>{const e=selected();if(!e)return toast('Select an element first');const set=(p,id)=>{const v=q(id)?.value.trim();if(v)e.style[p]=v};set('display','#cms-display');set('flexDirection','#cms-flex-dir');set('gap','#cms-gap');set('borderRadius','#cms-radius');set('marginTop','#cms-mt');set('marginBottom','#cms-mb');const px=q('#cms-px').value.trim(),py=q('#cms-py').value.trim();if(px)e.style.paddingLeft=px,e.style.paddingRight=px;if(py)e.style.paddingTop=py,e.style.paddingBottom=py;let style=document.querySelector('style[data-cms-responsive]');if(!style){style=document.createElement('style');style.dataset.cmsResponsive='1';document.head.appendChild(style)}const id=e.id||e.dataset.cmsTempId||(e.dataset.cmsTempId='cms-'+Math.random().toString(36).slice(2,9));const selector='#'+CSS.escape(id);const tab=q('#cms-tab').value.trim(),mob=q('#cms-mob').value.trim();style.textContent=tab?'@media (max-width:1024px){'+selector+'{'+tab+'}}\n'+(mob?'@media (max-width:768px){'+selector+'{'+mob+'}}':''):'';dirty=true;status('Unsaved changes')};}
-function addResize(){if(resize)return;resize=document.createElement('div');resize.id='cms-resize-handle';resize.style.cssText='position:fixed;width:12px;height:12px;background:#8b72ff;border:2px solid #fff;border-radius:3px;display:none;z-index:2147483647;cursor:nwse-resize;box-shadow:0 2px 8px rgba(0,0,0,.4)';document.body.appendChild(resize);let drag=null;resize.onpointerdown=e=>{const el=selected();if(!el)return;const r=el.getBoundingClientRect();drag={el,w:r.width,h:r.height,x:e.clientX,y:e.clientY};e.preventDefault()};window.addEventListener('pointermove',e=>{if(!drag)return;drag.el.style.width=Math.max(20,drag.w+e.clientX-drag.x)+'px';drag.el.style.height=Math.max(20,drag.h+e.clientY-drag.y)+'px';dirty=true;status('Unsaved changes');positionResize()});window.addEventListener('pointerup',()=>drag=null);function positionResize(){const el=selected();if(!el){resize.style.display='none';return}const r=el.getBoundingClientRect();resize.style.display='block';resize.style.left=(r.right-6)+'px';resize.style.top=(r.bottom-6)+'px'}setInterval(positionResize,250)}
-function addSelectionObserver(){const mo=new MutationObserver(()=>{addResize()});mo.observe(document.body,{attributes:true,subtree:true,attributeFilter:['class']});setInterval(()=>{const e=selected();if(e&&e.isConnected){e.dataset.cmsRuntime='1'}},1000)}
-let bootUser={canPublish:false};api('/api/auth/me').then(d=>{csrf=d.csrf;bootUser={...d.user,canPublish:d.user.role==='admin'};addDock();addInspectorTools();addResize();addSelectionObserver();meta()}).catch(()=>location.href='/_cms/login');document.addEventListener('click',e=>{const b=e.target.closest('#save-btn');if(b){e.preventDefault();e.stopImmediatePropagation();saveDraft().catch(x=>toast(x.message))}},true);document.addEventListener('keydown',e=>{if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='s'&&!/input|textarea|select/i.test(e.target.tagName)){e.preventDefault();saveDraft().catch(x=>toast(x.message));}},true);const mark=()=>{dirty=true;status('Unsaved changes');clearTimeout(saveTimer);saveTimer=setTimeout(()=>saveDraft().catch(()=>{}),2500)};document.addEventListener('input',e=>{if(e.target.closest('#cms-editor-wrapper'))mark()},true);window.addEventListener('beforeunload',e=>{if(dirty){e.preventDefault();e.returnValue=''}});
-})();
-</script>
-<div id="cms-resize-handle" style="position: fixed; width: 12px; height: 12px; background: rgb(139, 114, 255); border: 2px solid rgb(255, 255, 255); border-radius: 3px; display: block; z-index: 2147483647; cursor: nwse-resize; box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 8px; left: 1280.086975px; top: 462.26091px;"></div></body></html>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Users - Studio CMS</title>
+<link rel="stylesheet" href="/_cms/assets/app.css">
+</head>
+<body>
+<div class="app-shell">
+  <div class="app-sidebar" id="app-sidebar"></div>
+  <main class="app-main">
+    <div class="page-header">
+      <div>
+        <h1 class="page-title">Users</h1>
+        <p class="page-subtitle">Admins can edit, publish, upload, delete, and manage users. Editors can edit, save drafts, upload, and preview.</p>
+      </div>
+      <div class="page-actions">
+        <button class="btn btn-primary" id="new-user-btn">+ Add user</button>
+      </div>
+    </div>
+    <div id="users-content"><div class="spinner"></div></div>
+  </main>
+</div>
+<script src="/_cms/assets/app.js"></script>
+<script>
+let currentUser = null;
+
+App.boot("users", async (user) => {
+  currentUser = user;
+  if (user.role !== "admin") {
+    document.getElementById("new-user-btn").style.display = "none";
+    document.getElementById("users-content").innerHTML = '<div class="empty-state">' + App.icon("users") + "<div>Only admins can manage users.</div></div>";
+    return;
+  }
+  await loadUsers();
+  document.getElementById("new-user-btn").addEventListener("click", openNewUserModal);
+});
+
+async function loadUsers() {
+  try {
+    const data = await App.api("/_cms/api/users");
+    renderUsers(data.users);
+  } catch (err) {
+    document.getElementById("users-content").innerHTML = '<div class="empty-state">' + App.escapeHtml(err.message) + "</div>";
+  }
+}
+
+function renderUsers(users) {
+  const content = document.getElementById("users-content");
+  content.innerHTML =
+    '<div class="table-card"><table><thead><tr><th>Username</th><th>Role</th><th>Created</th><th style="text-align:right;">Actions</th></tr></thead><tbody>' +
+    users.map((u) =>
+      "<tr>" +
+      '<td class="cell-title">' + App.escapeHtml(u.username) + (u.id === currentUser.id ? ' <span class="cell-muted">(you)</span>' : "") + "</td>" +
+      "<td>" + App.roleBadge(u.role) + "</td>" +
+      '<td class="cell-muted">' + App.formatRelativeTime(u.createdAt) + "</td>" +
+      '<td><div class="cell-actions">' +
+      '<button class="btn btn-secondary btn-sm" data-act="role" data-id="' + u.id + '" data-role="' + u.role + '" data-name="' + App.escapeHtml(u.username) + '">Change role</button>' +
+      '<button class="btn btn-secondary btn-sm" data-act="password" data-id="' + u.id + '" data-name="' + App.escapeHtml(u.username) + '">Reset password</button>' +
+      (u.id !== currentUser.id ? '<button class="btn btn-danger btn-icon btn-sm" data-act="delete" data-id="' + u.id + '" data-name="' + App.escapeHtml(u.username) + '">' + App.icon("trash") + "</button>" : "") +
+      "</div></td></tr>"
+    ).join("") +
+    "</tbody></table></div>";
+}
+
+document.addEventListener("click", async (e) => {
+  const btn = e.target.closest("[data-act]");
+  if (!btn) return;
+
+  if (btn.dataset.act === "role") {
+    const next = btn.dataset.role === "admin" ? "editor" : "admin";
+    const ok = await App.confirmModal({ title: "Change role?", message: "Set " + btn.dataset.name + "'s role to " + next + "?", confirmLabel: "Change to " + next });
+    if (!ok) return;
+    try {
+      await App.api("/_cms/api/users/" + btn.dataset.id, { method: "PATCH", body: { role: next } });
+      App.toast("Role updated", "success");
+      loadUsers();
+    } catch (err) { App.toast(err.message, "error"); }
+  }
+
+  if (btn.dataset.act === "password") {
+    const pw = window.prompt("New password for " + btn.dataset.name + " (min 8 characters):");
+    if (!pw) return;
+    try {
+      await App.api("/_cms/api/users/" + btn.dataset.id, { method: "PATCH", body: { password: pw } });
+      App.toast("Password reset. Their other sessions were signed out.", "success");
+    } catch (err) { App.toast(err.message, "error"); }
+  }
+
+  if (btn.dataset.act === "delete") {
+    const ok = await App.confirmModal({ title: "Delete user?", message: "Remove " + btn.dataset.name + "'s account? This can't be undone.", confirmLabel: "Delete user", danger: true });
+    if (!ok) return;
+    try {
+      await App.api("/_cms/api/users/" + btn.dataset.id, { method: "DELETE" });
+      App.toast("User deleted", "success");
+      loadUsers();
+    } catch (err) { App.toast(err.message, "error"); }
+  }
+});
+
+function openNewUserModal() {
+  const overlay = document.createElement("div");
+  overlay.className = "modal-overlay";
+  overlay.innerHTML =
+    '<div class="modal"><h3>Add user</h3>' +
+    '<div class="field"><label>Username</label><input type="text" id="nu-username"></div>' +
+    '<div class="field"><label>Password</label><input type="password" id="nu-password"><p class="hint">Minimum 8 characters.</p></div>' +
+    '<div class="field"><label>Role</label><select id="nu-role"><option value="editor">Editor - edit, save drafts, upload, preview</option><option value="admin">Admin - all of the above, plus publish, delete, manage users &amp; settings</option></select></div>' +
+    '<div class="modal-actions"><button class="btn btn-secondary" data-act="cancel">Cancel</button><button class="btn btn-primary" data-act="create">Create user</button></div></div>';
+  document.body.appendChild(overlay);
+  overlay.querySelector("#nu-username").focus();
+  overlay.addEventListener("click", async (e) => {
+    if (e.target === overlay || e.target.dataset.act === "cancel") { overlay.remove(); return; }
+    if (e.target.dataset.act === "create") {
+      const username = overlay.querySelector("#nu-username").value.trim();
+      const password = overlay.querySelector("#nu-password").value;
+      const role = overlay.querySelector("#nu-role").value;
+      try {
+        await App.api("/_cms/api/users", { method: "POST", body: { username, password, role } });
+        overlay.remove();
+        App.toast("User created", "success");
+        loadUsers();
+      } catch (err) {
+        App.toast(err.message, "error");
+      }
+    }
+  });
+}
+</script>
+</body>
+</html>

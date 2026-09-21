@@ -1,0 +1,10 @@
+{
+  "user_rE4m2Ca12IDK": {
+    "id": "user_rE4m2Ca12IDK",
+    "username": "aadi",
+    "passwordHash": "scrypt$16384$8$1$ede7f128c8c206fabaf61a35997e9b30$b5b08f3f79bb6b46227dea7296d2a23cad6807238350db4481c2fd5b8bac3d5e0f79d7a0c4b8066d06ed60b5d8fe2e3306d585db0ea8d738154a89db77f0c0a0",
+    "role": "admin",
+    "createdAt": 1789870082234,
+    "createdBy": null
+  }
+}

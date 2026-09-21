@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard - Studio CMS</title>
+<link rel="stylesheet" href="/_cms/assets/app.css">
+</head>
+<body>
+<div class="app-shell">
+  <div class="app-sidebar" id="app-sidebar"></div>
+  <main class="app-main">
+    <div class="page-header">
+      <div>
+        <h1 class="page-title" id="greeting">Dashboard</h1>
+        <p class="page-subtitle" id="site-status-line">Loading...</p>
+      </div>
+      <div class="page-actions">
+        <a class="btn btn-secondary" href="/?__cms=live" target="_blank">View site</a>
+        <a class="btn btn-primary" href="/_cms/pages">Edit a page</a>
+      </div>
+    </div>
+
+    <div class="stat-grid" id="stat-grid">
+      <div class="card"><div class="spinner"></div></div>
+    </div>
+
+    <div class="table-card" style="margin-bottom:24px;">
+      <div style="padding:14px 16px 0;"><h2 class="section-title">Recent activity</h2></div>
+      <div class="activity-list" id="activity-list"><div class="spinner"></div></div>
+    </div>
+  </main>
+</div>
+<script src="/_cms/assets/app.js"></script>
+<script>
+App.boot("dashboard", async (user) => {
+  document.getElementById("greeting").textContent = greetingFor(user.username);
+  try {
+    const data = await App.api("/_cms/api/stats");
+    renderStats(data);
+    renderActivity(data.recentActivity);
+  } catch (err) {
+    App.toast(err.message, "error");
+  }
+});
+
+function greetingFor(name) {
+  const h = new Date().getHours();
+  const time = h < 12 ? "Good morning" : h < 18 ? "Good afternoon" : "Good evening";
+  return time + ", " + name;
+}
+
+function renderStats(data) {
+  const grid = document.getElementById("stat-grid");
+  const statusLine = document.getElementById("site-status-line");
+  statusLine.textContent = data.draftChangesCount === 0
+    ? "Everything is published."
+    : data.draftChangesCount + (data.draftChangesCount === 1 ? " page has" : " pages have") + " unpublished changes.";
+
+  const latest = data.latestVersion;
+  grid.innerHTML =
+    statCard("Pages", data.pageCount, data.pageCount === 1 ? "page" : "pages") +
+    statCard("Unpublished changes", data.draftChangesCount, data.draftChangesCount === 1 ? "page" : "pages") +
+    statCard("Latest version", latest ? "v" + latest.number : "\u2014", latest ? App.escapeHtml(latest.pagePath) + " by " + App.escapeHtml(latest.authorName) : "nothing published yet") +
+    statCard("Media files", data.mediaCount, data.mediaCount === 1 ? "file" : "files") +
+    statCard("Users", data.userCount, data.userCount === 1 ? "account" : "accounts");
+}
+
+function statCard(label, value, sub) {
+  return '<div class="card"><div class="stat-label">' + App.escapeHtml(label) + '</div><div class="stat-value">' + App.escapeHtml(String(value)) + '</div><div class="stat-sub">' + App.escapeHtml(sub) + "</div></div>";
+}
+
+function renderActivity(items) {
+  const list = document.getElementById("activity-list");
+  if (!items || !items.length) {
+    list.innerHTML = '<div class="empty-state">' + App.icon("activity") + "<div>No activity yet.</div></div>";
+    return;
+  }
+  list.innerHTML = items.map((a) =>
+    '<div class="activity-row"><div style="flex:1;">' + App.escapeHtml(a.message) + '</div><div class="activity-time">' + App.formatRelativeTime(a.createdAt) + "</div></div>"
+  ).join("");
+}
+</script>
+</body>
+</html>

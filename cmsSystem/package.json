@@ -1,0 +1,14 @@
+{
+  "name": "studio-cms",
+  "version": "1.0.0",
+  "description": "A lightweight, self-hosted visual website builder & CMS. Zero runtime dependencies - just Node.js.",
+  "private": true,
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "create-admin": "node scripts/create-admin.js"
+  },
+  "license": "UNLICENSED"
+}

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign in - Studio CMS</title>
+<link rel="stylesheet" href="/_cms/assets/app.css">
+<style>
+  body { display: flex; align-items: center; justify-content: center; min-height: 100vh; background: radial-gradient(1200px 600px at 50% -10%, rgba(124,92,255,.16), transparent), #0b0c11; }
+  .login-card { width: min(380px, 92vw); background: #14151d; border: 1px solid var(--border-strong); border-radius: 18px; padding: 34px 30px; box-shadow: 0 30px 90px rgba(0,0,0,.45); }
+  .login-brand { display: flex; align-items: center; gap: 11px; margin-bottom: 26px; }
+  .login-brand-mark { width: 36px; height: 36px; border-radius: 10px; background: linear-gradient(135deg,#7c5cff,#9b8cff); box-shadow: 0 8px 24px rgba(124,92,255,.4); }
+  .login-brand-text { font-weight: 800; font-size: 17px; }
+  .login-brand-text small { display: block; font-weight: 500; color: var(--muted); font-size: 11.5px; margin-top: 2px; }
+  h1 { font-size: 16px; margin: 0 0 4px; }
+  .login-sub { color: var(--muted); font-size: 12.5px; margin: 0 0 22px; }
+  .pw-wrap { position: relative; }
+  .pw-toggle { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); background: none; border: 0; color: var(--muted); padding: 6px; border-radius: 6px; }
+  .pw-toggle:hover { color: var(--text); background: rgba(255,255,255,.06); }
+  .login-error { display: none; padding: 10px 12px; margin-bottom: 14px; background: rgba(239,68,68,.1); border: 1px solid rgba(239,68,68,.3); border-radius: 9px; color: #fecaca; font-size: 12.5px; }
+  .login-error.show { display: block; }
+  .login-btn { width: 100%; margin-top: 6px; padding: 11px; justify-content: center; font-size: 13px; }
+  .login-footer { margin-top: 20px; text-align: center; color: var(--muted-2); font-size: 11px; }
+</style>
+</head>
+<body>
+<form class="login-card" id="login-form" autocomplete="on">
+  <div class="login-brand">
+    <div class="login-brand-mark"></div>
+    <div class="login-brand-text">Studio<small>Visual CMS</small></div>
+  </div>
+  <h1>Sign in</h1>
+  <p class="login-sub">Manage your site's pages, media, and design.</p>
+
+  <div class="login-error" id="login-error"></div>
+
+  <div class="field">
+    <label for="username">Username</label>
+    <input type="text" id="username" name="username" autocomplete="username" required autofocus>
+  </div>
+  <div class="field">
+    <label for="password">Password</label>
+    <div class="pw-wrap">
+      <input type="password" id="password" name="password" autocomplete="current-password" required>
+      <button type="button" class="pw-toggle" id="pw-toggle" aria-label="Show password">Show</button>
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary login-btn" id="login-btn">Sign in</button>
+  <p class="login-footer">Local to this installation - accounts are created with <code>node scripts/create-admin.js</code>.</p>
+</form>
+
+<script src="/_cms/assets/app.js"></script>
+<script>
+(() => {
+  const form = document.getElementById("login-form");
+  const errorBox = document.getElementById("login-error");
+  const btn = document.getElementById("login-btn");
+  const pwInput = document.getElementById("password");
+  const pwToggle = document.getElementById("pw-toggle");
+
+  pwToggle.addEventListener("click", () => {
+    const showing = pwInput.type === "text";
+    pwInput.type = showing ? "password" : "text";
+    pwToggle.textContent = showing ? "Show" : "Hide";
+  });
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    errorBox.classList.remove("show");
+    btn.disabled = true;
+    btn.textContent = "Signing in...";
+    try {
+      const username = document.getElementById("username").value;
+      const password = pwInput.value;
+      const res = await fetch("/_cms/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.error || "Sign in failed.");
+      window.location.href = "/_cms/dashboard";
+    } catch (err) {
+      errorBox.textContent = err.message;
+      errorBox.classList.add("show");
+      btn.disabled = false;
+      btn.textContent = "Sign in";
+    }
+  });
+})();
+</script>
+</body>
+</html>

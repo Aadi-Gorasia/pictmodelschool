@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pages - Studio CMS</title>
+<link rel="stylesheet" href="/_cms/assets/app.css">
+</head>
+<body>
+<div class="app-shell">
+  <div class="app-sidebar" id="app-sidebar"></div>
+  <main class="app-main">
+    <div class="page-header">
+      <div>
+        <h1 class="page-title">Pages</h1>
+        <p class="page-subtitle" id="page-count-line">Loading...</p>
+      </div>
+      <div class="page-actions">
+        <input type="text" id="search" placeholder="Search pages..." style="width:220px;">
+        <button class="btn btn-primary" id="new-page-btn">+ New page</button>
+      </div>
+    </div>
+
+    <div class="table-card">
+      <table>
+        <thead>
+          <tr><th>Page</th><th>Status</th><th>Last published</th><th>Version</th><th style="text-align:right;">Actions</th></tr>
+        </thead>
+        <tbody id="pages-tbody">
+          <tr><td colspan="5"><div class="spinner"></div></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</div>
+
+<script src="/_cms/assets/app.js"></script>
+<script>
+let allPages = [];
+let currentUser = null;
+
+App.boot("pages", async (user) => {
+  currentUser = user;
+  await loadPages();
+  document.getElementById("search").addEventListener("input", (e) => renderPages(filterPages(e.target.value)));
+  document.getElementById("new-page-btn").addEventListener("click", openNewPageModal);
+});
+
+async function loadPages() {
+  try {
+    const data = await App.api("/_cms/api/pages");
+    allPages = data.pages.sort((a, b) => a.path.localeCompare(b.path));
+    document.getElementById("page-count-line").textContent = allPages.length + (allPages.length === 1 ? " page" : " pages");
+    renderPages(allPages);
+  } catch (err) {
+    App.toast(err.message, "error");
+  }
+}
+
+function filterPages(query) {
+  const q = query.trim().toLowerCase();
+  if (!q) return allPages;
+  return allPages.filter((p) => p.path.toLowerCase().includes(q) || (p.title || "").toLowerCase().includes(q));
+}
+
+function renderPages(pages) {
+  const tbody = document.getElementById("pages-tbody");
+  if (!pages.length) {
+    tbody.innerHTML = '<tr><td colspan="5"><div class="empty-state">' + App.icon("pages") + "<div>No pages found.</div></div></td></tr>";
+    return;
+  }
+  tbody.innerHTML = pages.map((p) => {
+    const canPublish = currentUser.role === "admin";
+    const canDelete = currentUser.role === "admin";
+    return (
+      "<tr>" +
+      '<td><div class="cell-title">' + App.escapeHtml(p.title || p.path) + '</div><div class="cell-muted">/' + App.escapeHtml(p.path) + "</div></td>" +
+      "<td>" + App.statusBadge(p.status) + "</td>" +
+      '<td class="cell-muted">' + (p.lastPublishedAt ? App.formatRelativeTime(p.lastPublishedAt) + " by " + App.escapeHtml(p.lastPublishedBy || "?") : "never published") + "</td>" +
+      '<td class="cell-muted">' + (p.liveVersionNumber ? "v" + p.liveVersionNumber : "\u2014") + "</td>" +
+      '<td><div class="cell-actions">' +
+      '<a class="btn btn-secondary btn-sm" href="/' + encodeURI(p.path) + '" target="_blank" title="Edit in visual editor">Edit</a>' +
+      (p.hasLive ? '<a class="btn btn-secondary btn-icon btn-sm" href="/' + encodeURI(p.path) + '?__cms=live" target="_blank" title="View live">' + App.icon("eye") + "</a>" : "") +
+      '<button class="btn btn-secondary btn-icon btn-sm" data-act="duplicate" data-path="' + App.escapeHtml(p.path) + '" title="Duplicate">' + App.icon("copy") + "</button>" +
+      '<a class="btn btn-secondary btn-icon btn-sm" href="/_cms/versions?path=' + encodeURIComponent(p.path) + '" title="Version history">' + App.icon("versions") + "</a>" +
+      (canPublish
+        ? '<button class="btn btn-primary btn-sm" data-act="publish" data-path="' + App.escapeHtml(p.path) + '" ' + (p.status === "published" ? "disabled" : "") + ">Publish</button>"
+        : "") +
+      (canDelete ? '<button class="btn btn-danger btn-icon btn-sm" data-act="delete" data-path="' + App.escapeHtml(p.path) + '" title="Delete">' + App.icon("trash") + "</button>" : "") +
+      "</div></td>" +
+      "</tr>"
+    );
+  }).join("");
+  App.icon && refreshIconsNoop();
+}
+
+function refreshIconsNoop() {} // icons are inlined as strings already; kept for readability at call sites
+
+document.addEventListener("click", async (e) => {
+  const btn = e.target.closest("[data-act]");
+  if (!btn) return;
+  const path = btn.dataset.path;
+  const act = btn.dataset.act;
+
+  if (act === "duplicate") {
+    const suggestion = path.replace(/\.html$/, "") + "-copy.html";
+    const target = window.prompt("Duplicate \"" + path + "\" as:", suggestion);
+    if (!target) return;
+    try {
+      await App.api("/_cms/api/pages/duplicate", { method: "POST", body: { sourcePath: path, targetPath: target } });
+      App.toast("Duplicated as a new draft", "success");
+      loadPages();
+    } catch (err) { App.toast(err.message, "error"); }
+  }
+
+  if (act === "publish") {
+    try {
+      await App.api("/_cms/api/publish?path=" + encodeURIComponent(path), { method: "POST", body: {} });
+      App.toast("Published", "success");
+      loadPages();
+    } catch (err) { App.toast(err.message, "error"); }
+  }
+
+  if (act === "delete") {
+    const ok = await App.confirmModal({
+      title: "Delete this page?",
+      message: '"' + path + '" and its draft will be removed. Its version history is kept. This can\'t be undone from here.',
+      confirmLabel: "Delete page",
+      danger: true,
+    });
+    if (!ok) return;
+    try {
+      await App.api("/_cms/api/pages?path=" + encodeURIComponent(path), { method: "DELETE" });
+      App.toast("Page deleted", "success");
+      loadPages();
+    } catch (err) { App.toast(err.message, "error"); }
+  }
+});
+
+function openNewPageModal() {
+  const overlay = document.createElement("div");
+  overlay.className = "modal-overlay";
+  overlay.innerHTML =
+    '<div class="modal"><h3>New page</h3>' +
+    '<div class="field"><label>Path</label><input type="text" id="np-path" placeholder="services.html"><p class="hint">Relative to the site root. .html is added automatically if you leave it off.</p></div>' +
+    '<div class="field"><label>Title</label><input type="text" id="np-title" placeholder="Our services"></div>' +
+    '<div class="modal-actions"><button class="btn btn-secondary" data-act="cancel">Cancel</button><button class="btn btn-primary" data-act="create">Create as draft</button></div></div>';
+  document.body.appendChild(overlay);
+  overlay.querySelector("#np-path").focus();
+  overlay.addEventListener("click", async (e) => {
+    if (e.target === overlay || e.target.dataset.act === "cancel") { overlay.remove(); return; }
+    if (e.target.dataset.act === "create") {
+      const path = overlay.querySelector("#np-path").value.trim();
+      const title = overlay.querySelector("#np-title").value.trim();
+      if (!path) return;
+      try {
+        await App.api("/_cms/api/pages", { method: "POST", body: { path, title } });
+        overlay.remove();
+        App.toast("Page created as a draft - publish it once you're happy with it.", "success");
+        loadPages();
+      } catch (err) {
+        App.toast(err.message, "error");
+      }
+    }
+  });
+}
+</script>
+</body>
+</html>
